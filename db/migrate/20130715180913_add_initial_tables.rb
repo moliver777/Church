@@ -22,7 +22,7 @@ class AddInitialTables < ActiveRecord::Migration
 
     create_table :images do |t|
       t.string  :name,            :null => false
-      t.binary  :binary_content,  :null => false,  :limit => 2147483647
+      t.binary  :binary_content,  :null => false
       t.timestamps
     end
 
