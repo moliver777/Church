@@ -1,0 +1,68 @@
+<%= form_for(@page) do |f| %>
+	<% if @page.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+			<ul>
+				<% @page.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<table>
+		<tr>
+			<th>Title</th>
+			<td><%= f.text_field :title %></td>
+		</tr>
+		<tr>
+			<th>Link</th>
+			<td><%= f.text_field :link %></td>
+		</tr>
+		<tr>
+			<th>Layout</th>
+			<td><%= f.select :page_layout_id, options_for_select(@page_layouts, @page.page_layout_id), {:prompt => ""} %></td>
+		</tr>
+		<tr id="panel1" class="panel_selector" style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 0 %>">
+			<th>Panel 1</th>
+			<td><%= f.select :panel_1, options_for_select(@panels, @page.panel_1), {:prompt => ""} %></td>
+		</tr>
+		<tr id="panel2" class="panel_selector" style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 1 %>">
+			<th>Panel 2</th>
+			<td><%= f.select :panel_2, options_for_select(@panels, @page.panel_2), {:prompt => ""} %></td>
+		</tr>
+		<tr id="panel3" class="panel_selector" style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 2 %>">
+			<th>Panel 3</th>
+			<td><%= f.select :panel_3, options_for_select(@panels, @page.panel_3), {:prompt => ""} %></td>
+		</tr>
+		<tr id="panel4" class="panel_selector" style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 3 %>">
+			<th>Panel 4</th>
+			<td><%= f.select :panel_4, options_for_select(@panels, @page.panel_4), {:prompt => ""} %></td>
+		</tr>
+		<tr id="panel5" class="panel_selector" style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 4 %>">
+			<th>Panel 5</th>
+			<td><%= f.select :panel_5, options_for_select(@panels, @page.panel_5), {:prompt => ""} %></td>
+		</tr>
+		<tr>
+			<th>Published?</th>
+			<td><%= f.check_box :publish %></td>
+		</tr>
+		<tr>
+			<th>Menu Link?</th>
+			<td><%= f.check_box :menu_link %></td>
+		</tr>
+	</table>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		window.panel_counts = JSON.parse('<%= @panel_counts.html_safe %>');
+		$("select#page_page_layout_id").unbind("change").change(function() {
+			$("tr.panel_selector").hide();
+			var count = window.panel_counts[$(this).val()];
+			for (var i=0; i<count; i++) $("tr#panel"+(i+1)).show();
+		});
+	});
+</script>

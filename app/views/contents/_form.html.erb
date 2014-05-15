@@ -1,0 +1,25 @@
+<%= form_for(@content) do |f| %>
+	<% if @content.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
+			<ul>
+				<% @content.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<table>
+		<tr>
+			<th>Type</th>
+			<td><%= f.text_field :content_type %></td>
+		</tr>
+		<tr>
+			<th>Content</th>
+			<td><%= f.text_area :html_content %></td>
+		</tr>
+	</table>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

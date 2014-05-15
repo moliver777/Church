@@ -1,0 +1,10 @@
+<div id="menu">
+	<ul>
+		<% @menu.each do |link| %>
+			<li><a href="<%= link.link %>" class="<%= 'selected' if link.link == @page_link %>"><%= link.title %></a></li>
+		<% end %>
+	</ul>
+	<div id="accessibility">
+		<a id="size1" class="accessibility" style="font-size:13px;">A</a><span style="font-size:13px;">/</span><a id="size2" class="accessibility" style="font-size:16px;position:relative;top:1px;">A</a><span style="font-size:13px;">/</span><a id="size3" class="accessibility" style="font-size:20px;position:relative;top:2px;">A</a>
+	</div>
+</div>

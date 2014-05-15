@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th>Title</th>
+		<td><%= @page.title %></td>
+	</tr>
+	<tr>
+		<th>Link</th>
+		<td><%= @page.link %></td>
+	</tr>
+	<tr>
+		<th>Layout</th>
+		<td><%= @page.page_layout.name %></td>
+	</tr>
+	<tr style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 0 %>">
+		<th>Panel 1</th>
+		<td><%= Panel.where(:id => @page.panel_1).first.name rescue nil %></td>
+	</tr>
+	<tr style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 1 %>">
+		<th>Panel 2</th>
+		<td><%= Panel.where(:id => @page.panel_2).first.name rescue nil %></td>
+	</tr>
+	<tr style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 2 %>">
+		<th>Panel 3</th>
+		<td><%= Panel.where(:id => @page.panel_3).first.name rescue nil %></td>
+	</tr>
+	<tr style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 3 %>">
+		<th>Panel 4</th>
+		<td><%= Panel.where(:id => @page.panel_4).first.name rescue nil %></td>
+	</tr>
+	<tr style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 4 %>">
+		<th>Panel 5</th>
+		<td><%= Panel.where(:id => @page.panel_5).first.name rescue nil %></td>
+	</tr>
+	<tr>
+		<th>Published?</th>
+		<td><%= @page.publish %></td>
+	</tr>
+</table>
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>

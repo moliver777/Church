@@ -1,0 +1,9 @@
+fix delete routes
+test page build
+initialise git
+initialise heroku
+fix asset pipeline
+test admin pages (how does the change in how images are linked affect forms)
+build site
+admin preview building
+admin permissions

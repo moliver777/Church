@@ -1,0 +1,27 @@
+<div id="admin_sidebar">
+	<div class="underline">
+		<strong><%= @site_title.upcase %> ADMIN</strong>
+		<% if current_user %>
+			<br/>Logged in as <%= current_user.username %>
+		<% end %>
+	</div>
+	<br/>
+	<ul>
+		<li><a href="/admin">Home</a></li>
+		<% if current_user && current_user.level == User::DEVELOPER %>
+			<li><a href="/articles">Articles</a></li>
+			<li><a href="/contents">Contents</a></li>
+			<li><a href="/diaries">Diary</a></li>
+			<li><a href="/images">Images</a></li>
+			<li><a href="/news_articles">News Articles</a></li>
+			<li><a href="/page_layouts">Layouts</a></li>
+			<li><a href="/pages">Pages</a></li>
+			<li><a href="/panels">Panels</a></li>
+			<li><a href="/periodicals">Periodicals</a></li>
+			<li><a href="/users">Users</a></li>
+		<% end %>
+		<% if current_user %>
+			<li><a href="/logout">Logout</a></li>
+		<% end %>
+	</ul>
+</div>

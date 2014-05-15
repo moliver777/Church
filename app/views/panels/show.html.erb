@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th>Name</th>
+		<td><%= @panel.name %></td>
+	</tr>
+	<tr>
+		<th>Layout</th>
+		<td><%= @panel.page_layout.name %></td>
+	</tr>
+	<tr>
+		<th>Content</th>
+		<td><%= @panel.text %></td>
+	</tr>
+	<% @panel.images.each_with_index do |image,i| %>
+		<tr>
+			<th>Image <%= i+1 %></th>
+			<td><img class="thumb" src="/image/<%= image.id %>" /></td>
+		</tr>
+	<% end %>
+</table>
+<%= link_to 'Edit', edit_panel_path(@panel) %> |
+<%= link_to 'Back', panels_path %>

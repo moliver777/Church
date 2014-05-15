@@ -1,0 +1,23 @@
+<h1>Layouts</h1>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Content</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @page_layouts.each do |page_layout| %>
+		<tr>
+			<td><%= page_layout.name %></td>
+			<td><%= page_layout.content_type.capitalize %></td>
+			<td><%= truncate page_layout.html_content, :length => 50 %></td>
+			<td><%= link_to 'Show', page_layout %></td>
+			<td><%= link_to 'Edit', edit_page_layout_path(page_layout) %></td>
+			<td><a class="rails-delete" data-link="/page_layouts/delete/<%= page_layout.id %>">Destroy</a></td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<%= link_to 'New Page layout', new_page_layout_path %>

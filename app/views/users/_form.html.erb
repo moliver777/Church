@@ -1,0 +1,51 @@
+<%= form_for(@user) do |f| %>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<% next if msg == "Confirm password is invalid" %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<table>
+		<% if @user.username && !@user.username.blank? %>
+			<tr style="display:none;">
+				<th></th>
+				<td><%= f.text_field :old_username %></td>
+			</tr>
+			<tr>
+				<th>Username</th>
+				<td><%= f.text_field :username %></td>
+			</tr>
+		<% else %>
+			<tr>
+				<th>Username</th>
+				<td><%= f.text_field :username %></td>
+			</tr>
+		<% end %>
+		<% if @user.password && !@user.password.blank? %>
+			<tr>
+				<th>Old Password</th>
+				<td><%= f.password_field :old_password %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<th><%= (@user.password && !@user.password.blank?) ? "New Password" : "Password" %></th>
+			<td><%= f.password_field :new_password %></td>
+		</tr>
+		<tr>
+			<th><%= (@user.password && !@user.password.blank?) ? "Confirm New Password" : "Confirm Password" %></th>
+			<td><%= f.password_field :confirm_password %></td>
+		</tr>
+		<tr>
+			<th>Permission Level</th>
+			<td><%= f.select :level, User::LEVELS.map{|level| [level.capitalize, level]}, {:prompt => ""} %></td>
+		</tr>
+	</table>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

@@ -1,0 +1,23 @@
+<h1>Articles</h1>
+<table>
+	<tr>
+		<th>Date</th>
+		<th>File</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @articles.each do |article| %>
+		<tr>
+			<td><%= article.date %></td>
+			<td><%= article.filename %>.pdf</td>
+			<td><a href="/articles/<%= article.filename %>.pdf">Download</a></td>
+			<td><%= link_to 'Show', article %></td>
+			<td><%= link_to 'Edit', edit_article_path(article) %></td>
+			<td><a class="rails-delete" data-link="/articles/delete/<%= article.id %>">Destroy</a></td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<%= link_to 'New Article', new_article_path %>

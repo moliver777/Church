@@ -1,0 +1,29 @@
+<%= form_for(@periodical) do |f| %>
+	<% if @periodical.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@periodical.errors.count, "error") %> prohibited this periodical from being saved:</h2>
+			<ul>
+				<% @periodical.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<table>
+		<tr>
+			<th>Date</th>
+			<td><%= f.text_field :date %></td>
+		</tr>
+		<tr>
+			<th>Period (days)</th>
+			<td><%= f.number_field :period, step: 1, in: 1..365 %></td>
+		</tr>
+		<tr>
+			<th>Content</th>
+			<td><%= f.text_area :text %></td>
+		</tr>
+	</table>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

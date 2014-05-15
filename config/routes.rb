@@ -1,0 +1,46 @@
+Church::Application.routes.draw do
+  # SESSIONS
+  post "/login" => "sessions#login"
+  get "/logout" => "sessions#logout"
+  post "/accessibility/:accessibility" => "application#accessibility"
+  
+  # ADMINISTRATION
+  get "/admin" => "admin#admin"
+  post "/news_articles/publish"
+  resources :articles
+  resources :contents
+  resources :diaries
+  resources :images
+  resources :news_articles
+  resources :page_layouts
+  resources :pages
+  resources :panels
+  resources :periodicals
+  resources :users
+  
+  # DESTROY FIX
+  post "/articles/delete/:id" => "articles#destroy"
+  post "/contents/delete/:id" => "contents#destroy"
+  post "/diaries/delete/:id" => "diaries#destroy"
+  post "/images/delete/:id" => "images#destroy"
+  post "/news_articles/delete/:id" => "news_articles#destroy"
+  post "/page_layouts/delete/:id" => "page_layouts#destroy"
+  post "/pages/delete/:id" => "pages#destroy"
+  post "/panels/delete/:id" => "panels#destroy"
+  post "/periodicals/delete/:id" => "periodicals#destroy"
+  post "/users/delete/:id" => "users#destroy"
+  
+  # PRELOADED PAGES
+  get "/news" => "home#news"
+  get "/news/:id" => "home#get_news"
+  get "/newsletters" => "home#newsletters"
+  get "/newsletters/:filename" => "home#get_newsletter"
+  get "/diary" => "home#diary"
+  get "/diary/:id" => "home#get_diary"
+  
+  # CUSTOM CONTENT
+  get "/image/:id" => "home#image"
+  get "/:link" => "home#page"
+  
+  root :to => "home#index"
+end

@@ -1,0 +1,42 @@
+<%= form_for(@page_layout) do |f| %>
+	<% if @page_layout.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@page_layout.errors.count, "error") %> prohibited this page_layout from being saved:</h2>
+			<ul>
+				<% @page_layout.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<table>
+		<tr>
+			<th>Name</th>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<th>Type</th>
+			<td><%= f.select :content_type, options_for_select([["Page","PAGE"],["Panel","PANEL"]]), {:prompt => ""} %></td>
+		</tr>
+		<tr>
+			<th>Content</th>
+			<td><%= f.text_area :html_content %></td>
+		</tr>
+		<tr id="type_PAGE" class="type_field" style="<%= 'display:none;' unless @page_layout.content_type == 'PAGE' %>">
+			<th>Number Of Panels</th>
+			<td><%= f.text_field :num_panels %></td>
+		</tr>
+	</table>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("select#page_layout_content_type").unbind("change").change(function() {
+			$("tr.type_field").hide();
+			$("tr#type_"+$(this).val()).show();
+		});
+	});
+</script>

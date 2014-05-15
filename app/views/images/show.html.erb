@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th>Title</th>
+		<td><%= @image.name %></td>
+	</tr>
+	<tr>
+		<th>Image</th>
+		<td><img src="/image/<%= @image.id %>" /></td>
+	</tr>
+</table>
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

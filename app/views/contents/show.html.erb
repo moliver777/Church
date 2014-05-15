@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th>Type</th>
+		<td><%= @content.content_type %></td>
+	</tr>
+	<tr>
+		<th>Content</th>
+		<td><%= @content.html_content %></td>
+	</tr>
+</table>
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>

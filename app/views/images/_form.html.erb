@@ -1,0 +1,31 @@
+<%= form_for(@image) do |f| %>
+	<% if @image.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+			<ul>
+				<% @image.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<table>
+		<% unless @image.binary_content.blank? %>
+			<tr>
+				<th><label>Current Image</label></th>
+				<td><img class="thumb" src="/image/<%= @image.id %>" /></td>
+			</tr>
+		<% end %>
+		<tr>
+			<th>Title</th>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<th>Upload Image</th>
+			<td><%= f.file_field :image_file, :onchange => "checkFile(this,['JPG','JPEG','PNG'])" %></td>
+		</tr>
+	</table>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

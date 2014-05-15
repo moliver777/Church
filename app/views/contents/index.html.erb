@@ -1,0 +1,26 @@
+<h1>Contents</h1>
+<table>
+	<tr>
+		<th>Type</th>
+		<th>Content</th>
+		<th></th>
+		<th></th>
+		<% if user_permission %>
+			<th></th>
+		<% end %>
+	</tr>
+	<% @contents.each do |content| %>
+		<tr>
+			<td><%= content.content_type %></td>
+			<td><%= truncate content.html_content, :length => 50 %></td>
+			<td><%= link_to 'Show', content %></td>
+			<td><%= link_to 'Edit', edit_content_path(content) %></td>
+			<% if user_permission %>
+				<td><a class="rails-delete" data-link="/contents/delete/<%= content.id %>">Destroy</a></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
+<% if user_permission %>
+	<%= link_to 'New Content', new_content_path %>
+<% end %>

@@ -1,0 +1,42 @@
+<% if current_user %>
+	ADMIN PAGE
+<% else %>
+	<table class="login">
+		<tr>
+			<td>
+				<%= text_field_tag :username, nil, :placeholder => "Username" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= password_field_tag :password, nil, :placeholder => "Password" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= submit_tag :submit, :value => "Login", :id => "login" %>
+			</td>
+		</tr>
+	</table>
+	<span class="error" style="display:none;"></span>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("input#login").unbind("click").click(function() {
+				$("span.error").hide();
+				var params = {
+					"username": $("input#username").val(),
+					"password": $("input#password").val()
+				}
+				$.post("/login", params, function(json) {
+					if (json.success) {
+						window.location.reload();
+					} else {
+						$("span.error").html(json.message);
+						$("span.error").show();
+					}
+				});
+			});
+		});
+	</script>
+<% end %>

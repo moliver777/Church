@@ -1,0 +1,21 @@
+<h1>Images</h1>
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Image</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @images.each do |image| %>
+		<tr>
+			<td><%= image.name %></td>
+			<td><img class="thumb" src="/image/<%= image.id %>" /></td>
+			<td><%= link_to 'Show', image %></td>
+			<td><%= link_to 'Edit', edit_image_path(image) %></td>
+			<td><a class="rails-delete" data-link="/images/delete/<%= image.id %>">Destroy</a></td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<%= link_to 'New Image', new_image_path %>

@@ -1,0 +1,23 @@
+<h1>Periodicals</h1>
+<table>
+	<tr>
+		<th>Date</th>
+		<th>Period (days)</th>
+		<th>Content</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @periodicals.each do |periodical| %>
+		<tr>
+			<td><%= periodical.date %></td>
+			<td><%= periodical.period %></td>
+			<td><%= truncate periodical.text, :length => 100 %></td>
+			<td><%= link_to 'Show', periodical %></td>
+			<td><%= link_to 'Edit', edit_periodical_path(periodical) %></td>
+			<td><a class="rails-delete" data-link="/periodicals/delete/<%= periodical.id %>">Destroy</a></td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<%= link_to 'New Periodical', new_periodical_path %>

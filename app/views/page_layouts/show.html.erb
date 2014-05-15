@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th>Name</th>
+		<td><%= @page_layout.name %></td>
+	</tr>
+	<tr>
+		<th>Type</th>
+		<td><%= @page_layout.content_type.capitalize %></td>
+	</tr>
+	<tr>
+		<th>Content</th>
+		<td><%= @page_layout.html_content %></td>
+	</tr>
+	<tr style="<%= 'display:none;' unless @page_layout.type == 'PAGE' rescue nil %>">
+		<th>Number Of Panels</th>
+		<td><%= @page_layout.num_panels %></td>
+	</tr>
+</table>
+<%= link_to 'Edit', edit_page_layout_path(@page_layout) %> |
+<%= link_to 'Back', page_layouts_path %>

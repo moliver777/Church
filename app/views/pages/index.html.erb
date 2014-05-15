@@ -1,0 +1,35 @@
+<h1>Pages</h1>
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Link</th>
+		<th>Layout</th>
+		<th>Panel 1</th>
+		<th>Panel 2</th>
+		<th>Panel 3</th>
+		<th>Panel 4</th>
+		<th>Panel 5</th>
+		<th>Published?</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @pages.each do |page| %>
+		<tr>
+			<td><%= page.title %></td>
+			<td><%= page.link %></td>
+			<td><%= page.page_layout.name %></td>
+			<td><%= Panel.where(:id => page.panel_1).first.name rescue nil %></td>
+			<td><%= Panel.where(:id => page.panel_2).first.name rescue nil %></td>
+			<td><%= Panel.where(:id => page.panel_3).first.name rescue nil %></td>
+			<td><%= Panel.where(:id => page.panel_4).first.name rescue nil %></td>
+			<td><%= Panel.where(:id => page.panel_5).first.name rescue nil %></td>
+			<td><%= page.publish %></td>
+			<td><%= link_to 'Show', page %></td>
+			<td><%= link_to 'Edit', edit_page_path(page) %></td>
+			<td><a class="rails-delete" data-link="/pages/delete/<%= page.id %>">Destroy</a></td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<%= link_to 'New Page', new_page_path %>
