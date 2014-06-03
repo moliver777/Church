@@ -1,12 +1,7 @@
 class HomeController < ApplicationController
   def index
-    if cookies[:splash]
-      @page = Page.where(link: "/").first || render_404
-      @page_link = "/"
-    else
-      cookies[:splash] = {:value => true, :expires => Time.now.advance(days: 1)}
-      render "splash", :layout => false
-    end
+    @page = Page.where(link: "/").first || render_404
+    @page_link = "/"
   end
   
   def page

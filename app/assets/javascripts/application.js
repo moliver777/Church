@@ -57,12 +57,15 @@ function formatPage() {
 $(document).ready(function() {
 	// Image slideshows
 	var index = 1;
-	window.slideshows = [];
-	$("div.slideshow div.image_container > img:gt(0)").hide();
+	window.slideshows = 0;
 	$.each($("div.slideshow"), function() {
-		$(this).find("div.image_container").attr("id", "image_container"+index);
-		window.slideshows = index;
+        $.each($(this).find("div.image_container"), function() {
+		    $(this).attr("id", "image_container"+index);
+            $("div#image_container"+index+" > img:gt(0)").hide();
+            index++;
+        });
 	});
+    window.slideshows = index;
 	setInterval(function() {
 		for (i=1;i<=window.slideshows;i++) {
 			$("#image_container"+i+" > img:first")

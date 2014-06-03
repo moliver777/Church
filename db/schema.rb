@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
     t.integer  "panel_4"
     t.integer  "panel_5"
     t.boolean  "publish",        :default => false, :null => false
+    t.boolean  "menu_link",      :default => false, :null => false
+    t.integer  "menu_position",  :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,14 +91,14 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
     t.integer  "page_layout_id"
     t.string   "name",           :null => false
     t.text     "text"
-    t.string   "images"
+    t.string   "classes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "periodicals", :force => true do |t|
     t.date     "date",                      :null => false
-    t.integer  "period",     :default => 0, :null => false
+    t.integer  "period",     :default => 1, :null => false
     t.text     "text",                      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
