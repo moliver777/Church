@@ -1,0 +1,25 @@
+<h1>Notes</h1>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Phone</th>
+		<th>Email</th>
+		<th>Message</th>
+		<th>Category</th>
+		<th>Read?</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @notes.each do |note| %>
+		<tr>
+			<td><%= note.name %></td>
+			<td><%= note.phone_number %></td>
+			<td><%= note.email_address %></td>
+			<td><%= note.message.truncate(30) %></td>
+			<td><%= note.category %></td>
+			<td><%= note.read %></td>
+			<td><%= link_to 'Show', note %></td>
+			<td><a class="rails-delete" data-link="/notes/delete/<%= note.id %>">Destroy</a></td>
+		</tr>
+	<% end %>
+</table>

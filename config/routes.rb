@@ -10,8 +10,10 @@ Church::Application.routes.draw do
   resources :articles
   resources :contents
   resources :diaries
+  resources :email_addresses
   resources :images
   resources :news_articles
+  resources :notes
   resources :page_layouts
   resources :pages
   resources :panels
@@ -22,13 +24,20 @@ Church::Application.routes.draw do
   post "/articles/delete/:id" => "articles#destroy"
   post "/contents/delete/:id" => "contents#destroy"
   post "/diaries/delete/:id" => "diaries#destroy"
+  post "/email_addresses/delete/:id" => "email_addresses#destroy"
   post "/images/delete/:id" => "images#destroy"
   post "/news_articles/delete/:id" => "news_articles#destroy"
+  post "/notes/delete/:id" => "notes#destroy"
   post "/page_layouts/delete/:id" => "page_layouts#destroy"
   post "/pages/delete/:id" => "pages#destroy"
   post "/panels/delete/:id" => "panels#destroy"
   post "/periodicals/delete/:id" => "periodicals#destroy"
   post "/users/delete/:id" => "users#destroy"
+  
+  # SUBSCRIPTIONS AND CONTACT
+  post "/subscribe" => "email_addresses#subscribe"
+  post "/unsubscribe" => "email_addresses#unsubscribe"
+  post "/contact" => "notes#contact"
   
   # PRELOADED PAGES
   get "/news" => "home#news"

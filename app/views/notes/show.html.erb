@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th>Name</th>
+		<td><%= @note.name %></td>
+	</tr>
+	<tr>
+		<th>Phone</th>
+		<td><%= @note.phone_number %></td>
+	</tr>
+	<tr>
+		<th>Email</th>
+		<td><%= @note.email_address %></td>
+	</tr>
+	<tr>
+		<th>Message</th>
+		<td><%= @note.message %></td>
+	</tr>
+	<tr>
+		<th>Category</th>
+		<td><%= @note.category %></td>
+	</tr>
+	<tr>
+		<th>Read?</th>
+		<td><%= @note.read %></td>
+	</tr>
+</table>
+<%= link_to 'Back', notes_path %>

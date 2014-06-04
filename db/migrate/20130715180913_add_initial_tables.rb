@@ -20,6 +20,12 @@ class AddInitialTables < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :email_addresses do |t|
+      t.string  :email_address, :null => false
+      t.boolean :enabled,       :null => false, :default => true
+      t.timestamps
+    end
+
     create_table :images do |t|
       t.string  :name,            :null => false
       t.binary  :binary_content,  :null => false
@@ -40,6 +46,17 @@ class AddInitialTables < ActiveRecord::Migration
       t.string  :abstract,  :null => false
       t.text    :text,      :null => false
       t.boolean :publish,   :null => false, :default => false
+      t.timestamps
+    end
+
+    create_table :notes do |t|
+      t.string  :name,        :null => false
+      t.string  :phone_number
+      t.string  :email_address
+      t.text    :message,     :null => false
+      t.boolean :read,        :null => false, :default => false
+      t.string  :ip_address,  :null => false
+      t.string  :category,    :null => false
       t.timestamps
     end
 
@@ -99,9 +116,11 @@ class AddInitialTables < ActiveRecord::Migration
     drop_table :articles
     drop_table :contents
     drop_table :diaries
+    drop_table :email_addresses
     drop_table :images
     drop_table :image_mappings
     drop_table :news_articles
+    drop_table :notes
     drop_table :page_layouts
     drop_table :pages
     drop_table :panels

@@ -46,7 +46,6 @@ create_layout "PANEL", "Half Combo (Image Right)", '<div id="@id" class="panel h
 # create_layout "PANEL", "Vertical Image", ''
 # create_layout "PANEL", "Vertical Combo (Image Top)", ''
 # create_layout "PANEL", "Vertical Combo (Image Bottom)", ''
-# create_layout "PANEL", "Diary", ''
 
 
 # Home Page
