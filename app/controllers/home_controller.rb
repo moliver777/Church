@@ -30,6 +30,9 @@ class HomeController < ApplicationController
     send_data article.binary_content
   end
   
+  def unsubscribe
+  end
+  
   def image
     image = Image.where(id: params[:id]).first
     send_data image.binary_content, :disposition => 'inline'

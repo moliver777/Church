@@ -1,10 +1,29 @@
 <div id="menu">
-	<ul>
+	<ul id="main_menu">
 		<% @menu.each_with_index do |link,i| %>
-			<li><a href="<%= link.link %>" class="<%= 'selected' if link.link == @page_link %>"><%= link.title %></a><%= " | " if i+1 < @menu.count %></li>
+			<li class="menu_link">
+				<a href="<%= link.link %>" class="<%= 'selected' if link.link == @page_link %>"><%= link.title %></a><%= " | " if i+1 < @menu.count %>
+				<% unless link.sub_links.empty? %>
+					<ul class="sub_menu">
+						<% link.sub_links.each do |sub_link| %>
+							<!-- <li><a href="<%= sub_link.link %>"><%= sub_link.title %></a></li> -->
+						<% end %>
+					</ul>
+				<% end %>
+			</li>
 		<% end %>
 	</ul>
 	<div id="accessibility">
 		<a id="size1" class="accessibility" style="font-size:13px;">A</a><span style="font-size:13px;">/</span><a id="size2" class="accessibility" style="font-size:16px;position:relative;top:1px;">A</a><span style="font-size:13px;">/</span><a id="size3" class="accessibility" style="font-size:20px;position:relative;top:2px;">A</a>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("li.menu_link").hover(function() {
+			$(this).find(".sub_menu").show();
+		}, function() {
+			$(this).find(".sub_menu").hide();
+		});
+	});
+</script>

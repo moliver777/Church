@@ -36,6 +36,7 @@ Church::Application.routes.draw do
   
   # SUBSCRIPTIONS AND CONTACT
   post "/subscribe" => "email_addresses#subscribe"
+  get "/unsubscribe" => "home#unsubscribe"
   post "/unsubscribe" => "email_addresses#unsubscribe"
   post "/contact" => "notes#contact"
   

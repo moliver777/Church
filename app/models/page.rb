@@ -12,4 +12,8 @@ class Page < ActiveRecord::Base
     content.gsub!(/@panel_5/, (Panel.where(:id => self.panel_5).first.build rescue RENDER_ERROR)) if self.page_layout.num_panels > 4
     return content.html_safe
   end
+  
+  def sub_links
+    Page.where(:menu_position => self.menu_position, :menu_link => false).order("sub_menu_position ASC")
+  end
 end

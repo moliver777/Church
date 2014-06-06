@@ -20,7 +20,7 @@
 		</tr>
 		<tr>
 			<th>Content</th>
-			<td><%= f.text_area :html_content %></td>
+			<td><%= f.text_area :html_content, :cols => 70 %></td>
 		</tr>
 		<tr id="type_PAGE" class="type_field" style="<%= 'display:none;' unless @page_layout.content_type == 'PAGE' %>">
 			<th>Number Of Panels</th>

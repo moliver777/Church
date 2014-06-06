@@ -20,7 +20,7 @@
 		</tr>
 		<tr>
 			<th>Text</th>
-			<td><%= f.text_area :text %></td>
+			<td><%= f.text_area :text, :cols => 70 %></td>
 		</tr>
 		<tr style="display:none;"><td><%= f.text_field :images %></td></tr>
 		<% unless @diary.images.first %>

@@ -119,13 +119,37 @@ $(window).load(function() {
 // ----- MAILING LIST ----- \\
 function subscribe() {
     $("span#mailing_list_error").hide();
+    $("span#mailing_list_success").hide();
     var email = $("input#mailing_list").val();
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(email)) {
-        
+        $.post("/subscribe", {email_address: email}, function() {
+            $("span#mailing_list_success").show();
+            setTimeout(function() {
+                $("span#mailing_list_success").fadeOut("fast");
+            }, 3000);
+        });
     } else {
-        
-        $("span#mailing_list_error").html("This is not a valid email address.")
+        $("span#mailing_list_error").show();
+        setTimeout(function() {
+            $("span#mailing_list_error").fadeOut("fast");
+        }, 3000);
+    }
+}
+
+function unsubscribe() {
+    $("span#mailing_list_error").hide();
+    $("span#mailing_list_success").hide();
+    var email = $("input#mailing_list").val();
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(email)) {
+        $.post("/unsubscribe", {email_address: email}, function() {
+            $("span#mailing_list_success").show();
+            setTimeout(function() {
+                $("span#mailing_list_success").fadeOut("fast");
+            }, 3000);
+        });
+    } else {
         $("span#mailing_list_error").show();
         setTimeout(function() {
             $("span#mailing_list_error").fadeOut("fast");

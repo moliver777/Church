@@ -11,6 +11,7 @@ class EmailAddressesController < ApplicationController
 
   def unsubscribe
     EmailAddress.where(email_address: params[:email_address]).update_all(enabled: false)
+    render nothing: true
   end
 
   # GET /email_addresses

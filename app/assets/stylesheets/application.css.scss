@@ -142,7 +142,7 @@ div#menu {
 	height: 20px;
 }
 
-div#menu ul li {
+div#menu ul#main_menu li {
 	float: left;
 	padding: 0 0 0 5px;
 }
@@ -153,6 +153,10 @@ div#menu ul li a {
 
 div#menu ul li a.selected {
 	font-weight: bold;
+}
+
+div#menu ul.sub_menu {
+    display: none;
 }
 
 div#menu div#accessibility {
@@ -460,6 +464,7 @@ div.panel.half-combo-right {
 
 div.panel.full {
 	width: 980px;
+    min-height: 400px;
 	padding: 0 5px;
 }
 
@@ -494,9 +499,17 @@ div.home-image-padding {
 	width: 475px!important;
 }
 
+div.diary h2 {
+    text-align: left;
+}
+
 /* OTHER CUSTOM CLASSES */
 .error {
     color: red;
+}
+
+.center {
+    text-align: center;
 }
 
 #prayer-table {
@@ -510,4 +523,8 @@ div.home-image-padding {
 
 #prayer-table td {
     border: none;
+}
+
+#mailing_list_error, #mailing_list_success {
+    display: none;
 }
