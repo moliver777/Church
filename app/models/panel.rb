@@ -9,42 +9,45 @@ class Panel < ActiveRecord::Base
     images = self.images
     image_splits, text_splits = get_splits
     classes = self.classes.split(" ") rescue []
-    
-    # if our panel is a horizontal image split, use special population logic
-    if self.page_layout.name == "Half Image Split"
-      begin
-      if image_splits[1][0]
-        content.gsub!(/@splitimages1/, image_splits[0].map{|image| "<img src=\"/image/#{image.id}\" />"}.join())
-        content.gsub!(/@splitimages2/, image_splits[1].map{|image| "<img src=\"/image/#{image.id}\" />"}.join())
-        classes << "slideshow" if image_splits[0][1]
-      elsif image_splits[0][0]
-        content.gsub!(/@splitimages1/, "<img src=\"/image/#{image_splits[0][0].id}\" />")
-        content.gsub!(/@splitimages2/, "<img src=\"/image/#{image_splits[0][0].id}\" />")
-      else
-        content.gsub!(/@splitimages1/, "")
-        content.gsub!(/@splitimages2/, "")
-      end
-      rescue StandardError => e
-        puts e.message
-        puts e.backtrace
-      end
-    # all other panels image logic
+    # if our panel is a periodical panel, use special population logic
+    if classes.include? "periodical"
+      content.gsub!(/@text/, "#{self.text}")
     else
-      if images[1]
-        content.gsub!(/@images/, images.map{|image| "<img src=\"/image/#{image.id}\" />"}.join())
-        classes << "slideshow"
-      elsif images[0]
-        content.gsub!(/@images/, "<img src=\"/image/#{images[0].id}\" />")
+      # if our panel is a horizontal image split, use special population logic
+      if self.page_layout.name == "Half Image Split"
+        begin
+        if image_splits[1][0]
+          content.gsub!(/@splitimages1/, image_splits[0].map{|image| "<img src=\"/image/#{image.id}\" />"}.join())
+          content.gsub!(/@splitimages2/, image_splits[1].map{|image| "<img src=\"/image/#{image.id}\" />"}.join())
+          classes << "slideshow" if image_splits[0][1]
+        elsif image_splits[0][0]
+          content.gsub!(/@splitimages1/, "<img src=\"/image/#{image_splits[0][0].id}\" />")
+          content.gsub!(/@splitimages2/, "<img src=\"/image/#{image_splits[0][0].id}\" />")
+        else
+          content.gsub!(/@splitimages1/, "")
+          content.gsub!(/@splitimages2/, "")
+        end
+        rescue StandardError => e
+          puts e.message
+          puts e.backtrace
+        end
+      # all other panels image logic
       else
-        content.gsub!(/@images/, "")
+        if images[1]
+          content.gsub!(/@images/, images.map{|image| "<img src=\"/image/#{image.id}\" />"}.join())
+          classes << "slideshow"
+        elsif images[0]
+          content.gsub!(/@images/, "<img src=\"/image/#{images[0].id}\" />")
+        else
+          content.gsub!(/@images/, "")
+        end
       end
+      content.gsub!(/@text/, "#{self.text}")
+      content.gsub!(/@splittext1/, "#{text_splits[0]}")
+      content.gsub!(/@splittext2/, "#{text_splits[1]}")
     end
-    
     content.gsub!(/@id/, "panel#{self.id}")
     content.gsub!(/@classes/, classes.join(" "))
-    content.gsub!(/@text/, "#{self.text}")
-    content.gsub!(/@splittext1/, "#{text_splits[0]}")
-    content.gsub!(/@splittext2/, "#{text_splits[1]}")
     return content
   end
   

@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+  skip_before_filter :setup, only: [:get_diary, :get_news, :get_article, :image]
+  skip_before_filter :shared_content, only: [:get_diary, :get_news, :get_article, :image]
+  
   def index
     @page = Page.where(link: "/").first || render_404
     @page_link = "/"
@@ -10,21 +13,23 @@ class HomeController < ApplicationController
   end
   
   def diary
-    # @page_link = "/diary"
+    @page_link = "diary"
+    @diaries = Diary.page("")
   end
   
-  def get_diary
+  def ajax_diary
+    @diaries = Diary.page(params[:page])
   end
   
   def news
-    # @page_link = "/news"
+    @page_link = "news"
   end
   
-  def get_news
+  def ajax_news
   end
   
   def articles
-    # @page_link = "/articles"
+    @page_link = "articles"
   end
   
   def get_article

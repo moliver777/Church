@@ -69,17 +69,18 @@ class AddInitialTables < ActiveRecord::Migration
     end
 
     create_table :pages do |t|
-      t.string  :link,            :null => false
-      t.string  :title,           :null => false
-      t.integer :page_layout_id,  :null => false
+      t.string  :link,              :null => false
+      t.string  :title,             :null => false
+      t.integer :page_layout_id,    :null => false
       t.integer :panel_1
       t.integer :panel_2
       t.integer :panel_3
       t.integer :panel_4
       t.integer :panel_5
-      t.boolean :publish,         :null => false, :default => false
-      t.boolean :menu_link,       :null => false, :default => false
-      t.integer :menu_position,   :null => false, :default => 0
+      t.boolean :publish,           :null => false, :default => false
+      t.boolean :menu_link,         :null => false, :default => false
+      t.integer :menu_position,     :null => false, :default => 0
+      t.integer :sub_menu_position, :null => false, :default => 0
       t.timestamps
     end
 

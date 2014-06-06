@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
     t.datetime "updated_at"
   end
 
+  create_table "email_addresses", :force => true do |t|
+    t.string   "email_address",                   :null => false
+    t.boolean  "enabled",       :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "image_mappings", :force => true do |t|
     t.integer  "content_id"
     t.integer  "diary_id"
@@ -58,6 +65,18 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
     t.string   "abstract",                      :null => false
     t.text     "text",                          :null => false
     t.boolean  "publish",    :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", :force => true do |t|
+    t.string   "name",                             :null => false
+    t.string   "phone_number"
+    t.string   "email_address"
+    t.text     "message",                          :null => false
+    t.boolean  "read",          :default => false, :null => false
+    t.string   "ip_address",                       :null => false
+    t.string   "category",                         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

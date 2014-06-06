@@ -1,0 +1,31 @@
+<% unless @diaries.empty? %>
+	<% @diaries.each do |diary| %>
+		<% if diary.images.first %>
+			<div class="panel-wrapper full-width">
+				<div class="panel half-combo-left split <%= 'slideshow' if diary.images.count > 1 %>">
+					<div class="split-left">
+						<div class="image_container">
+							<% diary.images.each do |image| %>
+								<img src="/image/<%= image.id %>" />
+							<% end %>
+						</div>
+					</div>
+					<div class="split-right">
+						<h2><%= diary.date.strftime("%d/%m/%Y") %> - <%= diary.title %><h2>
+						<%= diary.text %>
+					</div>
+				</div>
+			</div>
+		<% else %>
+			<div class="panel-wrapper full-width">
+				<div id="@id" class="panel half-text">
+					<h2><%= diary.date.strftime("%d/%m/%Y") %> - <%= diary.title %><h2>
+					<%= diary.text %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	<div id="fr">
+		<%= paginate @diaries, :remote => true, :params => {:controller => "home", :action => "ajax_diary" } %>
+	</div>
+<% end %>

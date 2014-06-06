@@ -41,11 +41,9 @@ Church::Application.routes.draw do
   
   # PRELOADED PAGES
   get "/news" => "home#news"
-  get "/news/:id" => "home#get_news"
-  get "/newsletters" => "home#newsletters"
-  get "/newsletters/:filename" => "home#get_newsletter"
+  get "/ajax_news" => "home#ajax_news"
   get "/diary" => "home#diary"
-  get "/diary/:id" => "home#get_diary"
+  get "/ajax_diary" => "home#ajax_diary"
   
   # CUSTOM CONTENT
   get "/image/:id" => "home#image"
