@@ -19,6 +19,9 @@ class HomeController < ApplicationController
   
   def ajax_diary
     @diaries = Diary.page(params[:page])
+    respond_to do |format|
+        format.js
+      end
   end
   
   def news
