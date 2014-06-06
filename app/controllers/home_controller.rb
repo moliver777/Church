@@ -14,21 +14,11 @@ class HomeController < ApplicationController
   
   def diary
     @page_link = "diary"
-    @diaries = Diary.page("")
-  end
-  
-  def ajax_diary
-    @diaries = Diary.page(params[:page])
-    respond_to do |format|
-        format.js
-      end
+    @diaries = params.include?(:page) ? Diary.page(params[:page]) : Diary.page("")
   end
   
   def news
     @page_link = "news"
-  end
-  
-  def ajax_news
   end
   
   def articles

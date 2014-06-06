@@ -26,6 +26,6 @@
 		<% end %>
 	<% end %>
 	<div id="fr">
-		<%= paginate @diaries, :remote => true, :params => {:controller => "home", :action => "ajax_diary" } %>
+		<%= paginate @diaries, :remote => true, :params => {:controller => "home", :action => "diary" } %>
 	</div>
 <% end %>
