@@ -56,7 +56,7 @@ class NewsArticlesController < ApplicationController
 
     respond_to do |format|
       if @news_article.save
-        images.each do |image|
+        images.split(",").each do |image|
           unless image == "0"
             ImageMapping.create({
               news_article_id: @news_article.id,
@@ -82,7 +82,7 @@ class NewsArticlesController < ApplicationController
     respond_to do |format|
       if @news_article.update_attributes(params[:news_article].except!(:images))
         @news_article.image_mappings.destroy_all
-        images.each do |image|
+        images.split(",").each do |image|
           unless image == "0"
             ImageMapping.create({
               news_article_id: @news_article.id,

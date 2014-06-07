@@ -50,7 +50,7 @@ class DiariesController < ApplicationController
 
     respond_to do |format|
       if @diary.save
-        images.each do |image|
+        images.split(",").each do |image|
           unless image == "0"
             ImageMapping.create({
               diary_id: @diary.id,
@@ -76,7 +76,7 @@ class DiariesController < ApplicationController
     respond_to do |format|
       if @diary.update_attributes(params[:diary].except!(:images))
         @diary.image_mappings.destroy_all
-        images.each do |image|
+        images.split(",").each do |image|
           unless image == "0"
             ImageMapping.create({
               diary_id: @diary.id,
