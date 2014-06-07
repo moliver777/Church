@@ -34,10 +34,7 @@ Church::Application.routes.draw do
   post "/periodicals/delete/:id" => "periodicals#destroy"
   post "/users/delete/:id" => "users#destroy"
   
-  # SUBSCRIPTIONS AND CONTACT
-  post "/subscribe" => "email_addresses#subscribe"
-  get "/unsubscribe" => "home#unsubscribe"
-  post "/unsubscribe" => "email_addresses#unsubscribe"
+  # CONTACT
   post "/contact" => "notes#contact"
   
   # PRELOADED PAGES

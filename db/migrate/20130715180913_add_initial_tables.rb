@@ -20,12 +20,6 @@ class AddInitialTables < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :email_addresses do |t|
-      t.string  :email_address, :null => false
-      t.boolean :enabled,       :null => false, :default => true
-      t.timestamps
-    end
-
     create_table :images do |t|
       t.string  :name,            :null => false
       t.binary  :binary_content,  :null => false
