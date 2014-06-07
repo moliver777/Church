@@ -11,7 +11,8 @@ class Panel < ActiveRecord::Base
     classes = self.classes.split(" ") rescue []
     # if our panel is a periodical panel, use special population logic
     if classes.include? "periodical"
-      content.gsub!(/@text/, "#{self.text}")
+      periodical = Periodical.where(date: "2000-#{Date.today.strftime("%m-%d")}").first
+      periodical ? content.gsub!(/@text/, "<table id='prayer-table'><tr><td id='prayer'>#{periodical.text}</td><tr></table>") : content.gsub!(/@text/, "#{self.text}")
     else
       # if our panel is a horizontal image split, use special population logic
       if self.page_layout.name == "Half Image Split"

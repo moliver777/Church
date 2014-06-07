@@ -228,6 +228,34 @@ div.image_container img {
 	position: absolute;
 }
 
+tr.unread {
+    font-weight: bold;
+}
+
+tr.hover:hover {
+    cursor: pointer;
+    background-color: #EEE;
+}
+
+table.prayers {
+    margin-top: 20px;
+}
+
+td.day:hover, th.change_month:hover {
+    cursor: pointer;
+    background-color: #EEE;
+}
+
+table.prayers td {
+    color: rgba(160,160,160,1);
+}
+
+td.exists {
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(68,68,68,1)!important;
+}
+
 /* HEADER */
 div#header {
 	position: absolute;

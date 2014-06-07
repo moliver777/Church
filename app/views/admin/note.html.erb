@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <table class="show">
 	<tr>
 		<th>Name</th>
@@ -20,9 +19,5 @@
 		<th>Category</th>
 		<td><%= @note.category %></td>
 	</tr>
-	<tr>
-		<th>Read?</th>
-		<td><%= @note.is_read %></td>
-	</tr>
 </table>
-<%= link_to 'Back', notes_path %>
+<%= link_to 'Back', "/admin/notes" %>

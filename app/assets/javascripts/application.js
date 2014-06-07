@@ -36,8 +36,6 @@ function formatPage() {
         
         // Realign top offsets
         if (horz == "right" && $(this).offset().top < $("div.corner."+vert+"."+horz).offset().top) {
-            console.log($("div.corner."+vert+"."+horz).offset().top)
-            console.log($(this).offset().top)
             $("div.corner."+vert+"."+horz).css("margin-top", "-"+($("div.corner."+vert+"."+horz).offset().top-$(this).offset().top)+"px");
         } 
 	});
@@ -65,7 +63,7 @@ $(window).load(function() {
             index++;
         });
 	});
-    console.log(window.slideshows)
+    
     window.slideshows = index;
 	setInterval(function() {
 		for (i=1;i<=window.slideshows;i++) {

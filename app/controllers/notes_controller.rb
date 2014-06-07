@@ -9,7 +9,7 @@ class NotesController < ApplicationController
       Note.create(params[:note])
       render json: {success: true}
     else
-      render json: (success: false, errors: errors)
+      render json: {success: false, errors: errors}
     end
   end
 
@@ -22,7 +22,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    notes = Note.all
+    @notes = Note.all
 
     respond_to do |format|
       format.html # index.html.erb

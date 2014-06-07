@@ -1,0 +1,32 @@
+<h1>Prayers</h1>
+<% 12.times do |m| %>
+	<% month = Date::MONTHNAMES[m+1] %>
+	<table class="prayers" data-month="<%= m+1 %>" style="<%= 'display:none;' unless @month.to_i == m+1 %>">
+		<tr>
+			<th class="change_month" data-month="<%= m == 0 ? 12 : m %>"><< Prev</th>
+			<th colspan="5"><%= month %></th>
+			<th class="change_month" data-month="<%= m == 11 ? 1 : m+2 %>">Next >></th>
+		</tr>
+		<tr>
+			<% @days_in_month[m].times do |d| %>
+				<% day = d+1 %>
+				<td class="day <%= 'exists' if @prayers.include?("#{"%02d" % (m+1).to_s}#{"%02d" % day.to_s}") %>" style="width:14%;height:60px;" data-date="<%= "#{"%02d" % (m+1).to_s}#{"%02d" % day.to_s}" %>"><%= day %></td>
+				<% if day%7 === 0 && day < @days_in_month[m] %>
+					</tr><tr>
+				<% end %>
+			<% end %>
+		</tr>
+	</table>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("th.change_month").click(function() {
+			window.location.href = "/admin/prayers?month="+$(this).data("month");
+		});
+		
+		$("td.day").click(function() {
+			window.location.href = "/admin/prayers/"+$(this).data("date");
+		});
+	});
+</script>

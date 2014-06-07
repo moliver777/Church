@@ -1,0 +1,28 @@
+<h1>Prayer - <%= @date.split("-")[2].to_i.ordinalize %> <%= Date::MONTHNAMES[@date.split("-")[1].to_i] %></h1>
+<table style="margin-top:20px;">
+	<tr>
+		<th>Prayer</th>
+		<td><textarea cols="70" rows="10" id="text"><%= @prayer.text %></textarea></td>
+	</tr>
+</table>
+<div class="actions">
+	<input type="button" value="Save Prayer" id="save" /><br/>
+	<input type="button" value="Delete Prayer" id="delete" /><br/>
+	<a href="/admin/prayers?month=<%= @date.split("-")[1].to_i %>">Back</a>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("input#save").click(function() {
+			$.post("/admin/prayers/<%= @date %>", {text: $("#text").val()}, function() {
+				window.location.href = "/admin/prayers?month=<%= @date.split("-")[1].to_i %>";
+			});
+		});
+		
+		$("input#delete").click(function() {
+			$.post("/admin/prayers/delete/<%= @date %>", function() {
+				window.location.href = "/admin/prayers?month=<%= @date.split("-")[1].to_i %>";
+			});
+		});
+	});
+</script>

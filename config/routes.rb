@@ -20,6 +20,14 @@ Church::Application.routes.draw do
   resources :periodicals
   resources :users
   
+  # NON-DEV ADMINISTRATION
+  get "/admin/notes" => "admin#notes"
+  get "/admin/note/:id" => "admin#note"
+  get "/admin/prayers" => "admin#prayers"
+  get "/admin/prayers/:date" => "admin#prayer"
+  post "/admin/prayers/:date" => "admin#update_prayer"
+  post "/admin/prayers/delete/:date" => "admin#destroy_prayer"
+  
   # DESTROY FIX
   post "/articles/delete/:id" => "articles#destroy"
   post "/contents/delete/:id" => "contents#destroy"
