@@ -5,7 +5,7 @@ class Panel < ActiveRecord::Base
   has_many :images, through: :image_mappings
   
   def build
-    content = ActiveRecord::Base.connection.execute("SELECT SQL_NO_CACHE html_content FROM page_layouts WHERE id = #{self.page_layout_id}").first[0]
+    content = ActiveRecord::Base.connection.execute("SELECT SQL_NO_CACHE html_content FROM page_layouts WHERE id = #{self.page_layout_id}").first[0] rescue PageLayout.find(self.page_layout_id)
     images = self.images
     image_splits, text_splits = get_splits
     classes = self.classes.split(" ") rescue []
