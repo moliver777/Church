@@ -36,13 +36,6 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
     t.datetime "updated_at"
   end
 
-  create_table "email_addresses", :force => true do |t|
-    t.string   "email_address",                   :null => false
-    t.boolean  "enabled",       :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "image_mappings", :force => true do |t|
     t.integer  "content_id"
     t.integer  "diary_id"
@@ -74,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
     t.string   "phone_number"
     t.string   "email_address"
     t.text     "message",                          :null => false
-    t.boolean  "read",          :default => false, :null => false
+    t.boolean  "is_read",       :default => false, :null => false
     t.string   "ip_address",                       :null => false
     t.string   "category",                         :null => false
     t.datetime "created_at"
@@ -91,17 +84,18 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
   end
 
   create_table "pages", :force => true do |t|
-    t.string   "link",                              :null => false
-    t.string   "title",                             :null => false
-    t.integer  "page_layout_id",                    :null => false
+    t.string   "link",                                 :null => false
+    t.string   "title",                                :null => false
+    t.integer  "page_layout_id",                       :null => false
     t.integer  "panel_1"
     t.integer  "panel_2"
     t.integer  "panel_3"
     t.integer  "panel_4"
     t.integer  "panel_5"
-    t.boolean  "publish",        :default => false, :null => false
-    t.boolean  "menu_link",      :default => false, :null => false
-    t.integer  "menu_position",  :default => 0,     :null => false
+    t.boolean  "publish",           :default => false, :null => false
+    t.boolean  "menu_link",         :default => false, :null => false
+    t.integer  "menu_position",     :default => 0,     :null => false
+    t.integer  "sub_menu_position", :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
