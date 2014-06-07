@@ -48,7 +48,7 @@ class AddInitialTables < ActiveRecord::Migration
       t.string  :phone_number
       t.string  :email_address
       t.text    :message,     :null => false
-      t.boolean :read,        :null => false, :default => false
+      t.boolean :is_read,        :null => false, :default => false
       t.string  :ip_address,  :null => false
       t.string  :category,    :null => false
       t.timestamps
