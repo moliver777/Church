@@ -8,12 +8,16 @@ class HomeController < ApplicationController
   end
   
   def page
-    @page = Page.where(link: params[:link]).first || render_404
+    link = params.include?(:sub_link) ? "#{params[:link]}/#{params[:sub_link]}" : params[:link]
+    @page = Page.where(link: link).first || render_404
     @page_link = params[:link]
+    @sub_link = params[:sub_link]
+    redirect_to "/#{@page.sub_links.first.link}" if @page.page_layout_id == 0
   end
   
   def diary
-    @page_link = "diary"
+    @page_link = "events"
+    @sub_link = "diary"
     @diaries = params.include?(:page) ? Diary.page(params[:page]) : Diary.page("")
   end
   

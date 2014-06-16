@@ -48,12 +48,13 @@ Church::Application.routes.draw do
   # PRELOADED PAGES
   get "/news" => "home#news"
   get "/ajax_news" => "home#ajax_news"
-  get "/diary" => "home#diary"
+  get "/events/diary" => "home#diary"
   get "/ajax_diary" => "home#ajax_diary"
   
   # CUSTOM CONTENT
   get "/image/:id" => "home#image"
   get "/:link" => "home#page"
+  get "/:link/:sub_link" => "home#page"
   
   root :to => "home#index"
 end

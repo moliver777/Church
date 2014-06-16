@@ -43,6 +43,7 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
+    puts params
     @image = Image.new(params[:image])
 
     respond_to do |format|
