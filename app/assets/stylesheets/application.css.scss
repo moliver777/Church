@@ -80,10 +80,15 @@ a {
 	color: rgba(68,68,68,1);
   text-decoration: none;
   font-style: italic;
+  font-weight: bold;
 }
 
 a:hover {
 	text-decoration: underline;
+}
+
+textarea {
+  resize: none;
 }
 
 .field_with_errors {
@@ -154,6 +159,10 @@ div#menu ul#main_menu li {
   border-right: 1px solid #E2E2E2;
 }
 
+div#menu ul#main_menu li a:hover {
+  text-decoration: none;
+}
+
 div#menu ul.sub_menu {
   width: 98%;
   height: 40px;
@@ -169,6 +178,7 @@ div#menu ul.sub_menu li {
 
 div#menu ul li a {
   font-style: normal;
+  font-weight: normal;
 }
 
 div#menu ul li.highlight {
@@ -585,6 +595,14 @@ div.diary h2 {
   text-align: center;
 }
 
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
 #prayer-table {
   border: none;
   width: 100%;
@@ -598,6 +616,18 @@ div.diary h2 {
   border: none;
 }
 
-#mailing_list_error, #mailing_list_success {
+#mailing_list_error, #mailing_list_success, #contact_error, #contact_success {
   display: none;
+}
+
+.no-border, .no-border tr, .no-border tr th, .no-border tr td {
+  border: none;
+}
+
+.auto-margin {
+  margin: auto;
+}
+
+.auto-fill input {
+  width: 80%;
 }

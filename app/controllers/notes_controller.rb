@@ -1,23 +1,7 @@
 class NotesController < ApplicationController
   before_filter :authenticated_user
-  before_filter :dev_permission, :only => [:new, :create, :destroy]
+  before_filter :dev_permission
   layout "admin"
-
-  def contact
-    errors = validated? params[:note]
-    if errors.empty?
-      Note.create(params[:note])
-      render json: {success: true}
-    else
-      render json: {success: false, errors: errors}
-    end
-  end
-
-  def validated? params
-    errors = Array.new
-    # do validation
-    return errors
-  end
 
   # GET /notes
   # GET /notes.json

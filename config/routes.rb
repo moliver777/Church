@@ -23,10 +23,24 @@ Church::Application.routes.draw do
   # NON-DEV ADMINISTRATION
   get "/admin/notes" => "admin#notes"
   get "/admin/note/:id" => "admin#note"
+  
   get "/admin/prayers" => "admin#prayers"
   get "/admin/prayers/:date" => "admin#prayer"
   post "/admin/prayers/:date" => "admin#update_prayer"
   post "/admin/prayers/delete/:date" => "admin#destroy_prayer"
+  
+  get "/admin/pages" => "admin#pages"
+  post "/admin/publish_page/:page_id" => "admin#publish_page"
+  get "/admin/pages/:page_id" => "admin#panels"
+  get "/admin/pages/:page_id/:panel_id" => "admin#panel"
+  post "/admin/pages/:page_id/:panel_id" => "admin#update_panel"
+  
+  get "/admin/diary" => "admin#diary"
+  get "/admin/diary/new" => "admin#new_diary"
+  get "/admin/diary/edit/:id" => "admin#edit_diary"
+  post "/admin/diary/create" => "admin#create_diary"
+  post "/admin/diary/update/:id" => "admin#update_diary"
+  post "/admin/diary/delete/:id" => "admin#destroy_diary"
   
   # DESTROY FIX
   post "/articles/delete/:id" => "articles#destroy"
@@ -43,15 +57,17 @@ Church::Application.routes.draw do
   post "/users/delete/:id" => "users#destroy"
   
   # CONTACT
-  post "/contact" => "notes#contact"
+  post "/contact" => "home#contact"
   
   # PRELOADED PAGES
+  get "/home" => "home#index"
   get "/news" => "home#news"
   get "/ajax_news" => "home#ajax_news"
   get "/events/diary" => "home#diary"
   get "/ajax_diary" => "home#ajax_diary"
   
   # CUSTOM CONTENT
+  get "/download/:filename" => "home#article"
   get "/image/:id" => "home#image"
   get "/:link" => "home#page"
   get "/:link/:sub_link" => "home#page"

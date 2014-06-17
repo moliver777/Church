@@ -1,5 +1,6 @@
 class PanelsController < ApplicationController
   before_filter :authenticated_user
+  before_filter :dev_permission
   layout "admin"
   
   # GET /panels

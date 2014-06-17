@@ -1,5 +1,6 @@
 class NewsArticlesController < ApplicationController
   before_filter :authenticated_user
+  before_filter :dev_permission
   layout "admin"
 
   def publish

@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423194439) do
+ActiveRecord::Schema.define(:version => 20140617125326) do
 
   create_table "articles", :force => true do |t|
-    t.date     "date",           :null => false
+    t.date     "date"
     t.string   "filename",       :null => false
     t.binary   "binary_content", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category",       :null => false
   end
 
   create_table "contents", :force => true do |t|
@@ -36,6 +37,13 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
     t.datetime "updated_at"
   end
 
+  create_table "email_addresses", :force => true do |t|
+    t.string   "email_address",                   :null => false
+    t.boolean  "enabled",       :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "image_mappings", :force => true do |t|
     t.integer  "content_id"
     t.integer  "diary_id"
@@ -47,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20140423194439) do
   end
 
   create_table "images", :force => true do |t|
-    t.string   "name",           :null => false
-    t.binary   "binary_content", :null => false
+    t.string   "name",                                 :null => false
+    t.binary   "binary_content", :limit => 2147483647, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

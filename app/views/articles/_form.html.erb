@@ -15,12 +15,16 @@
 			<td><%= f.text_field :date %></td>
 		</tr>
 		<tr>
-			<th>Title</th>
-			<td><%= f.text_field :filename, :onchange => "checkFilename(this)" %>.pdf</td>
+			<th>Category</th>
+			<td><%= f.text_field :category %></td>
 		</tr>
 		<tr>
-			<th>Upload Newsletter</th>
-			<td><%= f.file_field :newsletter_file, :onchange => "checkFile(this,['PDF'])" %></td>
+			<th>Title</th>
+			<td><%= f.text_field :filename, :onchange => "checkFilename(this)" %></td>
+		</tr>
+		<tr>
+			<th>Upload Article</th>
+			<td><%= f.file_field :article_file %></td>
 		</tr>
 	</table>
 	<div class="actions">

@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<th>Layout</th>
-		<td><%= @page.page_layout.name %></td>
+		<td><%= @page.page_layout.name rescue nil %></td>
 	</tr>
 	<tr style="<%= 'display:none;' unless @page.page_layout && @page.page_layout.num_panels > 0 %>">
 		<th>Panel 1</th>

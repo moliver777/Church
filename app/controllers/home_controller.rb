@@ -21,24 +21,37 @@ class HomeController < ApplicationController
     @diaries = params.include?(:page) ? Diary.page(params[:page]) : Diary.page("")
   end
   
-  def news
-    @page_link = "news"
+  def contact
+    errors = validated? params[:note]
+    if errors.empty?
+      params[:note][:category] = "Contact"
+      params[:note][:ip_address] = request.remote_ip
+      Note.create(params[:note])
+      render json: {success: true}
+    else
+      render json: {success: false, error: errors[0]}
+    end
+  end
+
+  def validated? params
+    errors = Array.new
+    errors << "Sorry. You can only message us twice in any 24 hour period." if Note.where("ip_address = ? AND created_at > ?", request.remote_ip, Time.now.advance(days: -1)).count > 2
+    errors << "Name is required." unless params[:name].length > 0
+    errors << "Message is required." unless params[:message].length > 0
+    errors << "The phone number provided appears to be invalid." if params[:phone_number].length > 0 && params[:phone_number] =~ /[^0-9\+]/
+    return errors
   end
   
-  def articles
-    @page_link = "articles"
-  end
-  
-  def get_article
+  def article
     article = Article.where(filename: params[:filename]).first
     send_data article.binary_content
-  end
-  
-  def unsubscribe
   end
   
   def image
     image = Image.where(id: params[:id]).first
     send_data image.binary_content, :disposition => 'inline'
+  end
+  
+  def unsubscribe
   end
 end

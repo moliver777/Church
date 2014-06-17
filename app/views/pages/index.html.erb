@@ -18,7 +18,7 @@
 		<tr>
 			<td><%= page.title %></td>
 			<td><%= page.link %></td>
-			<td><%= page.page_layout.name %></td>
+			<td><%= page.page_layout.name rescue nil %></td>
 			<td><%= Panel.where(:id => page.panel_1).first.name rescue nil %></td>
 			<td><%= Panel.where(:id => page.panel_2).first.name rescue nil %></td>
 			<td><%= Panel.where(:id => page.panel_3).first.name rescue nil %></td>

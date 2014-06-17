@@ -56,7 +56,7 @@ $(window).load(function() {
   $("div#loading").hide();
   $("div#content").show();
   
-	// Image slideshows
+  // Image slideshows
 	var index = 1;
 	window.slideshows = 0;
 	$.each($("div.slideshow"), function() {
@@ -90,8 +90,8 @@ $(window).load(function() {
 		});
 	});
 
-	// Resize panels to iframes
-	$.each($("div.panel iframe"), function() {
+	// Resize panels to iframes/embeds
+	$.each($("div.panel iframe, div.panel embed"), function() {
 		var height = $(this).parents("div.panel").height();
 		height = Math.max(height, parseInt($(this).attr("height")));
 		$(this).parents("div.panel").css("height", height+"px");
@@ -157,6 +157,39 @@ function unsubscribe() {
     }, 3000);
   }
 }
+
+// ----- CONTACT ----- \\
+function submitContact() {
+  var params = {};
+  $.each($(".contact"), function(i,input) {
+    params[$(input).attr("id")] = $(input).val();
+  });
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (params["email_address"].length == 0 || re.test(params["email_address"])) {
+    $.post("/contact", {note: params}, function(response) {
+      if (response.success) {
+        $(".contact").val("");
+        $("span#contact_success").show();
+        setTimeout(function() {
+          $("span#contact_success").fadeOut("fast");
+        }, 3000);
+      } else {
+        $("span#contact_error").html(response.error);
+        $("span#contact_error").show();
+        setTimeout(function() {
+          $("span#contact_error").fadeOut("fast");
+        }, 3000);
+      }
+    });
+  } else {
+    $("span#contact_error").html("The email address provided appears to be invalid.");
+    $("span#contact_error").show();
+    setTimeout(function() {
+      $("span#contact_error").fadeOut("fast");
+    }, 3000);
+  }
+}
+
 
 // ----- CMS ----- \\
 

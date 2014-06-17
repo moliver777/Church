@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_filter :authenticated_user
+  before_filter :dev_permission
   layout "admin"
   
   # GET /pages
@@ -29,7 +30,8 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
     @page_layouts = PageLayout.where(:content_type => "PAGE").map{|p| [p.name,p.id]}
-    @panel_counts = PageLayout.where(:content_type => "PAGE").each_with_object({}){|p,h| h[p.id] = p.num_panels}.to_json
+    @page_layouts.unshift(["None",0])
+    @panel_counts = PageLayout.where(:content_type => "PAGE").each_with_object({}){|p,h| h[p.id] = p.num_panels;h[0] = 0}.to_json
     @panels = Panel.all.map{|p| [p.name,p.id]}
 
     respond_to do |format|
@@ -42,7 +44,8 @@ class PagesController < ApplicationController
   def edit
     @page = Page.find(params[:id])
     @page_layouts = PageLayout.where(:content_type => "PAGE").map{|p| [p.name,p.id]}
-    @panel_counts = PageLayout.where(:content_type => "PAGE").each_with_object({}){|p,h| h[p.id] = p.num_panels}.to_json
+    @page_layouts.unshift(["None",0])
+    @panel_counts = PageLayout.where(:content_type => "PAGE").each_with_object({}){|p,h| h[p.id] = p.num_panels;h[0] = 0}.to_json
     @panels = Panel.all.map{|p| [p.name,p.id]}
   end
 

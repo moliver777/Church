@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_filter :authenticated_user
+  before_filter :dev_permission
   layout "admin"
   
   # GET /images
@@ -43,7 +44,6 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    puts params
     @image = Image.new(params[:image])
 
     respond_to do |format|

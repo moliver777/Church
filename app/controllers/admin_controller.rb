@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  before_filter :authenticated_user, :except => [:admin]
+  
   def admin
   end
   
@@ -25,10 +27,8 @@ class AdminController < ApplicationController
   end
   
   def update_prayer
-    puts params
     prayer = Periodical.where(date: params[:date]).first
     prayer = Periodical.new unless prayer
-    puts params[:date]
     prayer.date = params[:date]
     prayer.text = params[:text]
     prayer.save
@@ -38,6 +38,85 @@ class AdminController < ApplicationController
   def destroy_prayer
     prayer = Periodical.where(date: params[:date]).first
     prayer.destroy if prayer
+    render nothing: true
+  end
+  
+  def pages
+    # load all pages. only allow editable ones to be selected for next stage (has at least 1 panel)
+  end
+  
+  def publish_page
+    # publish/unpublish page
+    render nothing: true
+  end
+  
+  def panels
+    # load panels for selected page into preview for selecting an individual panel
+  end
+  
+  def panel
+    # wysiwyg/images panel
+  end
+  
+  def update_panel
+    # save panel contents
+  end
+  
+  def diary
+    @diaries = Diary.all
+  end
+  
+  def new_diary
+    @diary = Diary.new
+    @images = Image.all.map{|i| [i.name,i.id]}
+  end
+  
+  def edit_diary
+    @diary = Diary.find(params[:id])
+    @images = Image.all.map{|i| [i.name,i.id]}
+  end
+  
+  def create_diary
+    images = params[:diary][:images]
+    @diary = Diary.new(params[:diary].except!(:images))
+    if @diary.save
+      images.split(",").each do |image|
+        unless image == "0"
+          ImageMapping.create({
+            diary_id: @diary.id,
+            image_id: image
+          })
+        end
+      end
+      render json: {success: true}
+    else
+      render json: {success: false, errors: @diary.errors}
+    end
+  end
+  
+  def update_diary
+    images = params[:diary][:images]
+    @diary = Diary.find(params[:id])
+    if @diary.update_attributes(params[:diary].except!(:images))
+      @diary.image_mappings.destroy_all
+      images.split(",").each do |image|
+        unless image == "0"
+          ImageMapping.create({
+            diary_id: @diary.id,
+            image_id: image
+          })
+        end
+      end
+      render json: {success: true}
+    else
+      render json: {success: false, errors: @diary.errors}
+    end
+  end
+  
+  def destroy_diary
+    @diary = Diary.find(params[:id])
+    @diary.image_mappings.destroy_all
+    @diary.destroy
     render nothing: true
   end
 end
