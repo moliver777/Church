@@ -42,24 +42,30 @@ class AdminController < ApplicationController
   end
   
   def pages
-    # load all pages. only allow editable ones to be selected for next stage (has at least 1 panel)
+    @pages = Page.where(menu_link: true).order("menu_position ASC")
+    @prerendered = PageLayout.where(content_type: PageLayout::PAGE, num_panels: 0).first.id
   end
   
   def publish_page
-    # publish/unpublish page
+    page = Page.find(params[:page_id])
+    page.update_attribute(:publish, (params[:publish] == "true"))
     render nothing: true
   end
   
   def panels
-    # load panels for selected page into preview for selecting an individual panel
+    @page = Page.find(params[:page_id])
   end
   
   def panel
-    # wysiwyg/images panel
+    @page = Page.find(params[:page_id])
+    @panel = Panel.find(params[:panel_id])
+    @panel_layouts = PageLayout.where(:content_type => "PANEL").map{|p| [p.name,p.id]}
+    @images = Image.all.map{|i| [i.name,i.id]}
   end
   
   def update_panel
-    # save panel contents
+    puts "UPDATE PANEL"
+    puts params
   end
   
   def diary

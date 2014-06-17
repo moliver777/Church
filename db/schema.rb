@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140617125326) do
+ActiveRecord::Schema.define(:version => 20140617161923) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
-    t.string   "filename",       :null => false
-    t.binary   "binary_content", :null => false
+    t.string   "filename",                                                :null => false
+    t.binary   "binary_content",    :limit => 2147483647,                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category",       :null => false
+    t.string   "category",                                                :null => false
+    t.string   "original_filename",                       :default => "", :null => false
   end
 
   create_table "contents", :force => true do |t|
@@ -84,11 +85,12 @@ ActiveRecord::Schema.define(:version => 20140617125326) do
 
   create_table "page_layouts", :force => true do |t|
     t.string   "content_type"
-    t.string   "name",                        :null => false
-    t.integer  "num_panels",   :default => 0, :null => false
+    t.string   "name",                           :null => false
+    t.integer  "num_panels",      :default => 0, :null => false
     t.text     "html_content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "preview_content"
   end
 
   create_table "pages", :force => true do |t|

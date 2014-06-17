@@ -1,1 +1,87 @@
-TBC
+<%= form_for(@panel) do |f| %>
+	<% if @panel.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@panel.errors.count, "error") %> prohibited this panel from being saved:</h2>
+			<ul>
+				<% @panel.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<table>
+		<tr>
+			<th>Name</th>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<th>Layout</th>
+			<td><%= f.select :page_layout_id, options_for_select(@panel_layouts, @panel.page_layout_id), {:prompt => ""} %></td>
+		</tr>
+		<tr>
+			<th>Content</th>
+			<td><%= f.text_area :text, :cols => 70 %></td>
+		</tr>
+		<tr>
+			<th>Classes (space seperated)</th>
+			<td><%= f.text_field :classes %></td>
+		</tr>
+		<tr style="display:none;"><td><%= f.text_field :images %></td></tr>
+		<% unless @panel.images.first %>
+			<tr class="image_select">
+				<th>Images</th>
+				<td><%= select_tag :image, options_for_select(@images), {:prompt => "", :id => "image0", :class => "image_select"} %><a class="remove" style="display:none;">X</a></td>
+			</tr>
+		<% else %>
+			<% @panel.images.each_with_index do |image,i| %>
+				<tr class="image_select">
+					<th><%= "Images" if i==0 %></th>
+					<td><%= select_tag :image, options_for_select(@images, image.id), {:prompt => "", :id => "image#{i}", :class => "image_select"} %><a class="remove" style="<%= 'display:none;' if i==0 %>">X</a></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</table>
+	<button id="add_image">Add Image</button><br/>
+	<button id="update_preview">Preview</button><br/><br/>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("button#update_preview").unbind("click").click(function(event) {
+			event.preventDefault();
+			// render panel in preview box
+		});
+		
+		$("button#add_image").unbind("click").click(function(event) {
+			event.preventDefault();
+			var row = $("tr.image_select").first().clone();
+			$(row).find("th").html("");
+			$(row).find("a").show();
+			$(row).find("select").val("").attr("id","image"+(new Date().getTime()));
+			$("table").append(row);
+			triggers();
+		});    
+		triggers();
+	});
+
+	function triggers() {
+		$("a.remove").unbind("click").click(function() {
+			$(this).parents("tr").remove();
+			updateImages();
+		});
+		$("select.image_select").unbind("change").change(function() {
+			updateImages();
+		});
+	}
+
+	function updateImages() {
+		var images = [];
+		$.each($("select.image_select"), function(i,select) {
+			if ($(select).val() != "") images.push($(select).val());
+		});
+		$("input#panel_images").val(images.join(","));
+	}
+</script>

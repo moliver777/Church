@@ -258,6 +258,10 @@ div#admin_content table td.tdlink {
 	width: 140px;
 }
 
+div#admin_content table td.fade {
+  color: #CCC;
+}
+
 table.login, table.login th, table.login td {
 	border: none;
 }
@@ -296,6 +300,44 @@ td.exists {
   font-weight: bold;
   color: white!important;
   background-color: #31B94D;
+}
+
+div#page_preview_container {
+  margin: auto;
+  width: 400px;
+  height: 600px;
+}
+
+div#page_preview_container div.preview {
+  border: 1px solid black;
+  background: transparent url(/assets/bg-body.png) 0 0;
+  float: left;
+  cursor: pointer;
+}
+
+div#page_preview_container div.preview:hover {
+  background: none;
+  background-color: #CCC;
+}
+
+div#page_preview_container div.preview.preview-half {
+  width: 398px;
+  height: 198px;
+}
+
+div#page_preview_container div.preview.preview-corner {
+  width: 198px;
+  height: 198px;
+}
+
+div#page_preview_container div.preview.preview-vert {
+  width: 198px;
+  height: 398px;
+}
+
+div#page_preview_container div.preview.preview-full {
+  width: 398px;
+  height: 598px;
 }
 
 /* HEADER */

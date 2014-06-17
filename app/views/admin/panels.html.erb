@@ -1,1 +1,13 @@
-TBC
+<h1>Edit <%= @page.title %> Page</h1>
+<br/>
+<div id="page_preview_container">
+	<%= @page.preview %>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("div.preview").click(function() {
+			window.location.href = "/admin/pages/<%= @page.id %>/"+$(this).attr("id");
+		});
+	});
+</script>

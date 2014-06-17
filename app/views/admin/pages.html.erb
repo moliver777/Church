@@ -1,1 +1,60 @@
-TBC
+<h1>Pages</h1>
+<br/>
+<table>
+	<tr>
+		<th>Main Menu</th>
+		<th>Sub Menu</th>
+		<th>Published?</th>
+		<th>View</th>
+		<th>Edit</th>
+	</tr>
+	<% @pages.each do |page| %>
+		<tr>
+			<td><%= page.title %></td>
+			<td>&nbsp;</td>
+			<td>
+				<% if page.publish %>
+					<input class="page_publish" type="checkbox" data-id="<%= page.id %>" checked="true" />
+				<% else %>
+					<input class="page_publish" type="checkbox" data-id="<%= page.id %>" />
+				<% end %>
+			</td>
+			<td>
+				<% unless page.page_layout_id == 0 %>
+					<a href="/<%= page.link %>" style="<%= 'display:none;' unless page.publish %>">View</a>
+				<% end %>
+			</td>
+			<td>
+				<% unless [0,@prerendered].include? page.page_layout_id %>
+					<a href="/admin/pages/<%= page.id %>">Edit</a>
+				<% end %>
+			</td>
+		</tr>
+		<% page.sub_links.each do |sub_page| %>
+			<tr>
+				<td class="fade"><%= page.title %></td>
+				<td><%= sub_page.title %></td>
+				<td>
+					<% if sub_page.publish %>
+						<input class="page_publish" type="checkbox" data-id="<%= sub_page.id %>" checked="true" />
+					<% else %>
+						<input class="page_publish" type="checkbox" data-id="<%= sub_page.id %>" />
+					<% end %>
+				</td>
+				<td><a href="/<%= sub_page.link %>" style="<%= 'display:none;' unless sub_page.publish %>">View</a></td>
+				<td>
+					<% unless [0,@prerendered].include? sub_page.page_layout_id %>
+						<a href="/admin/pages/<%= sub_page.id %>">Edit</a></td>
+					<% end %>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("input.page_publish").unbind("click").click(function() {
+			$.post("/admin/publish_page/"+$(this).data("id"), {publish: $(this).is(":checked")});
+		});
+	});
+</script>

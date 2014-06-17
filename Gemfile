@@ -16,9 +16,6 @@ gem 'heroku'
 # Pagination
 gem 'kaminari'
 
-# WYSIWYG
-gem 'tinymce-rails'
-
 # Gems used only for assets and not required in production environments by default
 group :assets do
 	gem 'sass-rails', "  ~> 3.1.0"
