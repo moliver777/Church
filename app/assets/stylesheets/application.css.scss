@@ -348,7 +348,7 @@ div#header {
 	width: 100%;
 	margin: auto;
 	padding: 0;
-	border-bottom: 5px solid #FFD700;
+	border-bottom: 10px solid #FFC000;
 	background-color: rgba(209,17,17,1);
 }
 
@@ -364,10 +364,15 @@ div.inner-header {
   background-size: 100% 100%;
 }
 
-div.inner-header span.title {
-	font-size: 25px;
+div.inner-header a#logo {
+	display: block;
 	position: relative;
-	top: 50px;
+	top: 8px;
+	left: 40px;
+	width: 150px;
+	height: 150px;
+	background: transparent url(/assets/logo.png) 0 0;
+	background-size: 100% 100%;
 }
 
 /* FOOTER */

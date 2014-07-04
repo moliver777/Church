@@ -61,7 +61,7 @@ $(window).load(function() {
 	window.slideshows = 0;
 	$.each($("div.slideshow"), function() {
     $.each($(this).find("div.image_container"), function() {
-    $(this).attr("id", "image_container"+index);
+    	$(this).attr("id", "image_container"+index);
       $("div#image_container"+index+" > img:gt(0)").hide();
       index++;
     });
