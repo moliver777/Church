@@ -125,4 +125,8 @@ class AdminController < ApplicationController
     @diary.destroy
     render nothing: true
   end
+	
+	def wysiwyg_images
+		render json: {images: Image.select([:id, :name])}
+	end
 end

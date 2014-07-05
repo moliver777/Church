@@ -34,6 +34,23 @@ h1 {
   font-size: 20px;
 }
 
+h2 {
+  text-align: center;
+  font-size: 16px;
+}
+
+h3 {
+  text-align: center;
+	font-weight: bold;
+  font-size: 13px;
+}
+
+h4 {
+  text-align: center;
+	font-style: italic;
+  font-size: 13px;
+}
+
 body.size2 h1 {
   font-size: 22px;  
 }
@@ -42,17 +59,28 @@ body.size3 h1 {
   font-size: 24px;
 }
 
-h2 {
-  text-align: center;
-  font-size: 16px;
-}
-
 body.size2 h2 {
   font-size: 20px;  
 }
 
 body.size3 h2 {
     font-size: 22px;
+}
+
+body.size2 h3 {
+  font-size: 16px;  
+}
+
+body.size3 h3 {
+    font-size: 20px;
+}
+
+body.size2 h4 {
+  font-size: 16px;  
+}
+
+body.size3 h4 {
+    font-size: 20px;
 }
 
 pre {
@@ -227,7 +255,7 @@ div#admin_sidebar {
 	background-color: #fff;
 }
 
-div#admin_content {
+div.admin_display {
 	float: right;
 	width: 1030px;
 	height: 650px;
@@ -238,6 +266,13 @@ div#admin_content {
 	overflow-y: auto;
 	background-color: #fff;
 	text-align: center;
+}
+
+div#admin_loading {
+	display: none;
+  background-image: url(/assets/loading.gif);
+  background-repeat: no-repeat;
+  background-position: 484px 184px;
 }
 
 div#admin_content table {

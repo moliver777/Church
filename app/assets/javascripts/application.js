@@ -9,6 +9,17 @@ $(document).ready(function() {
 	$.ajaxSetup({headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}});
 });
 
+// ----- LEGACY IE BROWSER DETECTION ----- \\
+$.browser = {};
+(function() {
+	$.browser.msie = false;
+	$.browser.version = 0;
+	if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+		$.browser.msie = true;
+		$.browser.version = RegExp.$1;
+	}
+})();
+
 // ----- SETUP ----- \\
 
 function formatPage() {
@@ -206,6 +217,20 @@ function checkFile(el,allowed) {
 function checkFilename(el) {
 	$(el).val($(el).val().toLowerCase().replace(/[^a-z0-9\s]/g,"").replace(/\s+/g,"_"));
 }
+
+// WYSIWYG
+$(document).ready(function() {
+	if ($(".wysiwyg")[0]) {
+		$("div.admin_display").toggle();
+		$.get("/admin/wysiwyg_images", function(response) {
+			$("div.admin_display").toggle();
+			$(".wysiwyg").htmlarea({
+				css: "/wysiwyg/wysiwyg.css",
+				images: response.images
+			});
+		});
+	}
+});
 
 // Fixes DELETE routes
 $(document).ready(function() {

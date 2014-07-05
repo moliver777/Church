@@ -6,6 +6,7 @@ Church::Application.routes.draw do
   
   # ADMINISTRATION
   get "/admin" => "admin#admin"
+	get "/admin/wysiwyg_images" => "admin#wysiwyg_images"
   post "/news_articles/publish"
   resources :articles
   resources :contents
