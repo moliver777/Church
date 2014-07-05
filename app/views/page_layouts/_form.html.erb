@@ -22,9 +22,13 @@
 			<th>Content</th>
 			<td><%= f.text_area :html_content, :cols => 70 %></td>
 		</tr>
-		<tr id="type_PAGE" class="type_field" style="<%= 'display:none;' unless @page_layout.content_type == 'PAGE' %>">
+		<tr class="type_field type_PAGE" style="<%= 'display:none;' unless @page_layout.content_type == 'PAGE' %>">
 			<th>Number Of Panels</th>
 			<td><%= f.text_field :num_panels %></td>
+		</tr>
+		<tr class="type_field type_PAGE" style="<%= 'display:none;' unless @page_layout.content_type == 'PAGE' %>">
+			<th>Preview</th>
+			<td><%= f.text_area :preview_content, :cols => 70 %></td>
 		</tr>
 	</table>
 	<div class="actions">
@@ -36,7 +40,7 @@
 	$(document).ready(function() {
 		$("select#page_layout_content_type").unbind("change").change(function() {
 			$("tr.type_field").hide();
-			$("tr#type_"+$(this).val()).show();
+			$("tr.type_"+$(this).val()).show();
 		});
 	});
 </script>

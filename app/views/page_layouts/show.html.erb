@@ -16,6 +16,10 @@
 		<th>Number Of Panels</th>
 		<td><%= @page_layout.num_panels %></td>
 	</tr>
+	<tr style="<%= 'display:none;' unless @page_layout.type == 'PAGE' rescue nil %>">
+		<th>Preview</th>
+		<td><%= @page_layout.preview_content %></td>
+	</tr>
 </table>
 <%= link_to 'Edit', edit_page_layout_path(@page_layout) %> |
 <%= link_to 'Back', page_layouts_path %>
