@@ -29,7 +29,11 @@ class Page < ActiveRecord::Base
     return content.html_safe
   end
   
-  def sub_links
-    Page.where(:publish => true, :menu_position => self.menu_position, :menu_link => false).order("sub_menu_position ASC")
+  def sub_links ignore_publish=false
+		if ignore_publish
+			return Page.where(:menu_position => self.menu_position, :menu_link => false).order("sub_menu_position ASC")
+		else
+			return Page.where(:publish => true, :menu_position => self.menu_position, :menu_link => false).order("sub_menu_position ASC")
+		end
   end
 end

@@ -30,7 +30,7 @@
 				<% end %>
 			</td>
 		</tr>
-		<% page.sub_links.each do |sub_page| %>
+		<% page.sub_links(true).each do |sub_page| %>
 			<tr>
 				<td class="fade"><%= page.title %></td>
 				<td><%= sub_page.title %></td>
