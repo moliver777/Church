@@ -6,7 +6,7 @@ class DiariesController < ApplicationController
   # GET /diaries
   # GET /diaries.json
   def index
-    @diaries = Diary.all
+    @diaries = Diary.order("date DESC")
 
     respond_to do |format|
       format.html # index.html.erb

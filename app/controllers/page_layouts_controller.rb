@@ -6,7 +6,7 @@ class PageLayoutsController < ApplicationController
   # GET /page_layouts
   # GET /page_layouts.json
   def index
-    @page_layouts = PageLayout.all
+    @page_layouts = PageLayout.order("id ASC")
 
     respond_to do |format|
       format.html # index.html.erb

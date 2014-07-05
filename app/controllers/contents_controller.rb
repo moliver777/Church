@@ -6,7 +6,7 @@ class ContentsController < ApplicationController
   # GET /contents
   # GET /contents.json
   def index
-    @contents = Content.all
+    @contents = Content.order("id ASC")
 
     respond_to do |format|
       format.html # index.html.erb

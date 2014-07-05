@@ -6,7 +6,7 @@ class PanelsController < ApplicationController
   # GET /panels
   # GET /panels.json
   def index
-    @panels = Panel.all
+    @panels = Panel.order("id ASC")
 
     respond_to do |format|
       format.html # index.html.erb

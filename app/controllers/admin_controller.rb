@@ -64,8 +64,7 @@ class AdminController < ApplicationController
   end
   
   def update_panel
-    puts "UPDATE PANEL"
-    puts params
+		
   end
   
   def diary

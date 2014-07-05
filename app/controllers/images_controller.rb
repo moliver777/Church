@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = Image.order("id ASC")
 
     respond_to do |format|
       format.html # index.html.erb

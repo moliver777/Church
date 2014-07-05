@@ -12,7 +12,7 @@ class NewsArticlesController < ApplicationController
   # GET /news_article
   # GET /news_article.json
   def index
-    @news_article = NewsArticle.all
+    @news_article = NewsArticle.order("id ASC")
 
     respond_to do |format|
       format.html # index.html.erb

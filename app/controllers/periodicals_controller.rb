@@ -6,7 +6,7 @@ class PeriodicalsController < ApplicationController
   # GET /periodicals
   # GET /periodicals.json
   def index
-    @periodicals = Periodical.all
+    @periodicals = Periodical.order("date DESC")
 
     respond_to do |format|
       format.html # index.html.erb
