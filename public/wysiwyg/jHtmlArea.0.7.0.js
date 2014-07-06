@@ -40,9 +40,9 @@
                 var container = this.container = $("<div/>").addClass("jHtmlArea").width(textarea.width()).insertAfter(textarea);
 
                 var toolbar = this.toolbar = $("<div/>").addClass("ToolBar").appendTo(container);							
-								var image_select = $('<div class="image_select_container" style="display:none;"><select class="wysiwyg_image_select"></select><button class="image_select_insert">Insert</button><button class="image_select_cancel">Cancel</button></div>')
+								var image_select = $('<div class="image_select_container" style="display:none;"><select class="wysiwyg_image_select"></select><button class="image_select_insert">Insert</button><button class="image_select_cancel">Cancel</button></div>');
 								$.each(options.images, function(i,image) {
-									image_select.find(".image_select").append('<option value="'+image.id+'">'+image.name+'</option>');
+									image_select.find(".wysiwyg_image_select").append('<option value="'+image.id+'">'+image.name+'</option>');
 								});
 								image_select.appendTo(container);
                 priv.initToolBar.call(this, opts);
@@ -93,7 +93,6 @@
         },
         getSelection: function() {
             if ($.browser.msie) {
-                //return (this.editor.parentWindow.getSelection) ? this.editor.parentWindow.getSelection() : this.editor.selection;
                 return this.editor.selection;
             } else {
                 return this.iframe[0].contentDocument.defaultView.getSelection();
@@ -102,7 +101,6 @@
         getRange: function() {
             var s = this.getSelection();
             if (!s) { return null; }
-            //return (s.rangeCount > 0) ? s.getRangeAt(0) : s.createRange();
             return (s.getRangeAt) ? s.getRangeAt(0) : s.createRange();
         },
         html: function(v) {
@@ -190,6 +188,7 @@
 				var image_id = $(".wysiwyg_image_select").val();
 				if (image_id.length > 0 && parseInt(image_id) > 0) {
 					$("#"+self.textarea.attr("id")).htmlarea("pasteHTML", '<img style="width:100%;" src="/image/'+image_id+'" />');
+					self.updateTextArea();
 				}
 				$(".image_select_container").hide();
 			});
@@ -220,8 +219,6 @@
 					self.textarea.htmlarea("pasteHTML",iframe);
 					$("#youtube_link").remove()
 				});
-				
-
 		},
 		undo: function() { this.iframe[0].contentWindow.document.execCommand('undo', false, null); }, 
 		redo: function() { this.iframe[0].contentWindow.document.execCommand('redo', false, null); },

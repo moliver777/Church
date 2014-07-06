@@ -101,7 +101,6 @@ class AdminController < ApplicationController
 		
     if @panel.update_attributes(params[:panel].except!(:images))
       @panel.image_mappings.destroy_all
-			puts images
       images.split(",").each do |image|
         unless image == "0"
           ImageMapping.create({
