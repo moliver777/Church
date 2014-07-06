@@ -12,7 +12,7 @@
 		<tr>
 			<td><%= article.date %></td>
 			<td><%= article.filename %>.pdf</td>
-			<td><a href="/articles/<%= article.filename %>.pdf">Download</a></td>
+			<td><a href="/download/<%= article.filename %>">Download</a></td>
 			<td><%= link_to 'Show', article %></td>
 			<td><%= link_to 'Edit', edit_article_path(article) %></td>
 			<td><a class="rails-delete" data-link="/articles/delete/<%= article.id %>">Destroy</a></td>
