@@ -18,7 +18,7 @@
 			</div>
 		<% else %>
 			<div class="panel-wrapper full-width">
-				<div id="@id" class="panel half-text diary">
+				<div class="panel half-text diary">
 					<h2><%= diary.date.strftime("%a #{diary.date.day.ordinalize} %B %Y") %> - <%= diary.title %></h2>
 					<%= diary.text %>
 				</div>
@@ -27,5 +27,11 @@
 	<% end %>
 	<div id="fr">
 		<%= paginate @diaries, :remote => true, :params => {:controller => "home", :action => "diary" } %>
+	</div>
+<% else %>
+	<div class="panel-wrapper full-width">
+		<div class="panel half-text diary">
+			<h2>Nothing here yet...</h2>
+		</div>
 	</div>
 <% end %>
