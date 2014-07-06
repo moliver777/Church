@@ -36,10 +36,9 @@ class HomeController < ApplicationController
 
   def validated? params
     errors = Array.new
-    errors << "Sorry. You can only message us twice in any 24 hour period." if Note.where("ip_address = ? AND created_at > ?", request.remote_ip, Time.now.advance(days: -1)).count > 2
+    errors << "Sorry. You can only message us twice in any 24 hour period." if Note.where("ip_address = ? AND created_at > ?", request.remote_ip, Time.now.advance(days: -1)).count > 1
     errors << "Name is required." unless params[:name].length > 0
     errors << "Message is required." unless params[:message].length > 0
-    errors << "The phone number provided appears to be invalid." if params[:phone_number].length > 0 && params[:phone_number] =~ /[^0-9\+]/
     return errors
   end
   
