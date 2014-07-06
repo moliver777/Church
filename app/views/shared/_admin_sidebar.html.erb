@@ -27,6 +27,9 @@
 			<li><a href="/admin/prayers">Prayers</a></li>
 			<li><a href="/admin/diary">Diary</a></li>
 			<li><a href="/admin/pages">Pages</a></li>
+			<% if current_user.level != User::DEVELOPER %>
+				<li><a href="/images">Images</a></li>
+			<% end %>
 			<li><a href="/logout">Logout</a></li>
 		<% end %>
 	</ul>
