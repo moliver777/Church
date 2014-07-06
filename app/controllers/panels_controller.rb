@@ -100,6 +100,16 @@ class PanelsController < ApplicationController
   # DELETE /panels/1.json
   def destroy
     @panel = Panel.find(params[:id])
+		pages = Page.where("panel_1 = ? OR panel_2 = ? OR panel_3 = ? OR panel_4 = ? OR panel_5 = ?", @panel.id, @panel.id, @panel.id, @panel.id, @panel.id)
+		pages.each do |page|
+			page_params = {}
+			page_params[:panel_1] = nil if page.panel_1 == @panel.id
+			page_params[:panel_2] = nil if page.panel_2 == @panel.id
+			page_params[:panel_3] = nil if page.panel_3 == @panel.id
+			page_params[:panel_4] = nil if page.panel_4 == @panel.id
+			page_params[:panel_5] = nil if page.panel_5 == @panel.id
+			page.update_attributes(page_params)
+		end
     @panel.image_mappings.destroy_all
     @panel.destroy
     render nothing: true

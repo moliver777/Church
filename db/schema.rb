@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140617161923) do
+ActiveRecord::Schema.define(:version => 20140706100158) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(:version => 20140617161923) do
   end
 
   create_table "panels", :force => true do |t|
-    t.integer  "page_layout_id"
+    t.integer  "page_layout_id", :null => false
     t.string   "name",           :null => false
     t.text     "text"
     t.string   "classes"

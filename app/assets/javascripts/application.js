@@ -301,7 +301,7 @@ function randomPrayer() {
   truth[51]='Heavenly Father, thank You for being near me when I reach out to You for comfort. When I fall apart You miraculously put me back together again. Amen51';
   truth[52]='O Lord, help me to find You when I search for You. I come to You searching for courage and comfort to carry me through this day. Amen';
   truth[53]='Dear Father, help me to be receptive to Your Word ~ write it on my heart so that I may live my life to please You. Amen';
-  truth[54]='Thank You, Lord, for Your gentle guidance. With Your help I will accept worthy Challenages. Amen';
+  truth[54]='Thank You, Lord, for Your gentle guidance. With Your help I will accept worthy Challenges. Amen';
   truth[55]='Lord, I need to remember that I am far from perfect, that I hurt and offend. Help me to be a better person. Amen';
   truth[56]='O Father, help me to be sensitive to the needs and pain of those around me. Guide me as I try to help them. Amen';
   truth[57]='Father in heaven, I am a link in a chain that connects all Your children. Lead me on the path to strengthen that connection. Amen';

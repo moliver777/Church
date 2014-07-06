@@ -58,13 +58,64 @@ class AdminController < ApplicationController
   
   def panel
     @page = Page.find(params[:page_id])
-    @panel = Panel.find(params[:panel_id])
+		@panel_number = params[:panel_number]
+		@panel = Panel.new
+		@url = "/admin/pages/#{params[:page_id]}"
+		if params[:panel_id] != "new"
+    	@panel = Panel.find(params[:panel_id])
+			@url += "/#{params[:panel_id]}"
+		end
     @panel_layouts = PageLayout.where(:content_type => "PANEL").map{|p| [p.name,p.id]}
     @images = Image.all.map{|i| [i.name,i.id]}
   end
   
-  def update_panel
+	def create_panel
+    images = params[:panel][:images]
+		@page = Page.find(params[:page_id])
+    @panel = Panel.new(params[:panel].except!(:images))
+		raise StandardError unless params[:panel][:name].length > 0
 		
+    if @panel.save
+      images.split(",").each do |image|
+        unless image == "0"
+          ImageMapping.create({
+            panel_id: @panel.id,
+            image_id: image
+          })
+        end
+      end
+			@page.send("panel_#{params[:panel_number]}=", @panel.id)
+			@page.save
+			render json: {success: true}
+    else
+			render json: {success: false}
+    end
+	rescue StandardError => e
+		render json: {success: false}
+	end
+	
+  def update_panel
+    images = params[:panel][:images]
+    @panel = Panel.find(params[:id])
+		raise StandardError unless params[:panel][:name].length > 0
+		
+    if @panel.update_attributes(params[:panel].except!(:images))
+      @panel.image_mappings.destroy_all
+			puts images
+      images.split(",").each do |image|
+        unless image == "0"
+          ImageMapping.create({
+            panel_id: @panel.id,
+            image_id: image
+          })
+        end
+      end
+			render json: {success: true}
+    else
+			render json: {success: false}
+    end
+	rescue StandardError => e
+		render json: {success: false}
   end
   
   def diary

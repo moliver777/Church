@@ -40,7 +40,7 @@
                 var container = this.container = $("<div/>").addClass("jHtmlArea").width(textarea.width()).insertAfter(textarea);
 
                 var toolbar = this.toolbar = $("<div/>").addClass("ToolBar").appendTo(container);							
-								var image_select = $('<div class="image_select_container" style="display:none;"><select class="image_select"></select><button class="image_select_insert">Insert</button><button class="image_select_cancel">Cancel</button></div>')
+								var image_select = $('<div class="image_select_container" style="display:none;"><select class="wysiwyg_image_select"></select><button class="image_select_insert">Insert</button><button class="image_select_cancel">Cancel</button></div>')
 								$.each(options.images, function(i,image) {
 									image_select.find(".image_select").append('<option value="'+image.id+'">'+image.name+'</option>');
 								});
@@ -187,7 +187,7 @@
 			});
 			$(".image_select_insert").unbind("click").click(function(e) {
 				e.preventDefault();
-				var image_id = $(".image_select").val();
+				var image_id = $(".wysiwyg_image_select").val();
 				if (image_id.length > 0 && parseInt(image_id) > 0) {
 					$("#"+self.textarea.attr("id")).htmlarea("pasteHTML", '<img style="width:100%;" src="/image/'+image_id+'" />');
 				}

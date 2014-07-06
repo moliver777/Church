@@ -7,7 +7,8 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("div.preview").click(function() {
-			window.location.href = "/admin/pages/<%= @page.id %>/"+$(this).attr("id");
+			var id = ($(this).attr("id").split("_")[1].length > 0) ? $(this).attr("id").split("_")[1] : "new";
+			window.location.href = "/admin/pages/<%= @page.id %>/"+id+"/"+$(this).attr("id").split("_")[0];
 		});
 	});
 </script>

@@ -6,7 +6,6 @@ Church::Application.routes.draw do
   
   # ADMINISTRATION
   get "/admin" => "admin#admin"
-	get "/admin/wysiwyg_images" => "admin#wysiwyg_images"
   post "/news_articles/publish"
   resources :articles
   resources :contents
@@ -33,8 +32,10 @@ Church::Application.routes.draw do
   get "/admin/pages" => "admin#pages"
   post "/admin/publish_page/:page_id" => "admin#publish_page"
   get "/admin/pages/:page_id" => "admin#panels"
-  get "/admin/pages/:page_id/:panel_id" => "admin#panel"
-  post "/admin/pages/:page_id/:panel_id" => "admin#update_panel"
+  get "/admin/pages/:page_id/:panel_id/:panel_number" => "admin#panel"
+	post "/admin/pages/:page_id" => "admin#create_panel"
+	post "/admin/pages/:page_id/:panel_id" => "admin#update_panel"
+	get "/admin/wysiwyg_images" => "admin#wysiwyg_images"
   
   get "/admin/diary" => "admin#diary"
   get "/admin/diary/new" => "admin#new_diary"

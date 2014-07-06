@@ -1,14 +1,11 @@
 <%= form_for(@panel) do |f| %>
-	<% if @panel.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@panel.errors.count, "error") %> prohibited this panel from being saved:</h2>
-			<ul>
-				<% @panel.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+	<div id="error_explanation" style="display:none;">
+		<h2>Errors prohibited this panel from being saved.</h2>
+		<ul>
+			<li>Panel must have a Name.</li>
+			<li>Panel must have a Layout.</li>
+		</ul>
+	</div>
 	<table>
 		<tr>
 			<th>Name</th>
@@ -42,19 +39,37 @@
 		<% end %>
 	</table>
 	<button id="add_image">Add Image</button><br/>
-	<button id="update_preview">Preview</button><br/><br/>
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit :id => "panel_submit" %>
 	</div>
 <% end %>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("button#update_preview").unbind("click").click(function(event) {
+		$("input#panel_submit").unbind("click").click(function(event) {
 			event.preventDefault();
-			// render panel in preview box
+			$("div#error_explanation").hide();
+			var params = {
+				name: $("input#panel_name").val(),
+				page_layout_id: $("select#panel_page_layout_id").val(),
+				text: $("textarea#panel_text").val(),
+				classes: $("input#panel_classes").val(),
+				images: $("input#panel_images").val()
+			}
+			$.post("<%= @url %>", {
+				id: "<%= @panel.id %>",
+				page_id: "<%= @page.id %>",
+				panel_number: "<%= @panel_number %>",
+				panel: params
+			}, function(response) {
+				if (response.success) {
+					window.location.href = "/admin/pages/<%= @page.id %>"
+				} else {
+					$("div#error_explanation").show();
+				}
+			});
 		});
-		
+
 		$("button#add_image").unbind("click").click(function(event) {
 			event.preventDefault();
 			var row = $("tr.image_select").first().clone();
