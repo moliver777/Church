@@ -19,8 +19,8 @@
 			<td><%= f.text_field :title %></td>
 		</tr>
 		<tr>
-			<th>Text</th>
-			<td><%= f.text_area :text, :cols => 70 %></td>
+			<th>Content</th>
+			<td style="padding-top:6px;"><%= f.text_area :text, :cols => 100, :class => "wysiwyg" %></td>
 		</tr>
 		<tr style="display:none;"><td><%= f.text_field :images %></td></tr>
 		<% unless @diary.images.first %>
@@ -45,6 +45,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		// WYSIWYG
+		$(".wysiwyg").htmlarea({
+			css: "/wysiwyg/wysiwyg.css",
+			toolbar: ["bold","italic","underline","|","p","h1","h2","h3","h4","|","alink","unlink","|","html","|","undo","redo"]
+		});
+		
 		$("button#add_image").unbind("click").click(function(event) {
 			event.preventDefault();
 			var row = $("tr.image_select").first().clone();

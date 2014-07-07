@@ -1,23 +1,29 @@
 <p id="notice"><%= notice %></p>
-<table class="show">
-	<tr>
-		<th>Title</th>
-		<td><%= @diary.title %></td>
-	</tr>
-	<tr>
-		<th>Date</th>
-		<td><%= @diary.date %></td>
-	</tr>
-	<tr>
-		<th>Content</th>
-		<td><%= @diary.text %></td>
-	</tr>
-	<% @diary.images.each_with_index do |image,i| %>
-		<tr>
-			<th>Image <%= i+1 %></th>
-			<td><img class="thumb" src="/image/<%= image.id %>" /></td>
-		</tr>
-	<% end %>
-</table>
+
+<% if @diary.images.first %>
+	<div class="panel-wrapper full-width">
+		<div class="panel half-combo-right split diary <%= 'slideshow' if @diary.images.count > 1 %>">
+			<div class="split-left" style="text-align:left;">
+				<h2><%= @diary.date.strftime("%a #{@diary.date.day.ordinalize} %B %Y") %> - <%= @diary.title %></h2>
+				<%= @diary.text.html_safe %>
+			</div>
+			<div class="split-right" style="text-align:left;">
+				<div class="image_container">
+					<% @diary.images.each do |image| %>
+						<img src="/image/<%= image.id %>" />
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+<% else %>
+	<div class="panel-wrapper full-width">
+		<div class="panel half-text diary">
+			<h2><%= @diary.date.strftime("%a #{@diary.date.day.ordinalize} %B %Y") %> - <%= @diary.title %></h2>
+			<%= @diary.text.html_safe %>
+		</div>
+	</div>
+<% end %>
+
 <%= link_to 'Edit', edit_diary_path(@diary) %> |
 <%= link_to 'Back', diaries_path %>
