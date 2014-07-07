@@ -243,7 +243,7 @@ $(document).ready(function() {
 								$(".article_select_container").hide();
 							});
 						}
-					},"unlink","youtube","|","forecolor","increasefontsize","decreasefontsize","|","html","|","undo","redo"
+					},"unlink","youtube","|","html","|","undo","redo"
 				],
 				images: response.images,
 				articles: response.articles
