@@ -35,7 +35,7 @@ Church::Application.routes.draw do
   get "/admin/pages/:page_id/:panel_id/:panel_number" => "admin#panel"
 	post "/admin/pages/:page_id" => "admin#create_panel"
 	post "/admin/pages/:page_id/:panel_id" => "admin#update_panel"
-	get "/admin/wysiwyg_images" => "admin#wysiwyg_images"
+	get "/admin/wysiwyg_content" => "admin#wysiwyg_content"
   
   get "/admin/diary" => "admin#diary"
   get "/admin/diary/new" => "admin#new_diary"

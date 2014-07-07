@@ -10,26 +10,19 @@
 		<% if current_user %>
 			<li><a href="/admin">Home</a></li>
 			<% if current_user.level == User::DEVELOPER %>
-				<li><a href="/articles">Articles</a></li>
 				<li><a href="/contents">Contents</a></li>
-				<li><a href="/diaries">Diary</a></li>
-				<li><a href="/images">Images</a></li>
-				<!-- <li><a href="/news_articles">News Articles</a></li> -->
-				<li><a href="/notes">Notes</a></li>
 				<li><a href="/page_layouts">Layouts</a></li>
 				<li><a href="/pages">Pages</a></li>
 				<li><a href="/panels">Panels</a></li>
-				<li><a href="/periodicals">Periodicals</a></li>
 				<li><a href="/users">Users</a></li>
 				<li>-----</li>
 			<% end %>
-			<li><a href="/admin/notes">Contact (<%= @unread %> unread)</a></li>
-			<li><a href="/admin/prayers">Prayers</a></li>
-			<li><a href="/admin/diary">Diary</a></li>
 			<li><a href="/admin/pages">Website Content</a></li>
-			<% if current_user.level != User::DEVELOPER %>
-				<li><a href="/images">Images</a></li>
-			<% end %>
+			<li><a href="/images">Images</a></li>
+			<li><a href="/articles">Articles</a></li>
+			<li><a href="/diaries">Diary</a></li>
+			<li><a href="/admin/prayers">Prayers</a></li>
+			<li><a href="/admin/notes">Contact (<%= @unread %> unread)</a></li>
 			<li><a href="/logout">Logout</a></li>
 		<% end %>
 	</ul>

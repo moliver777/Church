@@ -215,18 +215,38 @@ function checkFile(el,allowed) {
 
 // Removes invalid characters and replaces whitespace with underscores
 function checkFilename(el) {
-	$(el).val($(el).val().toLowerCase().replace(/[^a-z0-9\s]/g,"").replace(/\s+/g,"_"));
+	$(el).val($(el).val().toLowerCase().replace(/[^a-z0-9\s_-]/g,"").replace(/\s+/g,"_"));
 }
 
 // WYSIWYG
 $(document).ready(function() {
 	if ($(".wysiwyg")[0]) {
 		$("div.admin_display").toggle();
-		$.get("/admin/wysiwyg_images", function(response) {
+		$.get("/admin/wysiwyg_content", function(response) {
 			$("div.admin_display").toggle();
 			$(".wysiwyg").htmlarea({
 				css: "/wysiwyg/wysiwyg.css",
-				images: response.images
+				toolbar: ["bold","italic","underline","strikethrough","|","subscript","superscript","|","orderedlist","unorderedlist","|","indent","outdent","|","justifyleft","justifycenter","justifyright","|","p","h1","h2","h3","h4","|","image","table","alink",{
+						css: "article",
+						text: "Insert Article",
+						action: function() {
+							var self = this;
+							$(".article_select_container").toggle();
+							$(".article_select_cancel").unbind("click").click(function(e) {
+								e.preventDefault();
+								$(".article_select_container").hide();
+							});
+							$(".article_select_insert").unbind("click").click(function(e) {
+								e.preventDefault();
+								var filename = $(".wysiwyg_article_select").val();
+								if (filename.length > 0) self.ec("createLink", false, "/download/"+filename);
+								$(".article_select_container").hide();
+							});
+						}
+					},"unlink","youtube","|","forecolor","increasefontsize","decreasefontsize","|","html","|","undo","redo"
+				],
+				images: response.images,
+				articles: response.articles
 			});
 		});
 	}

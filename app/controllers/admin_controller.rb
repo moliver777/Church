@@ -175,7 +175,7 @@ class AdminController < ApplicationController
     render nothing: true
   end
 	
-	def wysiwyg_images
-		render json: {images: Image.select([:id, :name])}
+	def wysiwyg_content
+		render json: {images: Image.select([:id, :name]), articles: Article.select([:filename, :original_filename])}
 	end
 end

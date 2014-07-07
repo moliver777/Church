@@ -15,6 +15,7 @@ div.jHtmlArea .ToolBar ul li a.italic { background-position: -16px 0; }
 div.jHtmlArea .ToolBar ul li a.underline { background-position: -32px 0; }
 div.jHtmlArea .ToolBar ul li a.strikethrough { background-position: -48px 0; }
 div.jHtmlArea .ToolBar ul li a.alink { background-position: -64px 0; }
+div.jHtmlArea .ToolBar ul li a.article { background: url(article.png) no-repeat 0px 0px; background-size: 16px; }
 div.jHtmlArea .ToolBar ul li a.unlink { background-position: -80px 0; }
 div.jHtmlArea .ToolBar ul li a.youtube { background-position: -118px -32px; }
 div.jHtmlArea .ToolBar ul li a.orderedlist { background-position: -96px 0; }

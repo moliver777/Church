@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<th></th>
-		<td><a href="/download/<%= @article.filename %>.pdf">Download</a></td>
+		<td><a href="/download/<%= @article.filename %>.<%= @article.original_filename.split(".").last %>">Download</a></td>
 	</tr>
 </table>
 <%= link_to 'Edit', edit_article_path(@article) %> |

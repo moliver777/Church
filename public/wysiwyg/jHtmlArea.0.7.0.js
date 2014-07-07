@@ -39,12 +39,21 @@
                 var textarea = this.textarea = $(elem);
                 var container = this.container = $("<div/>").addClass("jHtmlArea").width(textarea.width()).insertAfter(textarea);
 
-                var toolbar = this.toolbar = $("<div/>").addClass("ToolBar").appendTo(container);							
+                var toolbar = this.toolbar = $("<div/>").addClass("ToolBar").appendTo(container);				
+								
+								// cms-image select
 								var image_select = $('<div class="image_select_container" style="display:none;"><select class="wysiwyg_image_select"></select><button class="image_select_insert">Insert</button><button class="image_select_cancel">Cancel</button></div>');
 								$.each(options.images, function(i,image) {
 									image_select.find(".wysiwyg_image_select").append('<option value="'+image.id+'">'+image.name+'</option>');
 								});
 								image_select.appendTo(container);
+								
+								// cms-article select
+								var article_select = $('<div class="article_select_container" style="display:none;"><select class="wysiwyg_article_select"></select><button class="article_select_insert">Insert</button><button class="article_select_cancel">Cancel</button></div>');
+								$.each(options.articles, function(i,article) {
+									article_select.find(".wysiwyg_article_select").append('<option value="'+article.filename+'.'+article.original_filename.split(".")[article.original_filename.split(".").length-1]+'">'+article.filename+'.'+article.original_filename.split(".")[article.original_filename.split(".").length-1]+'</option>');
+								});
+								article_select.appendTo(container);
                 priv.initToolBar.call(this, opts);
 
                 var iframe = this.iframe = $("<iframe/>").height(textarea.height());
