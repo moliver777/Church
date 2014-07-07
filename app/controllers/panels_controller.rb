@@ -48,7 +48,7 @@ class PanelsController < ApplicationController
   # POST /panels
   # POST /panels.json
   def create
-    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
+    images = JSON.parse(params[:panel][:images]) rescue []
     @panel = Panel.new(params[:panel].except!(:images))
 
     respond_to do |format|
@@ -73,7 +73,7 @@ class PanelsController < ApplicationController
   # PUT /panels/1
   # PUT /panels/1.json
   def update
-    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
+    images = JSON.parse(params[:panel][:images]) rescue []
     @panel = Panel.find(params[:id])
 
     respond_to do |format|

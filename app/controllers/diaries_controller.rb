@@ -46,12 +46,12 @@ class DiariesController < ApplicationController
   # POST /diaries
   # POST /diaries.json
   def create
-    images = params[:diary][:images]
+    images = JSON.parse(params[:diary][:images]) rescue []
     @diary = Diary.new(params[:diary].except!(:images))
 
     respond_to do |format|
       if @diary.save
-        images.split(",").each do |image|
+        images.each do |image|
           unless image == "0"
             ImageMapping.create({
               diary_id: @diary.id,
@@ -71,13 +71,13 @@ class DiariesController < ApplicationController
   # PUT /diaries/1
   # PUT /diaries/1.json
   def update
-    images = params[:diary][:images]
+    images = JSON.parse(params[:diary][:images]) rescue []
     @diary = Diary.find(params[:id])
 
     respond_to do |format|
       if @diary.update_attributes(params[:diary].except!(:images))
         @diary.image_mappings.destroy_all
-        images.split(",").each do |image|
+        images.each do |image|
           unless image == "0"
             ImageMapping.create({
               diary_id: @diary.id,

@@ -70,7 +70,7 @@ class AdminController < ApplicationController
   end
   
 	def create_panel
-    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
+    images = JSON.parse(params[:panel][:images]) rescue []
 		@page = Page.find(params[:page_id])
     @panel = Panel.new(params[:panel].except!(:images))
 		raise StandardError unless params[:panel][:name].length > 0
@@ -95,7 +95,7 @@ class AdminController < ApplicationController
 	end
 	
   def update_panel
-    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
+    images = JSON.parse(params[:panel][:images]) rescue []
     @panel = Panel.find(params[:id])
 		raise StandardError unless params[:panel][:name].length > 0
 		
@@ -115,64 +115,6 @@ class AdminController < ApplicationController
     end
 	rescue StandardError => e
 		render json: {success: false}
-  end
-  
-  def diary
-    @diaries = Diary.all
-  end
-  
-  def new_diary
-    @diary = Diary.new
-    @images = Image.all.map{|i| [i.name,i.id]}
-  end
-  
-  def edit_diary
-    @diary = Diary.find(params[:id])
-    @images = Image.all.map{|i| [i.name,i.id]}
-  end
-  
-  def create_diary
-    images = params[:diary][:images]
-    @diary = Diary.new(params[:diary].except!(:images))
-    if @diary.save
-      images.split(",").each do |image|
-        unless image == "0"
-          ImageMapping.create({
-            diary_id: @diary.id,
-            image_id: image
-          })
-        end
-      end
-      render json: {success: true}
-    else
-      render json: {success: false, errors: @diary.errors}
-    end
-  end
-  
-  def update_diary
-    images = params[:diary][:images]
-    @diary = Diary.find(params[:id])
-    if @diary.update_attributes(params[:diary].except!(:images))
-      @diary.image_mappings.destroy_all
-      images.split(",").each do |image|
-        unless image == "0"
-          ImageMapping.create({
-            diary_id: @diary.id,
-            image_id: image
-          })
-        end
-      end
-      render json: {success: true}
-    else
-      render json: {success: false, errors: @diary.errors}
-    end
-  end
-  
-  def destroy_diary
-    @diary = Diary.find(params[:id])
-    @diary.image_mappings.destroy_all
-    @diary.destroy
-    render nothing: true
   end
 	
 	def wysiwyg_content

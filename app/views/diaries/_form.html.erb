@@ -72,6 +72,6 @@
 		$.each($("select.image_select"), function(i,select) {
 			if ($(select).val() != "") images.push($(select).val());
 		});
-		$("input#diary_images").val(images.join(","));
+		$("input#diary_images").val("["+images.join(",")+"]");
 	}
 </script>
