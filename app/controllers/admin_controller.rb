@@ -70,13 +70,13 @@ class AdminController < ApplicationController
   end
   
 	def create_panel
-    images = params[:panel][:images]
+    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
 		@page = Page.find(params[:page_id])
     @panel = Panel.new(params[:panel].except!(:images))
 		raise StandardError unless params[:panel][:name].length > 0
 		
     if @panel.save
-      images.split(",").each do |image|
+      images.each do |image|
         unless image == "0"
           ImageMapping.create({
             panel_id: @panel.id,
@@ -95,13 +95,13 @@ class AdminController < ApplicationController
 	end
 	
   def update_panel
-    images = params[:panel][:images]
+    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
     @panel = Panel.find(params[:id])
 		raise StandardError unless params[:panel][:name].length > 0
 		
     if @panel.update_attributes(params[:panel].except!(:images))
       @panel.image_mappings.destroy_all
-      images.split(",").each do |image|
+      images.each do |image|
         unless image == "0"
           ImageMapping.create({
             panel_id: @panel.id,

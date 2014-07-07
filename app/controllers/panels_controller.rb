@@ -48,12 +48,12 @@ class PanelsController < ApplicationController
   # POST /panels
   # POST /panels.json
   def create
-    images = params[:panel][:images]
+    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
     @panel = Panel.new(params[:panel].except!(:images))
 
     respond_to do |format|
       if @panel.save
-        images.split(",").each do |image|
+        images.each do |image|
           unless image == "0"
             ImageMapping.create({
               panel_id: @panel.id,
@@ -73,13 +73,13 @@ class PanelsController < ApplicationController
   # PUT /panels/1
   # PUT /panels/1.json
   def update
-    images = params[:panel][:images]
+    images = (JSON.parse(params[:panel][:images]) rescue params[:panel][:images].split(",")) rescue []
     @panel = Panel.find(params[:id])
 
     respond_to do |format|
       if @panel.update_attributes(params[:panel].except!(:images))
         @panel.image_mappings.destroy_all
-        images.split(",").each do |image|
+        images.each do |image|
           unless image == "0"
             ImageMapping.create({
               panel_id: @panel.id,
