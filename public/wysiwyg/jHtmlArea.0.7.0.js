@@ -43,10 +43,13 @@
 								
 								// cms-image select
 								if (options.images) {
-									var image_select = $('<div class="image_select_container" style="display:none;"><select class="wysiwyg_image_select"></select><button class="image_select_insert">Insert</button><button class="image_select_cancel">Cancel</button></div>');
+									var image_select = $('<div class="image_select_container" style="display:none;"><select class="wysiwyg_image_select"></select><select class="wysiwyg_image_size"></select><button class="image_select_insert">Insert</button><button class="image_select_cancel">Cancel</button></div>');
 									$.each(options.images, function(i,image) {
 										image_select.find(".wysiwyg_image_select").append('<option value="'+image.id+'">'+image.name+'</option>');
 									});
+									for (var i=20; i>0; i--) {
+										image_select.find(".wysiwyg_image_size").append('<option value="'+(i*5)+'">'+(i*5)+'%</option>');
+									}
 									image_select.appendTo(container);
 								}
 								
@@ -200,8 +203,9 @@
 			$(".image_select_insert").unbind("click").click(function(e) {
 				e.preventDefault();
 				var image_id = $(".wysiwyg_image_select").val();
+				var image_size = $(".wysiwyg_image_size").val();
 				if (image_id.length > 0 && parseInt(image_id) > 0) {
-					$("#"+self.textarea.attr("id")).htmlarea("pasteHTML", '<img style="width:100%;" src="/image/'+image_id+'" />');
+					$("#"+self.textarea.attr("id")).htmlarea("pasteHTML", '<img style="display:inline;width:'+image_size+'%" src="/image/'+image_id+'" />');
 					self.updateTextArea();
 				}
 				$(".image_select_container").hide();
