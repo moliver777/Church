@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     @site_title = Setting.where(key: "site_title").first.value rescue ""
     @body_class = session.include?(:size) ? session[:size] : "";
     @render_error = '<div class="panel" id="render_error">Specified content could not be found for this panel</div>'
+    @analytics = Setting.where(key: "analytics_enabled").first.value == "true" rescue false
     @unread = Note.where(is_read: false).count
   end
   
