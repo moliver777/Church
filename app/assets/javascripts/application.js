@@ -88,7 +88,7 @@ $(window).load(function() {
 				.end()
 				.appendTo("#image_container"+i);
 		}
-	}, 3000);
+	}, 5000);
 
 	// Resize panels to images
 	$.each($("div.image_container"), function() {
