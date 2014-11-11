@@ -85,7 +85,7 @@ class NewsArticlesController < ApplicationController
         #     })
         #   end
         # end
-        format.html { redirect_to @news, notice: 'News Article was successfully updated.' }
+        format.html { redirect_to @news_article, notice: 'News Article was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
