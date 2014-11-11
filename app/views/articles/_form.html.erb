@@ -11,14 +11,6 @@
 	<% end %>
 	<table>
 		<tr>
-			<th>Date</th>
-			<td><%= f.text_field :date %></td>
-		</tr>
-		<tr>
-			<th>Category</th>
-			<td><%= f.text_field :category %></td>
-		</tr>
-		<tr>
 			<th>Title</th>
 			<td><%= f.text_field :filename, :onchange => "checkFilename(this)" %></td>
 		</tr>

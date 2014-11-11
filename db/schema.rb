@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141111210604) do
+ActiveRecord::Schema.define(:version => 20141111215044) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(:version => 20141111210604) do
     t.string   "abstract",                  :default => ""
     t.text     "content"
     t.boolean  "publish",                   :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "newsletters", :force => true do |t|
+    t.date     "date",              :null => false
+    t.string   "filename",          :null => false
+    t.string   "original_filename", :null => false
+    t.binary   "binary_content",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th>Date</th>
+		<td><%= @newsletter.date %></td>
+	</tr>
+	<tr>
+		<th>File</th>
+		<td><%= @newsletter.filename %>.pdf</td>
+	</tr>
+	<tr>
+		<th></th>
+		<td><a href="/download/<%= @newsletter.filename %>.<%= @newsletter.original_filename.split(".").last %>">Download</a></td>
+	</tr>
+</table>
+<%= link_to 'Edit', edit_newsletter_path(@newsletter) %> |
+<%= link_to 'Back', newsletters_path %>

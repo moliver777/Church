@@ -2,7 +2,6 @@
 <br/>
 <table>
 	<tr>
-		<th>Date</th>
 		<th>File</th>
 		<th></th>
 		<th></th>
@@ -11,7 +10,6 @@
 	</tr>
 	<% @articles.each do |article| %>
 		<tr>
-			<td><%= article.date %></td>
 			<td><%= article.filename %>.<%= article.original_filename.split(".").last %></td>
 			<td><a href="/download/<%= article.filename %>.<%= article.original_filename.split(".").last %>">Download</a></td>
 			<td><%= link_to 'Show', article %></td>

@@ -13,6 +13,7 @@ Church::Application.routes.draw do
   resources :email_addresses
   resources :images
   resources :news_articles
+  resources :newsletters
   resources :notes
   resources :page_layouts
   resources :pages
@@ -53,6 +54,7 @@ Church::Application.routes.draw do
   post "/email_addresses/delete/:id" => "email_addresses#destroy"
   post "/images/delete/:id" => "images#destroy"
   post "/news_articles/delete/:id" => "news_articles#destroy"
+  post "/newsletters/delete/:id" => "newsletters#destroy"
   post "/notes/delete/:id" => "notes#destroy"
   post "/page_layouts/delete/:id" => "page_layouts#destroy"
   post "/pages/delete/:id" => "pages#destroy"
@@ -65,7 +67,7 @@ Church::Application.routes.draw do
   
   # PRELOADED PAGES
   get "/home" => "home#index"
-  get "/news" => "home#news"
+  get "/home/newsletter" => "home#newsletter"
   get "/ajax_news" => "home#ajax_news"
   get "/events/diary" => "home#diary"
   get "/ajax_diary" => "home#ajax_diary"
@@ -73,6 +75,7 @@ Church::Application.routes.draw do
   # CUSTOM CONTENT
   get "/embed/:filename" => "home#embed"
   get "/download/:filename" => "home#download"
+  get "/archive/:filename" => "home#archive"
   get "/image/:id" => "home#image"
   get "/:link" => "home#page"
   get "/:link/:sub_link" => "home#page"

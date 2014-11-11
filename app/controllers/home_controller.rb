@@ -22,6 +22,14 @@ class HomeController < ApplicationController
     @diaries = params.include?(:page) ? Diary.order("date DESC").page(params[:page]) : Diary.order("date DESC").page("")
   end
   
+  def newsletter
+    redirect_to "/" unless Page.where(link: "home/newsletter", publish: true).first
+    @page_link = "home"
+    @sub_link = "newsletter"
+    @newsletter = Newsletter.order("date DESC").first
+    @newsletters = @newsletter ? Newsletter.where("id != ?", @newsletter.id).order("date DESC") : []
+  end
+  
   def contact
     errors = validated? params[:note]
     if errors.empty?
@@ -43,8 +51,13 @@ class HomeController < ApplicationController
   end
   
   def embed
-    article = Article.where(filename: params[:filename]).first
-    send_data article.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
+    newsletter = Newsletter.where(filename: params[:filename]).first
+    send_data newsletter.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
+  end
+  
+  def archive
+    newsletter = Newsletter.where(filename: params[:filename]).first
+    send_data newsletter.binary_content
   end
   
   def download
