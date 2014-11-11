@@ -42,7 +42,12 @@ class HomeController < ApplicationController
     return errors
   end
   
-  def article
+  def embed
+    article = Article.where(filename: params[:filename]).first
+    send_data article.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
+  end
+  
+  def download
     article = Article.where(filename: params[:filename]).first
     send_data article.binary_content
   end

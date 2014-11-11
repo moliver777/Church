@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
     @body_class = session.include?(:size) ? session[:size] : "";
     @render_error = '<div class="panel" id="render_error">Specified content could not be found for this panel</div>'
     @analytics = Setting.where(key: "analytics_enabled").first.value == "true" rescue false
+    @news_tickers = NewsArticle.where(publish: true)
     @unread = Note.where(is_read: false).count
   end
   

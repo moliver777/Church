@@ -1,26 +1,8 @@
 <p id="notice"><%= notice %></p>
 <table class="show">
 	<tr>
-		<th>Title</th>
+		<th>Text</th>
 		<td><%= @news_article.title %></td>
-	</tr>
-	<tr>
-		<th>Abstract</th>
-		<td><%= @news_article.abstract %></td>
-	</tr>
-	<tr>
-		<th>Content</th>
-		<td><%= @news_article.text %></td>
-	</tr>
-	<tr>
-		<th>Image</th>
-		<td>
-			<% if @news_article.image %>
-				<img src="/image/<%= @news_article.image.id %>" />
-			<% else %>
-				N/A
-			<% end %>
-		</td>
 	</tr>
 	<tr>
 		<th>Published?</th>

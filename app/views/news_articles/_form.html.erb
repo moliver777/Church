@@ -1,7 +1,7 @@
 <%= form_for(@news_article) do |f| %>
 	<% if @news_article.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@news_article.errors.count, "error") %> prohibited this news article from being saved:</h2>
+			<h2><%= pluralize(@news_article.errors.count, "error") %> prohibited this news ticker from being saved:</h2>
 			<ul>
 				<% @news_article.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
@@ -11,20 +11,8 @@
 	<% end %>
 	<table>
 		<tr>
-			<th>Title</th>
+			<th>Text</th>
 			<td><%= f.text_field :title %></td>
-		</tr>
-		<tr>
-			<th>Abstract</th>
-			<td><%= f.text_field :abstract, :length => 75, :size => 30 %></td>
-		</tr>
-		<tr>
-			<th>Content</th>
-			<td><%= f.text_area :text %></td>
-		</tr>
-		<tr>
-			<th>Image</th>
-			<td><%= f.select :image, options_for_select(@images), {:prompt => ""} %></td>
 		</tr>
 		<tr>
 			<th>Published?</th>

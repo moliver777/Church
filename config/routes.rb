@@ -44,6 +44,8 @@ Church::Application.routes.draw do
   post "/admin/diary/update/:id" => "admin#update_diary"
   post "/admin/diary/delete/:id" => "admin#destroy_diary"
   
+  post "/admin/publish_news_article" => "admin#publish_news_article"
+  
   # DESTROY FIX
   post "/articles/delete/:id" => "articles#destroy"
   post "/contents/delete/:id" => "contents#destroy"
@@ -69,7 +71,8 @@ Church::Application.routes.draw do
   get "/ajax_diary" => "home#ajax_diary"
   
   # CUSTOM CONTENT
-  get "/download/:filename" => "home#article"
+  get "/embed/:filename" => "home#embed"
+  get "/download/:filename" => "home#download"
   get "/image/:id" => "home#image"
   get "/:link" => "home#page"
   get "/:link/:sub_link" => "home#page"

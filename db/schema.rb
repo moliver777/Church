@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140706100158) do
+ActiveRecord::Schema.define(:version => 20141111194406) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
-    t.string   "filename",          :null => false
-    t.binary   "binary_content",    :null => false
+    t.string   "filename",                                                :null => false
+    t.binary   "binary_content",    :limit => 2147483647,                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category",          :null => false
-    t.string   "original_filename", :null => false
+    t.string   "category",                                                :null => false
+    t.string   "original_filename",                       :default => "", :null => false
   end
 
   create_table "contents", :force => true do |t|
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(:version => 20140706100158) do
     t.datetime "updated_at"
   end
 
+  create_table "email_addresses", :force => true do |t|
+    t.string   "email_address",                   :null => false
+    t.boolean  "enabled",       :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "image_mappings", :force => true do |t|
     t.integer  "content_id"
     t.integer  "diary_id"
@@ -49,19 +56,19 @@ ActiveRecord::Schema.define(:version => 20140706100158) do
   end
 
   create_table "images", :force => true do |t|
-    t.string   "name",           :null => false
-    t.binary   "binary_content", :null => false
+    t.string   "name",                                 :null => false
+    t.binary   "binary_content", :limit => 2147483647, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "news_articles", :force => true do |t|
     t.string   "title",                         :null => false
-    t.string   "abstract",                      :null => false
-    t.text     "text",                          :null => false
+    t.string   "abstract",   :default => ""
     t.boolean  "publish",    :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content"
   end
 
   create_table "notes", :force => true do |t|

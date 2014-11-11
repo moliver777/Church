@@ -1,29 +1,16 @@
-<h1>News Articles</h1>
+<h1>News Ticker</h1>
+<br/>
 <table>
 	<tr>
-		<th>Title</th>
-		<th>Abstract</th>
-		<th>Content</th>
-		<th>Image</th>
+		<th>Text</th>
 		<th>Published?</th>
-		<th></th>
 		<th></th>
 		<th></th>
 	</tr>
 	<% @news_article.each do |news_article| %>
 		<tr>
 			<td><%= news_article.title %></td>
-			<td><%= truncate news_article.abstract %></td>
-			<td><%= truncate news_article.text, :length => 50 %></td>
-			<td>
-				<% if news_article.image %>
-					<img class="thumb" src="/image/<%= news_article.image.id %>" />
-				<% else %>
-					N/A
-				<% end %>
-			</td>
 			<td><%= check_box_tag :news_article_publish, news_article.id, news_article.publish, {:id => "publish#{news_article.id}", :class => "news_article_publish"} %></td>
-			<td><%= link_to 'Show', news_article %></td>
 			<td><%= link_to 'Edit', edit_news_article_path(news_article) %></td>
 			<td><a class="rails-delete" data-link="/news_articles/delete/<%= news_article.id %>">Destroy</a></td>
 		</tr>
@@ -35,7 +22,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("input.news_article_publish").unbind("click").click(function() {
-			$.post("/news_article/publish", {id: $(this).val(), publish: $(this).is(":checked")});
+			$.post("/admin/publish_news_article", {news_article_id: $(this).val(), publish: $(this).is(":checked")});
 		});
 	});
 </script>

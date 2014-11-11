@@ -715,3 +715,21 @@ div.diary h2 {
 .auto-fill input {
   width: 80%;
 }
+
+div.ticker-wrapper {
+  width: 96%;
+  height: 25px;
+  border: 5px solid #E5E5E5;
+  margin: 5px 1% 0;
+  border-radius: 5px;
+  line-height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 5px;
+}
+
+div.ticker-swipe {
+  position: relative;
+  background-color: white;
+  top: -25px;
+}

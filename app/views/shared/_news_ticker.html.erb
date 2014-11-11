@@ -1,0 +1,17 @@
+<ul id="news_ticker">
+	<% @news_tickers.each do |news_ticker| %>
+		<li id="news_ticker_<%= news_ticker.id %>" class="news_ticker_item"><%= news_ticker.title %></li>
+	<% end %>
+</ul>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		if ($(".news_ticker_item").size() > 0 ) {
+			$('#news_ticker').ticker({
+				speed: 0.10, 
+				pauseOnItems: 6000,
+				fadeInSpeed: 300
+			});
+		};
+	});
+</script>

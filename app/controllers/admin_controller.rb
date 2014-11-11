@@ -52,6 +52,12 @@ class AdminController < ApplicationController
     render nothing: true
   end
   
+  def publish_news_article
+    news_article = NewsArticle.find(params[:news_article_id])
+    news_article.update_attribute(:publish, params[:publish])
+    render nothing: true
+  end
+  
   def panels
     @page = Page.find(params[:page_id])
   end
