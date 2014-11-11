@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     redirect_to "/" unless Page.where(link: "events/diary", publish: true).first
     @page_link = "events"
     @sub_link = "diary"
-    @diaries = params.include?(:page) ? Diary.page(params[:page]) : Diary.page("")
+    @diaries = params.include?(:page) ? Diary.order("date DESC").page(params[:page]) : Diary.order("date DESC").page("")
   end
   
   def contact
