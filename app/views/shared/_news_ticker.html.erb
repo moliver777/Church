@@ -1,6 +1,10 @@
 <ul id="news_ticker">
-	<% @news_tickers.each do |news_ticker| %>
-		<li id="news_ticker_<%= news_ticker.id %>" class="news_ticker_item"><%= news_ticker.title %></li>
+	<% if @news_tickers.length > 0 %>
+		<% @news_tickers.each do |news_ticker| %>
+			<li id="news_ticker_<%= news_ticker.id %>" class="news_ticker_item"><%= news_ticker.title %></li>
+		<% end %>
+	<% else %>
+		<li id="news_ticker_0" class="news_ticker_item">&nbsp;</li>
 	<% end %>
 </ul>
 
