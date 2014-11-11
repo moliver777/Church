@@ -24,13 +24,9 @@
 		$("li.menu_link").mouseenter(function() {
 			$("li.menu_link").removeClass("highlight");
 			$(this).addClass("highlight");
-			$("ul.sub_menu").hide();
-			$("ul.sub_menu[data-id="+$(this).data("id")+"]").show();
 		});
 		
 		$("div#menu").mouseleave(function() {
-			$("ul.sub_menu").hide();
-			$("ul.sub_menu.current").show();
 			$("li.menu_link").removeClass("highlight");
 			$("li.menu_link.selected").addClass("highlight");
 		});
