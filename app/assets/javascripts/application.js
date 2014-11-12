@@ -66,7 +66,7 @@ function formatPage() {
 $(window).load(function() {
   $("div#loading").hide();
   $("div#content").show();
-  
+
   // Image slideshows
 	var index = 1;
 	window.slideshows = 0;
@@ -77,7 +77,7 @@ $(window).load(function() {
       index++;
     });
 	});
-    
+
   window.slideshows = index;
 	setInterval(function() {
 		for (i=1;i<=window.slideshows;i++) {
@@ -94,10 +94,13 @@ $(window).load(function() {
 	$.each($("div.image_container"), function() {
 		var height = $(this).parents("div.panel").height();
 		$.each($(this).find("img"), function() {
-			$(this).css("width", $(this).parent().width());
+			$(this).css("max-width", $(this).parent().width());
 			height = Math.max(height, $(this).height());
 			$(this).parents("div.panel").css("height", height+"px");
-			formatPage();
+		});
+		// Stretch images
+		$.each($(this).find("img"), function() {
+			$(this).css("height", height+"px");
 		});
 	});
 
