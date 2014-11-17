@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<th></th>
-		<td><a href="/download/<%= @newsletter.filename %>.<%= @newsletter.original_filename.split(".").last %>">Download</a></td>
+		<td><a href="/newsletter/<%= @newsletter.filename %>.<%= @newsletter.original_filename.split(".").last %>">Download</a></td>
 	</tr>
 </table>
 <%= link_to 'Edit', edit_newsletter_path(@newsletter) %> |

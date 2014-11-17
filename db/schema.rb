@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141111215044) do
+ActiveRecord::Schema.define(:version => 20141117215833) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(:version => 20141111215044) do
     t.datetime "updated_at"
   end
 
+  create_table "magazines", :force => true do |t|
+    t.date     "date",              :null => false
+    t.string   "filename",          :null => false
+    t.string   "original_filename", :null => false
+    t.binary   "binary_content",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "news_articles", :force => true do |t|
     t.string   "title",      :limit => 135,                    :null => false
     t.string   "abstract",                  :default => ""
@@ -72,10 +81,10 @@ ActiveRecord::Schema.define(:version => 20141111215044) do
   end
 
   create_table "newsletters", :force => true do |t|
-    t.date     "date",              :null => false
-    t.string   "filename",          :null => false
-    t.string   "original_filename", :null => false
-    t.binary   "binary_content",    :null => false
+    t.date     "date",                                    :null => false
+    t.string   "filename",                                :null => false
+    t.string   "original_filename",                       :null => false
+    t.binary   "binary_content",    :limit => 2147483647, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

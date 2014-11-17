@@ -22,12 +22,21 @@ class HomeController < ApplicationController
     @diaries = params.include?(:page) ? Diary.order("date DESC").page(params[:page]) : Diary.order("date DESC").page("")
   end
   
+  def magazine
+    redirect_to "/" unless Page.where(link: "home/magazine", publish: true).first
+    @page_link = "home"
+    @sub_link = "magazine"
+    @magazine = Magazine.order("date DESC").first
+    @magazines = @magazine ? Magazine.where("id != ?", @magazine.id).order("date DESC") : []
+  end
+  
   def newsletter
     redirect_to "/" unless Page.where(link: "home/newsletter", publish: true).first
     @page_link = "home"
     @sub_link = "newsletter"
     @newsletter = Newsletter.order("date DESC").first
     @newsletters = @newsletter ? Newsletter.where("id != ?", @newsletter.id).order("date DESC") : []
+    puts @newsletter
   end
   
   def contact
@@ -50,12 +59,22 @@ class HomeController < ApplicationController
     return errors
   end
   
-  def embed
+  def embed_magazine
+    magazine = Magazine.where(filename: params[:filename]).first
+    send_data magazine.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
+  end
+  
+  def embed_newsletter
     newsletter = Newsletter.where(filename: params[:filename]).first
     send_data newsletter.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
   end
   
-  def archive
+  def magazine_download
+    magazine = Magazine.where(filename: params[:filename]).first
+    send_data magazine.binary_content
+  end
+  
+  def newsletter_download
     newsletter = Newsletter.where(filename: params[:filename]).first
     send_data newsletter.binary_content
   end

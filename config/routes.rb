@@ -12,6 +12,7 @@ Church::Application.routes.draw do
   resources :diaries
   resources :email_addresses
   resources :images
+  resources :magazines
   resources :news_articles
   resources :newsletters
   resources :notes
@@ -53,6 +54,7 @@ Church::Application.routes.draw do
   post "/diaries/delete/:id" => "diaries#destroy"
   post "/email_addresses/delete/:id" => "email_addresses#destroy"
   post "/images/delete/:id" => "images#destroy"
+  post "/magazines/delete/:id" => "magazines#destroy"
   post "/news_articles/delete/:id" => "news_articles#destroy"
   post "/newsletters/delete/:id" => "newsletters#destroy"
   post "/notes/delete/:id" => "notes#destroy"
@@ -68,14 +70,17 @@ Church::Application.routes.draw do
   # PRELOADED PAGES
   get "/home" => "home#index"
   get "/home/newsletter" => "home#newsletter"
+  get "/home/magazine" => "home#magazine"
   get "/ajax_news" => "home#ajax_news"
   get "/events/diary" => "home#diary"
   get "/ajax_diary" => "home#ajax_diary"
   
   # CUSTOM CONTENT
-  get "/embed/:filename" => "home#embed"
   get "/download/:filename" => "home#download"
-  get "/archive/:filename" => "home#archive"
+  get "/magazine/:filename" => "home#magazine_download"
+  get "/newsletter/:filename" => "home#newsletter_download"
+  get "/embed_magazine/:filename" => "home#embed_magazine"
+  get "/embed_newsletter/:filename" => "home#embed_newsletter"
   get "/image/:id" => "home#image"
   get "/:link" => "home#page"
   get "/:link/:sub_link" => "home#page"

@@ -13,7 +13,7 @@
 		<tr>
 			<td><%= newsletter.date %></td>
 			<td><%= newsletter.filename %>.<%= newsletter.original_filename.split(".").last %></td>
-			<td><a href="/download/<%= newsletter.filename %>.<%= newsletter.original_filename.split(".").last %>">Download</a></td>
+			<td><a href="/newsletter/<%= newsletter.filename %>.<%= newsletter.original_filename.split(".").last %>">Download</a></td>
 			<td><%= link_to 'Show', newsletter %></td>
 			<td><%= link_to 'Edit', edit_newsletter_path(newsletter) %></td>
 			<td><a class="rails-delete" data-link="/newsletters/delete/<%= newsletter.id %>">Destroy</a></td>

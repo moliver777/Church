@@ -14,7 +14,7 @@
 				<button id="newsletter_archive_download">Download</button>
 				<br/><br/>
 			<% end %>
-			<iframe src="/embed/<%= @newsletter.filename %>.pdf" width="100%" height="800px"></iframe>
+			<iframe src="/embed_newsletter/<%= @newsletter.filename %>.pdf" width="100%" height="800px"></iframe>
 		</div>
 	</div>
 <% else %>
@@ -28,7 +28,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("button#newsletter_archive_download").click(function() {
-			window.location.href = "/archive/"+$("select#newsletters_archive").val();
+			window.location.href = "/newsletter/"+$("select#newsletters_archive").val();
 		});
 	});
 </script>
