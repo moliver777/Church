@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   before_filter :authenticated_user, :except => [:admin]
   
   def admin
+    Session.where("created_at < ?", Time.now.advance(days: -1)).destroy_all
   end
   
   def notes
