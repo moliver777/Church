@@ -73,7 +73,7 @@ class AdminController < ApplicationController
 			@url += "/#{params[:panel_id]}"
 		end
     @panel_layouts = PageLayout.where(:content_type => "PANEL").map{|p| [p.name,p.id]}
-    @images = Image.all.map{|i| [i.name,i.id]}
+    @images = Image.order("created_at DESC").map{|i| [i.name,i.id]}
   end
   
 	def create_panel
@@ -125,6 +125,6 @@ class AdminController < ApplicationController
   end
 	
 	def wysiwyg_content
-		render json: {images: Image.select([:id, :name]), articles: Article.select([:filename, :original_filename])}
+		render json: {images: Image.order("created_at DESC").select([:id, :name]), articles: Article.order("created_at DESC").select([:filename, :original_filename])}
 	end
 end
