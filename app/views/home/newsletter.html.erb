@@ -14,7 +14,8 @@
 				<button id="newsletter_archive_download">Download</button>
 				<br/><br/>
 			<% end %>
-			<iframe src="/embed_newsletter/<%= @newsletter.filename %>.pdf" width="100%" height="800px"></iframe>
+			<button id="newsletterBtn" style="width:200px;height:50px;margin:20px;display:none;" onclick="window.location.href='/embed_newsletter/<%= @newsletter.filename %>.pdf'">View Latest Newsletter</button>
+			<iframe id="newsletterIframe" src="/embed_newsletter/<%= @newsletter.filename %>.pdf" width="100%" height="800px"></iframe>
 		</div>
 	</div>
 <% else %>
@@ -27,6 +28,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		if (/iPhone|iPod|iPad/.test(navigator.userAgent)) {
+			$("#newsletterBtn").show();
+			$("#newsletterIframe").hide();
+		}
+		
 		$("button#newsletter_archive_download").click(function() {
 			window.location.href = "/newsletter/"+$("select#newsletters_archive").val();
 		});

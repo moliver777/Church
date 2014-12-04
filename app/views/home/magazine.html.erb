@@ -14,7 +14,8 @@
 				<button id="magazine_archive_download">Download</button>
 				<br/><br/>
 			<% end %>
-			<iframe src="/embed_magazine/<%= @magazine.filename %>.pdf" width="100%" height="800px"></iframe>
+			<button id="magazineBtn" style="width:200px;height:50px;margin:20px;display:none;" onclick="window.location.href='/embed_magazine/<%= @magazine.filename %>.pdf'">View Latest Magazine</button>
+			<iframe id="magazineIframe" src="/embed_magazine/<%= @magazine.filename %>.pdf" width="100%" height="800px"></iframe>
 		</div>
 	</div>
 <% else %>
@@ -27,6 +28,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		if (/iPhone|iPod|iPad/.test(navigator.userAgent)) {
+			$("#magazineBtn").show();
+			$("#magazineIframe").hide();
+		}
+		
 		$("button#magazine_archive_download").click(function() {
 			window.location.href = "/magazine/"+$("select#magazines_archive").val();
 		});
