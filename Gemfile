@@ -13,6 +13,10 @@ gem 'aes'
 # Deploy with Heroku
 gem 'heroku'
 
+# XML
+gem 'nokogiri'
+gem 'nori'
+
 # Pagination
 gem 'kaminari'
 

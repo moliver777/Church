@@ -1,6 +1,11 @@
+require "nokogiri"
+require "nori"
+require "open-uri"
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :setup
+  before_filter :universalis
   before_filter :shared_content
   layout "application"
   
@@ -15,6 +20,18 @@ class ApplicationController < ActionController::Base
     render file: 'public/404.html', status: :not_found, layout: false
   end
   
+  def universalis
+    unless session[:universalis] && session[:universalis_date] == Date.today
+      xml = Nori.new(:parser => :nokogiri).parse(Nokogiri::XML(open("http://www.universalis.com/atommass1.xml")).to_s)
+      raise "No summary found" unless xml["feed"]["entry"]["summary"]
+      session[:universalis] = xml["feed"]["entry"]["summary"]
+      session[:universalis_date] = Date.today
+    end
+  rescue StandardError => e
+    puts "Couldn't parse Universalis xml feed"
+    puts e.message
+  end
+  
   def setup
     @site_title = Setting.where(key: "site_title").first.value rescue ""
     @body_class = session.include?(:size) ? session[:size] : "";
@@ -25,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
   
   def shared_content
-    @header = Content.where(content_type: "HEADER").first.html_content.gsub(/@site_title/, @site_title) || @render_error
+    @header = Content.where(content_type: "HEADER").first.html_content.gsub(/@site_title/, @site_title).gsub(/@date/, Date.today.strftime("%^A %B")+" "+Date.today.day.ordinalize).gsub(/@universalis/, session[:universalis]) || @render_error
     @footer = Content.where(content_type: "FOOTER").first.html_content || @render_error
     menu_pages = Page.where(:publish => true, :menu_link => true).order("menu_position ASC")
     @menu = menu_pages.select{|page| page.menu_position != 0} + menu_pages.select{|page| page.menu_position == 0} # put position 0 items to end

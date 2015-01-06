@@ -394,7 +394,7 @@ div#header {
 }
 
 div.inner-header {
-	text-align: center;
+//	text-align: center;
 	height: 166px;
 	width: 1065px;
 	margin: auto;
@@ -414,6 +414,25 @@ div.inner-header a#logo {
 	height: 150px;
 	background: transparent url(/assets/logo2.png) 0 0;
 	background-size: 100% 100%;
+}
+
+div.inner-header span.date {
+	float: left;
+	font-size: 12px;
+	position: relative;
+	top: -135px;
+	left: 185px;
+	color: black;
+}
+
+div.inner-header span.universalis {
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	position: relative;
+	top: -140px;
+	left: 185px;
+	color: black;
 }
 
 /* FOOTER */
