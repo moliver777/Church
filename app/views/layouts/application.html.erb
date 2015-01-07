@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>HTAOL Catholics - The Holy Trinity And Our Lady</title>
+		<title>HTAOL Catholics <%= ("#{@page.title} " unless @page.title == "Home" rescue "#{@sub_link.split("_").map{|word| word.capitalize}.join(" ")} ") rescue nil %>- The Holy Trinity And Our Lady</title>
 		<meta name="description" content="Official site of The Holy Trinity And Out Lady Catholic Parish in Fleet and Church Crookham, Hampshire, UK">
+		<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA5nwLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAAAAREQAAAAAAABERAAAAAAAAEREAAAAAAAAREQAAAAAAABERAAAAAAAAEREAAAAAERERERERAAAREREREREAABEREREREQAAERERERERAAAREREREREAAAAAEREAAAAAAAAREQAAAAAAABERAAAAAAAAAAAAAAD8PwAA/D8AAPw/AAD8PwAA/D8AAPw/AAD8PwAAwAMAAMADAADAAwAAwAMAAMADAAD8PwAA/D8AAPw/AAD//wAA" rel="icon" type="image/x-icon" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<%= stylesheet_link_tag    "application" %>
 		<%= javascript_include_tag "application" %>
