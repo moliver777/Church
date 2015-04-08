@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<title>The Catholic Parish of The Holy Trinity and Our Lady - <%= ("#{@page.title} " unless @page.title == "Home" rescue "#{@sub_link.split("_").map{|word| word.capitalize}.join(" ")} ") rescue nil %></title>
-		<meta name="ROBOTS" content="ALL" />
-		<meta name="description" content="The Catholic Parish of The Holy Trinity and Our Lady. The Catholic Church in Fleet and Church Crookham, Hampshire." />
-		<meta name="keywords" content="Fleet, Church Crookham, Catholic Church, Holy Trinity, Our Lady, Parish, Community" />
+		<meta name="description" content="<%= ("#{@page.title} " unless @page.title == "Home" rescue "#{@sub_link.split("_").map{|word| word.capitalize}.join(" ")} ") rescue nil %> - The Catholic Parish of The Holy Trinity and Our Lady. Fleet and Church Crookham, Hampshire." />
+		<meta name="keywords" content="Fleet, Church Crookham, Roman Catholic Church, Holy Trinity, Our Lady, Parish, Community" />
 		<meta name="google-site-verification" content="pcMlVDMAiti0SUjsd8HO_TgEYq_X00DlxIxiItvtGmc" />
+		<meta name="ROBOTS" content="ALL" />
 		<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA5nwLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAAAAREQAAAAAAABERAAAAAAAAEREAAAAAAAAREQAAAAAAABERAAAAAAAAEREAAAAAERERERERAAAREREREREAABEREREREQAAERERERERAAAREREREREAAAAAEREAAAAAAAAREQAAAAAAABERAAAAAAAAAAAAAAD8PwAA/D8AAPw/AAD8PwAA/D8AAPw/AAD8PwAAwAMAAMADAADAAwAAwAMAAMADAAD8PwAA/D8AAPw/AAD//wAA" rel="icon" type="image/x-icon" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<%= stylesheet_link_tag    "application" %>
