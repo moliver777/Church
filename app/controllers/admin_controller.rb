@@ -15,6 +15,12 @@ class AdminController < ApplicationController
     @unread = Note.where(is_read: false).count
   end
   
+  def action_note
+    @note = Note.find(params[:note_id])
+    @note.update_attribute(:actioned, (params[:actioned] == "true"))
+    render nothing: true
+  end
+  
   def prayers
     @month = params.include?(:month) ? params[:month] : Date.today.month
     @days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]

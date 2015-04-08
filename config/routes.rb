@@ -25,6 +25,7 @@ Church::Application.routes.draw do
   # NON-DEV ADMINISTRATION
   get "/admin/notes" => "admin#notes"
   get "/admin/note/:id" => "admin#note"
+  post "/admin/action_note/:note_id" => "admin#action_note"
   
   get "/admin/prayers" => "admin#prayers"
   get "/admin/prayers/:date" => "admin#prayer"

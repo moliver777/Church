@@ -5,6 +5,7 @@
 		<th>Name</th>
 		<th>Category</th>
 		<th>Read?</th>
+		<th>Actioned?</th>
 	</tr>
 	<% @notes.each do |note| %>
 		<tr class="hover <%= 'unread' unless note.is_read %>" data-id="<%= note.id %>">
@@ -12,14 +13,24 @@
 			<td><%= note.name %></td>
 			<td><%= note.category %></td>
 			<td><%= note.is_read ? "Yes" : "No" %></td>
+			<td class="no_link">
+				<% if note.actioned %>
+					<input class="note_action" type="checkbox" data-id="<%= note.id %>" checked="true" />
+				<% else %>
+					<input class="note_action" type="checkbox" data-id="<%= note.id %>" />
+				<% end %>
+			</td>
 		</tr>
 	<% end %>
 </table>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("tr.hover").click(function() {
-			window.location.href = "/admin/note/"+$(this).data("id");
+		$("tr.hover td:not(.no_link)").click(function() {
+			window.location.href = "/admin/note/"+$(this).parent().data("id");
+		});
+		$("input.note_action").unbind("click").click(function() {
+			$.post("/admin/action_note/"+$(this).data("id"), {actioned: $(this).is(":checked")});
 		});
 	});
 </script>

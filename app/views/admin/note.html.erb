@@ -20,5 +20,23 @@
 		<th>Category</th>
 		<td><%= @note.category %></td>
 	</tr>
+	<tr>
+		<th>Actioned?</th>
+		<td>
+			<% if @note.actioned %>
+				<input class="note_action" type="checkbox" checked="true" />
+			<% else %>
+				<input class="note_action" type="checkbox" />
+			<% end %>
+		</td>
+	</tr>
 </table>
 <%= link_to 'Back', "/admin/notes" %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("input.note_action").unbind("click").click(function() {
+			$.post("/admin/action_note/<%= @note.id %>", {actioned: $(this).is(":checked")});
+		});
+	});
+</script>
