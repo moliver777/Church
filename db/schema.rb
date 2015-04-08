@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141117215833) do
+ActiveRecord::Schema.define(:version => 20150408111731) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
@@ -63,10 +63,10 @@ ActiveRecord::Schema.define(:version => 20141117215833) do
   end
 
   create_table "magazines", :force => true do |t|
-    t.date     "date",              :null => false
-    t.string   "filename",          :null => false
-    t.string   "original_filename", :null => false
-    t.binary   "binary_content",    :null => false
+    t.date     "date",                                    :null => false
+    t.string   "filename",                                :null => false
+    t.string   "original_filename",                       :null => false
+    t.binary   "binary_content",    :limit => 2147483647, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20141117215833) do
     t.string   "category",                         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "actioned",      :default => false, :null => false
   end
 
   create_table "page_layouts", :force => true do |t|
