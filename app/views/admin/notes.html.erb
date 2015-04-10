@@ -20,6 +20,7 @@
 					<input class="note_action" type="checkbox" data-id="<%= note.id %>" />
 				<% end %>
 			</td>
+			<td class="no_link"><a class="rails-delete" data-link="/notes/delete/<%= note.id %>">Delete</a></td>
 		</tr>
 	<% end %>
 </table>
