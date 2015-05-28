@@ -66,6 +66,11 @@ function formatPage() {
 $(window).load(function() {
   $("div#loading").hide();
   $("div#content").show();
+  setTimeout(function() {
+    $.each($("iframe"), function() {
+      $(this).attr("src", function(i,val) { return val });
+    });
+  }, 10);
 
   // Image slideshows
 	var index = 1;
