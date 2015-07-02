@@ -63,6 +63,10 @@ class HomeController < ApplicationController
     end
   end
 
+  def site_index
+    @pages = Page.where(publish: true, menu_link: false).order("title ASC")
+  end
+
   def validated? params
     errors = Array.new
     errors << "Sorry. You can only message us twice in any 24 hour period." if Note.where("ip_address = ? AND created_at > ?", request.remote_ip, Time.now.advance(days: -1)).count > 1

@@ -82,6 +82,7 @@ Church::Application.routes.draw do
   get "/ajax_diary" => "home#ajax_diary"
   get "/events/gallery" => "home#galleries"
   get "/events/gallery/:id" => "home#gallery"
+  get "/index" => "home#site_index"
   
   # CUSTOM CONTENT
   get "/download/:filename" => "home#download"

@@ -1,7 +1,7 @@
 <% unless @galleries.empty? %>
 	<div class="panel-wrapper full-width">
 		<div class="panel full">
-			<div>
+			<div style="padding:10px;">
 				<ul class="gallery_list">
 					<% @galleries.each do |gallery| %>
 						<li class="gallery_link" data-link="/events/gallery/<%= gallery.id %>">
