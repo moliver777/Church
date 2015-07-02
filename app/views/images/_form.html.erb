@@ -24,6 +24,14 @@
 			<th>Upload Image</th>
 			<td><%= f.file_field :image_file, :onchange => "checkFile(this,['JPG','JPEG','PNG'])" %></td>
 		</tr>
+		<tr>
+			<th>Thumbnail</th>
+			<td><%= f.file_field :thumb_file, :onchange => "checkFile(this,['JPG','JPEG','PNG'])" %></td>
+		</tr>
+		<tr>
+			<th>Gallery</th>
+			<td><%= f.collection_select :gallery_id, Gallery.all, :id, :name, :include_blank => true %></td>
+		</tr>
 	</table>
 	<div class="actions">
 		<%= f.submit %>

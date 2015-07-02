@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<table class="show">
+	<tr>
+		<th style="width:50%;">Name</th>
+		<td style="width:50%;"><%= @gallery.name %></td>
+	</tr>
+	<tr>
+		<th colspan="2" style="width:100%;text-align:center;">Images</th>
+	</tr>
+	<% if @gallery.images.first %>
+		<tr>
+			<th style="width:50%;text-align:left;">Thumbnail</th>
+			<th style="width:50%;text-align:left;">Order</th>
+		</tr>
+		<% @gallery.images.each do |image| %>
+			<tr>
+				<td style="width:50%;">
+					<% if image.thumb_content %>
+						<img src="/thumb/<%= image.id %>" />
+					<% else %>
+						N/A
+					<% end %>
+				</td>
+				<td style="width:50%;"><input class="image_order" data-id="<%= image.id %>" value="<%= image.image_order %>"></input></td>
+			</tr>
+		<% end %>
+	<% else %>
+		<tr>
+			<td colspan="2" style="width:100%;">No Images</td>
+		</tr>
+	<% end %>
+</table>
+<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
+<%= link_to 'Back', galleries_path %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("input.image_order").change(function() {
+			$.post("/admin/set_image_order", {
+				id: $(this).data("id"),
+				order: $(this).val()
+			});
+		})
+	});
+</script>

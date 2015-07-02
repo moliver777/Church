@@ -1,0 +1,35 @@
+<h1>Galleries</h1>
+<br/>
+<table>
+	<tr>
+		<th>Gallery</th>
+		<th>Images</th>
+		<th>Order</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @galleries.each do |gallery| %>
+		<tr>
+			<td><%= gallery.name %></td>
+			<td><%= gallery.images.count %></td>
+			<td><input class="gallery_order" data-id="<%= gallery.id %>" value="<%= gallery.gallery_order %>"></input></td>
+			<td><%= link_to 'Order Images', gallery %></td>
+			<td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
+			<td><a class="rails-delete" data-link="/galleries/delete/<%= gallery.id %>">Destroy</a></td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<%= link_to 'New Gallery', new_gallery_path %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("input.gallery_order").change(function() {
+			$.post("/admin/set_gallery_order", {
+				id: $(this).data("id"),
+				order: $(this).val()
+			});
+		})
+	});
+</script>

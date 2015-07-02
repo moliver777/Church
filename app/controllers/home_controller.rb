@@ -39,6 +39,18 @@ class HomeController < ApplicationController
     puts @newsletter
   end
   
+  def galleries
+    @page_link = "events"
+    @sub_link = "gallery"
+    @galleries = Gallery.order("gallery_order ASC")
+  end
+  
+  def gallery
+    @page_link = "events"
+    @sub_link = "gallery"
+    @gallery = Gallery.find(params[:id])
+  end
+  
   def contact
     errors = validated? params[:note]
     if errors.empty?
@@ -88,6 +100,11 @@ class HomeController < ApplicationController
   def image
     image = Image.where(id: params[:id]).first
     send_data image.binary_content, :disposition => 'inline'
+  end
+  
+  def thumb
+    image = Image.where(id: params[:id]).first
+    send_data image.thumb_content, :disposition => 'inline'
   end
   
   def unsubscribe

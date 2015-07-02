@@ -5,8 +5,22 @@
 		<td><%= @image.name %></td>
 	</tr>
 	<tr>
+		<th>Gallery</th>
+		<td><%= @image.gallery.name rescue "N/A" %></td>
+	</tr>
+	<tr>
 		<th>Image</th>
 		<td><img src="/image/<%= @image.id %>" /></td>
+	</tr>
+	<tr>
+		<th>Thumbnail</th>
+		<td>
+			<% if @image.thumb_content %>
+				<img src="/thumb/<%= @image.id %>" />
+			<% else %>
+				N/A
+			<% end %>
+		</td>
 	</tr>
 </table>
 <%= link_to 'Edit', edit_image_path(@image) %> |

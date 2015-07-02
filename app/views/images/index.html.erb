@@ -3,6 +3,7 @@
 <table>
 	<tr>
 		<th>Title</th>
+		<th>Gallery</th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -10,6 +11,7 @@
 	<% @images.each do |image| %>
 		<tr>
 			<td><%= image.name %></td>
+			<td><%= image.gallery.name rescue nil %></td>
 			<td><%= link_to 'Show', image %></td>
 			<td><%= link_to 'Edit', edit_image_path(image) %></td>
 			<td><a class="rails-delete" data-link="/images/delete/<%= image.id %>">Destroy</a></td>

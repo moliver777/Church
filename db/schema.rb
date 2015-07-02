@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150408111731) do
+ActiveRecord::Schema.define(:version => 20150702084426) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(:version => 20150408111731) do
     t.datetime "updated_at"
   end
 
+  create_table "galleries", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "gallery_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "image_mappings", :force => true do |t|
     t.integer  "content_id"
     t.integer  "diary_id"
@@ -58,6 +65,9 @@ ActiveRecord::Schema.define(:version => 20150408111731) do
   create_table "images", :force => true do |t|
     t.string   "name",                                 :null => false
     t.binary   "binary_content", :limit => 2147483647, :null => false
+    t.binary   "thumb_content",  :limit => 2147483647
+    t.integer  "gallery_id"
+    t.integer  "image_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

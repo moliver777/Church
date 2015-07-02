@@ -1,0 +1,33 @@
+<% if @gallery.images.first %>
+	<div class="panel-wrapper full-width">
+		<div class="panel full center">
+			<h2><%= @gallery.name %> Gallery</h2>
+			<div style="padding:10px;">
+				<ul id="lightGallery">
+					<% @gallery.images.each do |image| %>
+				  	<li data-src="/image/<%= image.id %>" style="float:left;cursor:pointer;">
+							<% if image.thumb_content %>
+								<img class="thumbnail" src="/thumb/<%= image.id %>" />
+							<% else %>
+								<img src="http://placehold.it/100?text=IMG" />
+							<% end %>
+				  	</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+<% else %>
+	<div class="panel-wrapper full-width">
+		<div class="panel full center">
+			<h2><%= @gallery.name %> Gallery</h2>
+			<h2>Nothing here yet...</h2>
+		</div>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#lightGallery").lightGallery();
+	});
+</script>

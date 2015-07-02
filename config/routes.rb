@@ -12,6 +12,7 @@ Church::Application.routes.draw do
   resources :diaries
   resources :email_addresses
   resources :images
+  resources :galleries
   resources :magazines
   resources :news_articles
   resources :newsletters
@@ -49,12 +50,16 @@ Church::Application.routes.draw do
   
   post "/admin/publish_news_article" => "admin#publish_news_article"
   
+  post "/admin/set_gallery_order" => "galleries#set_order"
+  post "/admin/set_image_order" => "images#set_order"
+  
   # DESTROY FIX
   post "/articles/delete/:id" => "articles#destroy"
   post "/contents/delete/:id" => "contents#destroy"
   post "/diaries/delete/:id" => "diaries#destroy"
   post "/email_addresses/delete/:id" => "email_addresses#destroy"
   post "/images/delete/:id" => "images#destroy"
+  post "/galleries/delete/:id" => "galleries#destroy"
   post "/magazines/delete/:id" => "magazines#destroy"
   post "/news_articles/delete/:id" => "news_articles#destroy"
   post "/newsletters/delete/:id" => "newsletters#destroy"
@@ -75,6 +80,8 @@ Church::Application.routes.draw do
   get "/ajax_news" => "home#ajax_news"
   get "/events/diary" => "home#diary"
   get "/ajax_diary" => "home#ajax_diary"
+  get "/events/gallery" => "home#galleries"
+  get "/events/gallery/:id" => "home#gallery"
   
   # CUSTOM CONTENT
   get "/download/:filename" => "home#download"
@@ -83,6 +90,7 @@ Church::Application.routes.draw do
   get "/embed_magazine/:filename" => "home#embed_magazine"
   get "/embed_newsletter/:filename" => "home#embed_newsletter"
   get "/image/:id" => "home#image"
+  get "/thumb/:id" => "home#thumb"
   get "/:link" => "home#page"
   get "/:link/:sub_link" => "home#page"
   

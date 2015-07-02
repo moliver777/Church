@@ -2,6 +2,13 @@ class ImagesController < ApplicationController
   before_filter :authenticated_user
   layout "admin"
   
+  def set_order
+    @image = Image.find(params[:id])
+    @image.image_order = params[:order]
+    @image.save!
+    render nothing: true
+  end
+  
   # GET /images
   # GET /images.json
   def index
