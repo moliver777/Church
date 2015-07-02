@@ -21,8 +21,8 @@ class Image < ActiveRecord::Base
   
   def thumb_content_validation
     if self.thumb_content
-      if self.thumb_content.length > 20480
-        errors.add(:thumb_content, ": Thumbnail must be less than 20kb")
+      if self.thumb_content.length > 40960
+        errors.add(:thumb_content, ": Thumbnail must be less than 40kb")
       end
     end
   end
