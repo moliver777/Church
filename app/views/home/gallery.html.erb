@@ -3,15 +3,13 @@
 		<div class="panel full center">
 			<h2><%= @gallery.name %> Gallery</h2>
 			<div style="padding:10px;">
-				<ul id="lightGallery">
+				<ul id="lightGallery" style="height:<%= (@gallery.images.count/9.0).ceil*100 %>px;">
 					<% @gallery.images.each do |image| %>
-				  	<li data-src="/image/<%= image.id %>" style="float:left;cursor:pointer;">
-							<% if image.thumb_content %>
-								<img class="thumbnail" src="/thumb/<%= image.id %>" />
-							<% else %>
-								<img src="http://placehold.it/100?text=IMG" />
-							<% end %>
-				  	</li>
+						<% if image.thumb_content %>
+							<li data-src="/image/<%= image.id %>" style="background-image:url(/thumb/<%= image.id %>);"></li>
+						<% else %>
+							<li data-src="/image/<%= image.id %>" style="background-image:url(http://placehold.it/100?text=IMG);"></li>
+						<% end %>
 					<% end %>
 				</ul>
 			</div>

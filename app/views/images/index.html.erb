@@ -8,7 +8,7 @@
 		<th></th>
 		<th></th>
 	</tr>
-	<% @images.each do |image| %>
+	<% @images.reverse.each do |image| %>
 		<tr>
 			<td><%= image.name %></td>
 			<td><%= image.gallery.name rescue nil %></td>

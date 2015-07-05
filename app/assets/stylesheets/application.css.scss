@@ -798,15 +798,19 @@ div#ui-datepicker-div {
   padding: 2px;
 }
 
-ul.gallery_list {
-  
-}
-
 li.gallery_link {
   float: left;
-  padding: 10px;
-  width: 150px;
+  margin: 10px;
+  width: 100px;
+  height: 110px;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
+}
+
+li.gallery_link span {
+  position: relative;
+  top: 100px;
 }
 
 img.thumbnail {
@@ -814,6 +818,14 @@ img.thumbnail {
   max-height: 100px;
 }
 
+#lightGallery li {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
 
 
 
