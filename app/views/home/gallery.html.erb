@@ -6,9 +6,13 @@
 				<ul id="lightGallery" style="height:<%= (@gallery.images.count/9.0).ceil*100 %>px;">
 					<% @gallery.images.each do |image| %>
 						<% if image.thumb_content %>
-							<li data-src="/image/<%= image.id %>" style="background-image:url(/thumb/<%= image.id %>);"></li>
+							<li data-src="/image/<%= image.id %>" style="background-image:url(/thumb/<%= image.id %>);">
+								<img class="thumbnail" src="/thumb/<%= gallery.images.first.id %>" style="display:none;" />
+							</li>
 						<% else %>
-							<li data-src="/image/<%= image.id %>" style="background-image:url(http://placehold.it/100?text=IMG);"></li>
+							<li data-src="/image/<%= image.id %>" style="background-image:url(http://placehold.it/100?text=IMG);">
+								<img src="http://placehold.it/100?text=IMG" style="display:none;" />
+							</li>
 						<% end %>
 					<% end %>
 				</ul>
