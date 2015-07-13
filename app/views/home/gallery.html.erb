@@ -7,7 +7,7 @@
 					<% @gallery.images.each do |image| %>
 						<% if image.thumb_content %>
 							<li data-src="/image/<%= image.id %>" style="background-image:url(/thumb/<%= image.id %>);">
-								<img class="thumbnail" src="/thumb/<%= gallery.images.first.id %>" style="display:none;" />
+								<img class="thumbnail" src="/thumb/<%= image.id %>" style="display:none;" />
 							</li>
 						<% else %>
 							<li data-src="/image/<%= image.id %>" style="background-image:url(http://placehold.it/100?text=IMG);">
