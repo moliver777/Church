@@ -666,7 +666,8 @@ div.panel.half-combo-right {
 }
 
 div.panel.full {
-  min-height: calc(100vh - 37px);
+  height: 760px;
+  overflow-y: scroll;
 	padding: 0 5px;
 }
 
