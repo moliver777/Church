@@ -39,11 +39,12 @@ class ApplicationController < ActionController::Base
     @analytics = Setting.where(key: "analytics_enabled").first.value == "true" rescue false
     @news_tickers = NewsArticle.where(publish: true)
     @unread = Note.where(is_read: false).count
+    session[:size] = "size3"
   end
   
   def shared_content
-    @header = Content.where(content_type: "HEADER").first.html_content.gsub(/@site_title/, @site_title).gsub(/@date/, Date.today.strftime("%^A %B")+" "+Date.today.day.ordinalize).gsub(/@universalis/, session[:universalis]) || @render_error
-    @footer = Content.where(content_type: "FOOTER").first.html_content || @render_error
+    # @header = Content.where(content_type: "HEADER").first.html_content.gsub(/@site_title/, @site_title).gsub(/@date/, Date.today.strftime("%^A %B")+" "+Date.today.day.ordinalize).gsub(/@universalis/, session[:universalis]) || @render_error
+    # @footer = Content.where(content_type: "FOOTER").first.html_content || @render_error
     menu_pages = Page.where(:publish => true, :menu_link => true).order("menu_position ASC")
     @menu = menu_pages.select{|page| page.menu_position != 0} + menu_pages.select{|page| page.menu_position == 0} # put position 0 items to end
   end

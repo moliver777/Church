@@ -1,6 +1,6 @@
 development:
   adapter: mysql2
   username: root
-  database: church
+  database: church2
   pool: 5
   timeout: 5000

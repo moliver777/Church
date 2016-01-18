@@ -16,55 +16,19 @@ class HomeController < ApplicationController
   end
   
   def diary
-    redirect_to "/" unless Page.where(link: "events/diary", publish: true).first
-    @page_link = "events"
-    @sub_link = "diary"
+    redirect_to "/" unless Page.where(link: "diary", publish: true).first
+    @page_link = "diary"
     @diaries = params.include?(:page) ? Diary.order("date DESC").page(params[:page]) : Diary.order("date DESC").page("")
   end
   
-  def magazine
-    redirect_to "/" unless Page.where(link: "home/magazine", publish: true).first
-    @page_link = "home"
-    @sub_link = "magazine"
-    @magazine = Magazine.order("date DESC").first
-    @magazines = @magazine ? Magazine.where("id != ?", @magazine.id).order("date DESC") : []
-  end
-  
-  def newsletter
-    redirect_to "/" unless Page.where(link: "home/newsletter", publish: true).first
-    @page_link = "home"
-    @sub_link = "newsletter"
-    @newsletter = Newsletter.order("date DESC").first
-    @newsletters = @newsletter ? Newsletter.where("id != ?", @newsletter.id).order("date DESC") : []
-    puts @newsletter
-  end
-  
   def galleries
-    @page_link = "events"
-    @sub_link = "gallery"
+    @page_link = "gallery"
     @galleries = Gallery.order("gallery_order ASC")
   end
   
   def gallery
-    @page_link = "events"
-    @sub_link = "gallery"
+    @page_link = "gallery"
     @gallery = Gallery.find(params[:id])
-  end
-  
-  def contact
-    errors = validated? params[:note]
-    if errors.empty?
-      params[:note][:category] = "Contact"
-      params[:note][:ip_address] = request.remote_ip
-      Note.create(params[:note])
-      render json: {success: true}
-    else
-      render json: {success: false, error: errors[0]}
-    end
-  end
-
-  def site_index
-    @pages = Page.where(publish: true, menu_link: false).order("title ASC")
   end
 
   def validated? params
@@ -74,31 +38,6 @@ class HomeController < ApplicationController
     errors << "Message is required." unless params[:message].length > 0
     errors << "Email address or phone number is required" unless (params[:email_address].length > 0 || params[:phone_number].length > 0)
     return errors
-  end
-  
-  def embed_magazine
-    magazine = Magazine.where(filename: params[:filename]).first
-    send_data magazine.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
-  end
-  
-  def embed_newsletter
-    newsletter = Newsletter.where(filename: params[:filename]).first
-    send_data newsletter.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
-  end
-  
-  def magazine_download
-    magazine = Magazine.where(filename: params[:filename]).first
-    send_data magazine.binary_content
-  end
-  
-  def newsletter_download
-    newsletter = Newsletter.where(filename: params[:filename]).first
-    send_data newsletter.binary_content
-  end
-  
-  def download
-    article = Article.where(filename: params[:filename]).first
-    send_data article.binary_content
   end
   
   def image

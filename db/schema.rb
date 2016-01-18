@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(:version => 20150702084426) do
 
   create_table "articles", :force => true do |t|
     t.date     "date"
-    t.string   "filename",                                                :null => false
-    t.binary   "binary_content",    :limit => 2147483647,                 :null => false
+    t.string   "filename",          :null => false
+    t.binary   "binary_content",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category",                                                :null => false
-    t.string   "original_filename",                       :default => "", :null => false
+    t.string   "category",          :null => false
+    t.string   "original_filename", :null => false
   end
 
   create_table "contents", :force => true do |t|
@@ -38,15 +38,8 @@ ActiveRecord::Schema.define(:version => 20150702084426) do
     t.datetime "updated_at"
   end
 
-  create_table "email_addresses", :force => true do |t|
-    t.string   "email_address",                   :null => false
-    t.boolean  "enabled",       :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "galleries", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name",          :null => false
     t.integer  "gallery_order"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -63,38 +56,38 @@ ActiveRecord::Schema.define(:version => 20150702084426) do
   end
 
   create_table "images", :force => true do |t|
-    t.string   "name",                                 :null => false
-    t.binary   "binary_content", :limit => 2147483647, :null => false
-    t.binary   "thumb_content",  :limit => 2147483647
-    t.integer  "gallery_id"
-    t.integer  "image_order"
+    t.string   "name",           :null => false
+    t.binary   "binary_content", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.binary   "thumb_content"
+    t.integer  "gallery_id"
+    t.integer  "image_order"
   end
 
   create_table "magazines", :force => true do |t|
-    t.date     "date",                                    :null => false
-    t.string   "filename",                                :null => false
-    t.string   "original_filename",                       :null => false
-    t.binary   "binary_content",    :limit => 2147483647, :null => false
+    t.date     "date",              :null => false
+    t.string   "filename",          :null => false
+    t.string   "original_filename", :null => false
+    t.binary   "binary_content",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "news_articles", :force => true do |t|
     t.string   "title",      :limit => 135,                    :null => false
-    t.string   "abstract",                  :default => ""
-    t.text     "content"
+    t.string   "abstract"
     t.boolean  "publish",                   :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content"
   end
 
   create_table "newsletters", :force => true do |t|
-    t.date     "date",                                    :null => false
-    t.string   "filename",                                :null => false
-    t.string   "original_filename",                       :null => false
-    t.binary   "binary_content",    :limit => 2147483647, :null => false
+    t.date     "date",              :null => false
+    t.string   "filename",          :null => false
+    t.string   "original_filename", :null => false
+    t.binary   "binary_content",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

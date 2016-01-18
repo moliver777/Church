@@ -6,9 +6,6 @@
 			</li>
 		<% end %>
 	</ul>
-	<div id="accessibility">
-		<a id="size1" class="accessibility" style="font-size:13px;">A</a><span style="font-size:13px;">/</span><a id="size2" class="accessibility" style="font-size:16px;position:relative;top:1px;">A</a><span style="font-size:13px;">/</span><a id="size3" class="accessibility" style="font-size:20px;position:relative;top:2px;">A</a>
-	</div>
 	<div class="clear"></div>
 	<% @menu.each_with_index do |link,i| %>
 		<ul class="sub_menu <%= 'current' if link.link == @page_link || (@page_link == "home" && link.link == "/") %>" data-id="<%= link.id %>">

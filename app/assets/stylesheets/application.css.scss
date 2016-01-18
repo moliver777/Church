@@ -170,9 +170,7 @@ div#admin_wrapper {
 }
 
 div#wrapper {
-	width: 1000px;
-	margin: auto;
-	margin-top: 166px;
+	width: 100vw;
 	background: #E1FFFF;
 }
 
@@ -201,7 +199,6 @@ div#menu ul.sub_menu {
   margin: 0 1%;
   background: transparent url(/assets/bg-body.png) 0 0;
   border-radius: 0 5px 5px 5px;
-	padding-bottom: 2px;
 	overflow: hidden;
 }
 
@@ -394,7 +391,6 @@ div#header {
 }
 
 div.inner-header {
-//	text-align: center;
 	height: 166px;
 	width: 1065px;
 	margin: auto;
@@ -468,10 +464,10 @@ div.inner-footer {
 /* CONTENT */
 div#loading {
   width: 100%;
-  height: calc(100vh - 388px);
+  height: calc(100vh - 37px);
   background-image: url(/assets/loading.gif);
   background-repeat: no-repeat;
-  background-position: 484px 184px;
+  background-position: 50% 50%;
 }
 
 div#content {
@@ -484,13 +480,11 @@ div.panel-wrapper {
 }
 
 div.panel-wrapper.full {
-	width: 990px;
-	min-height: calc(100vh - 398px);
+	min-height: calc(100vh - 42px);
 	padding: 5px;
 }
 
 div.panel-wrapper.full-width {
-	width: 990px;
 	min-height: 200px;
 	padding: 5px;
 }
@@ -507,7 +501,7 @@ div.panel-wrapper.full-width div.split-right {
 
 div.panel-wrapper.full-height {
 	width: 480px;
-	min-height: calc(100vh - 398px);
+	min-height: calc(100vh - 37px);
 	padding: 5px;
 }
 
@@ -650,36 +644,29 @@ div.panel.corner-combo {
 }
 
 div.panel.half-text {
-	width: 980px;
 	padding: 0 5px;
 }
 
 div.panel.half-text.split {
-	width: 980px;
 	padding: 0 5px;
 }
 
 div.panel.half-image {
-	width: 990px;
 }
 
 div.panel.half-image.split {
-	width: 990px;
 }
 
 div.panel.half-combo-left {
-	width: 985px;
 	padding: 0 5px 0 0;
 }
 
 div.panel.half-combo-right {
-	width: 985px;
 	padding: 0 0 0 5px;
 }
 
 div.panel.full {
-	width: 980px;
-  min-height: calc(100vh - 398px);
+  min-height: calc(100vh - 37px);
 	padding: 0 5px;
 }
 
