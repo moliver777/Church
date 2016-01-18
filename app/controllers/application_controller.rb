@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
   layout "application"
   
   def accessibility
-    session[:size] = params[:accessibility]
-    render nothing: true
+    # session[:size] = params[:accessibility]
+    # render nothing: true
   end
   
   private
@@ -21,21 +21,20 @@ class ApplicationController < ActionController::Base
   end
   
   def universalis
-    unless session[:universalis] && session[:universalis_date] == Date.today
-      xml = Nori.new(:parser => :nokogiri).parse(Nokogiri::XML(open("http://www.universalis.com/atommass1.xml")).to_s)
-      raise "No summary found" unless xml["feed"]["entry"]["summary"]
-      session[:universalis] = xml["feed"]["entry"]["summary"]
-      session[:universalis_date] = Date.today
-    end
-  rescue StandardError => e
-    puts "Couldn't parse Universalis xml feed"
-    puts e.message
+  #   unless session[:universalis] && session[:universalis_date] == Date.today
+  #     xml = Nori.new(:parser => :nokogiri).parse(Nokogiri::XML(open("http://www.universalis.com/atommass1.xml")).to_s)
+  #     raise "No summary found" unless xml["feed"]["entry"]["summary"]
+  #     session[:universalis] = xml["feed"]["entry"]["summary"]
+  #     session[:universalis_date] = Date.today
+  #   end
+  # rescue StandardError => e
+  #   puts "Couldn't parse Universalis xml feed"
+  #   puts e.message
   end
   
   def setup
-    session[:size] = "size3"
     @site_title = Setting.where(key: "site_title").first.value rescue ""
-    @body_class = session.include?(:size) ? session[:size] : "";
+    @body_class = "size3"
     @render_error = '<div class="panel" id="render_error">Specified content could not be found for this panel</div>'
     @analytics = Setting.where(key: "analytics_enabled").first.value == "true" rescue false
     @news_tickers = NewsArticle.where(publish: true)
