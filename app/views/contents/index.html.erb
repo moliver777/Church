@@ -1,4 +1,8 @@
 <h1>Contents</h1>
+<% if user_permission %>
+	<%= link_to 'New Content', new_content_path %>
+<% end %>
+<br/>
 <table>
 	<tr>
 		<th>Type</th>
@@ -21,6 +25,3 @@
 		</tr>
 	<% end %>
 </table>
-<% if user_permission %>
-	<%= link_to 'New Content', new_content_path %>
-<% end %>
