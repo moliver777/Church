@@ -31,6 +31,12 @@ class HomeController < ApplicationController
     @gallery = Gallery.find(params[:id])
   end
 
+  def newsletter
+    redirect_to "/" unless Page.where(link: "programme", publish: true).first
+    @page_link = "programme"
+    @newsletter = Newsletter.order("id DESC").first
+  end
+
   def validated? params
     errors = Array.new
     errors << "Sorry. You can only message us twice in any 24 hour period." if Note.where("ip_address = ? AND created_at > ?", request.remote_ip, Time.now.advance(days: -1)).count > 1
@@ -39,7 +45,22 @@ class HomeController < ApplicationController
     errors << "Email address or phone number is required" unless (params[:email_address].length > 0 || params[:phone_number].length > 0)
     return errors
   end
-  
+
+  def embed_newsletter
+    newsletter = Newsletter.where(filename: params[:filename]).first
+    send_data newsletter.binary_content, :filename => params[:filename], :type => "application/pdf", :disposition => 'inline' 
+  end
+
+  def newsletter_download
+    newsletter = Newsletter.where(filename: params[:filename]).first
+    send_data newsletter.binary_content
+  end
+
+  def download
+    article = Article.where(filename: params[:filename]).first
+    send_data article.binary_content
+  end
+
   def image
     image = Image.where(id: params[:id]).first
     send_data image.binary_content, :disposition => 'inline'

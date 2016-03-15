@@ -75,12 +75,16 @@ Church::Application.routes.draw do
   
   # PRELOADED PAGES
   get "/home" => "home#index"
+  get "/programme" => "home#newsletter"
   get "/diary" => "home#diary"
   get "/ajax_diary" => "home#ajax_diary"
   get "/gallery" => "home#galleries"
   get "/gallery/:id" => "home#gallery"
   
   # CUSTOM CONTENT
+  get "/download/:filename" => "home#download"
+  get "/newsletter/:filename" => "home#newsletter_download"
+  get "/embed_newsletter/:filename" => "home#embed_newsletter"
   get "/image/:id" => "home#image"
   get "/thumb/:id" => "home#thumb"
   get "/:link" => "home#page"
