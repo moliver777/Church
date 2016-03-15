@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   
   def setup
     @site_title = Setting.where(key: "site_title").first.value rescue ""
-    @body_class = "size3"
+    @body_class = params.include?(:size) ? "#{params[:size]}" : "size1"
     @render_error = '<div class="panel" id="render_error">Specified content could not be found for this panel</div>'
     @analytics = Setting.where(key: "analytics_enabled").first.value == "true" rescue false
     @news_tickers = NewsArticle.where(publish: true)
