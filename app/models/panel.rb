@@ -4,7 +4,7 @@ class Panel < ActiveRecord::Base
   has_many :image_mappings
   has_many :images, through: :image_mappings
   
-  def build
+  def build session
     ActiveRecord::Base.connection.clear_query_cache rescue nil # MySQL cache clear
     ActiveRecord::Base.connection.clear_cache! rescue nil # PostgreSQL cache clear
     content = PageLayout.find(self.page_layout_id).html_content
@@ -51,6 +51,11 @@ class Panel < ActiveRecord::Base
     end
     content.gsub!(/@id/, "panel#{self.id}")
     content.gsub!(/@classes/, classes.join(" "))
+    if session[:size]
+      content.gsub!(/@accessibility/, session[:size])
+    else
+      content.gsub!(/@accessibility/, "size1")
+    end
     return content
   end
   
