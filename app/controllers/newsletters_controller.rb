@@ -44,11 +44,11 @@ class NewslettersController < ApplicationController
   # POST /newsletters.json
   def create
     @newsletter = Newsletter.new(params[:newsletter])
-    @newsletter.filename = "newsletter_#{params[:newsletter][:date]}"
+    @newsletter.filename = "programme_#{params[:newsletter][:date]}"
 
     respond_to do |format|
       if @newsletter.save
-        format.html { redirect_to @newsletter, notice: 'Newsletter was successfully created.' }
+        format.html { redirect_to @newsletter, notice: 'Programme was successfully created.' }
         format.json { render json: @newsletter, status: :created, location: @newsletter }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class NewslettersController < ApplicationController
 
     respond_to do |format|
       if @newsletter.update_attributes(params[:newsletter])
-        format.html { redirect_to @newsletter, notice: 'Newsletter was successfully updated.' }
+        format.html { redirect_to @newsletter, notice: 'Programme was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
