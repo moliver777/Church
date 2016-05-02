@@ -34,7 +34,7 @@ class HomeController < ApplicationController
   def contact
     errors = validated? params[:note]
     if errors.empty?
-      params[:note][:category] = "Contact"
+      params[:note][:category] = "Tickets"
       params[:note][:ip_address] = request.remote_ip
       Note.create(params[:note])
       render json: {success: true}
