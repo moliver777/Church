@@ -1,6 +1,7 @@
 require "encryptor"
 
 class User < ActiveRecord::Base
+  BOX_OFFICE = "BOX_OFFICE"
   REGULAR = "REGULAR"
   DEVELOPER = "DEVELOPER"
   LEVELS = [REGULAR,DEVELOPER]
