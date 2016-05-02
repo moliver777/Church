@@ -31,6 +31,18 @@ class HomeController < ApplicationController
     @gallery = Gallery.find(params[:id])
   end
 
+  def contact
+    errors = validated? params[:note]
+    if errors.empty?
+      params[:note][:category] = "Contact"
+      params[:note][:ip_address] = request.remote_ip
+      Note.create(params[:note])
+      render json: {success: true}
+    else
+      render json: {success: false, error: errors[0]}
+    end
+  end
+
   def newsletter
     redirect_to "/" unless Page.where(link: "programme", publish: true).first
     @page_link = "programme"
@@ -39,9 +51,9 @@ class HomeController < ApplicationController
 
   def validated? params
     errors = Array.new
-    errors << "Sorry. You can only message us twice in any 24 hour period." if Note.where("ip_address = ? AND created_at > ?", request.remote_ip, Time.now.advance(days: -1)).count > 1
+    errors << "Sorry. You can only request twice in any 24 hour period." if Note.where("ip_address = ? AND created_at > ?", request.remote_ip, Time.now.advance(days: -1)).count > 1
     errors << "Name is required." unless params[:name].length > 0
-    errors << "Message is required." unless params[:message].length > 0
+    errors << "Number of tickets is required." unless params[:message].length > 0
     errors << "Email address or phone number is required" unless (params[:email_address].length > 0 || params[:phone_number].length > 0)
     return errors
   end
