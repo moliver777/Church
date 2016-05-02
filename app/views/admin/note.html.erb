@@ -1,4 +1,4 @@
-<h1>Note - <%= @note.created_at.strftime("%a #{@note.created_at.day.ordinalize} %B %Y %H:%M") %></h1>
+<h1>Request - <%= @note.created_at.strftime("%a #{@note.created_at.day.ordinalize} %B %Y %H:%M") %></h1>
 <table class="show" style="margin-top:20px;">
 	<tr>
 		<th>Name</th>
@@ -13,7 +13,7 @@
 		<td><%= @note.email_address %></td>
 	</tr>
 	<tr>
-		<th>Message</th>
+		<th>Tickets</th>
 		<td><%= @note.message %></td>
 	</tr>
 	<tr>
