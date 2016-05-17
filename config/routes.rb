@@ -82,6 +82,7 @@ Church::Application.routes.draw do
   get "/gallery/:id" => "home#gallery"
   
   # CUSTOM CONTENT
+  get "/counter/:audio_collection" => "home#counter"
   get "/download/:filename" => "home#download"
   get "/newsletter/:filename" => "home#newsletter_download"
   get "/embed_newsletter/:filename" => "home#embed_newsletter"

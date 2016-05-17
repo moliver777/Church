@@ -237,6 +237,23 @@ $(document).ready(function() {
 	});
 });
 
+
+// ----- AUDIO DOWNLOAD COUNTERS ----- \\
+$(document).ready(function() {
+	$("a.guide_download").unbind("click").click(function() {
+		$.get("/counter/guide");
+	});
+	
+	$("a.reflections_download").unbind("click").click(function() {
+		$.get("/counter/reflections");
+	});
+	
+	$("a.stations_download").unbind("click").click(function() {
+		$.get("/counter/stations");
+	});
+});
+
+
 // ----- PRAYER GENERATOR ----- \\
 
 function randomPrayer() {

@@ -85,4 +85,16 @@ class HomeController < ApplicationController
   
   def unsubscribe
   end
+  
+  def counter
+    begin
+      counter = Setting.where(key: "#{params[:audio_collection]}_counter").first
+      counter.value = counter.value.to_i + 1
+      counter.save
+    rescue => e
+      puts e.message
+      puts e.backtrace
+    end
+    render nothing: true
+  end
 end
