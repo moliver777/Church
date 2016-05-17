@@ -3,6 +3,9 @@ class AdminController < ApplicationController
   
   def admin
     Session.where("created_at < ?", Time.now.advance(days: -1)).destroy_all
+    @guide_downloads = Setting.where(key: "guide_counter").first.value
+    @reflections_downloads = Setting.where(key: "reflections_counter").first.value
+    @stations_downloads = Setting.where(key: "stations_counter").first.value
   end
   
   def notes

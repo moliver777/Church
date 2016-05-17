@@ -10,6 +10,10 @@
 			<li><a href="/admin/notes">Box Office (<%= @unread %> unread)</a></li>
 		<% else %>
 			<% if current_user.level == User::DEVELOPER %>
+				<li><em>Audio Guide Downloads:</em> <strong><%= @guide_downloads %></strong></li>
+				<li><em>Reflections Downloads:</em> <strong><%= @reflections_downloads %></strong></li>
+				<li><em>Stations of the Cross Downloads:</em> <strong><%= @stations_downloads %></strong></li>
+				<li>-----</li>
 				<li><a href="/contents">Contents</a></li>
 				<li><a href="/page_layouts">Layouts</a></li>
 				<li><a href="/pages">Pages</a></li>
