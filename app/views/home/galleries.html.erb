@@ -5,9 +5,9 @@
 				<ul class="gallery_list" style="height:<%= (@galleries.count/8.0).ceil*100 %>px;">
 					<% @galleries.each do |gallery| %>
 						<% if gallery.images.first && gallery.images.first.thumb_content %>
-							<li class="gallery_link" data-link="/events/gallery/<%= gallery.id %>" style="width:100px;height:100px;background-image:url(/thumb/<%= gallery.images.first.id %>);">
+							<li class="gallery_link" data-link="/gallery/<%= gallery.id %>" style="width:100px;height:100px;background-image:url(/thumb/<%= gallery.images.first.id %>);">
 						<% else %>
-							<li class="gallery_link" data-link="/events/gallery/<%= gallery.id %>" style="width:100px;height:100px;background-image:url(http://placehold.it/100?text=Open);">
+							<li class="gallery_link" data-link="/gallery/<%= gallery.id %>" style="width:100px;height:100px;background-image:url(http://placehold.it/100?text=Open);">
 						<% end %>
 						<span><%= gallery.name %></span>
 					<% end %>
