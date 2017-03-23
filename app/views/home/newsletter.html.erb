@@ -1,7 +1,7 @@
 <% if @newsletter %>
 	<div class="panel-wrapper full">
 		<div class="panel full" style="text-align:center;">
-			<button id="newsletterBtn" style="width:200px;height:50px;margin:20px;display:none;" onclick="window.location.href='/embed_newsletter/<%= @newsletter.filename %>.pdf'">View Latest Planner</button>
+			<button id="newsletterBtn" style="width:200px;height:50px;margin:20px;display:none;" onclick="window.location.href='/embed_newsletter/<%= @newsletter.filename %>.pdf'">View Guide Booket</button>
 			<iframe id="newsletterIframe" src="/embed_newsletter/<%= @newsletter.filename %>.pdf" width="100%" height="800px"></iframe>
 		</div>
 	</div>
