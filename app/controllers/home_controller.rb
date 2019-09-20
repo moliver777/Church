@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  skip_before_filter :setup, only: [:get_diary, :get_news, :get_article, :image]
-  skip_before_filter :shared_content, only: [:get_diary, :get_news, :get_article, :image]
+  skip_before_action :setup, only: [:get_diary, :get_news, :get_article, :image]
+  skip_before_action :shared_content, only: [:get_diary, :get_news, :get_article, :image]
   
   def index
     @page = Page.where(link: "/").first || render_404

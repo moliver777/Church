@@ -1,5 +1,5 @@
 class GalleriesController < ApplicationController
-  before_filter :authenticated_user
+  before_action :authenticated_user
   layout "admin"
   
   def set_order

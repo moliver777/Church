@@ -1,6 +1,6 @@
 class EmailAddressesController < ApplicationController
-  before_filter :authenticated_user
-  before_filter :dev_permission
+  before_action :authenticated_user
+  before_action :dev_permission
   layout "admin"
 
   def subscribe

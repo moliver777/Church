@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby '2.3.1'
 
 gem 'rails'
 gem 'jquery-rails'
@@ -6,12 +7,10 @@ gem 'jquery-rails'
 # PostgreSQL database and activerecord querying
 gem 'pg'
 gem 'activerecord'
+gem 'activerecord-session_store'
 
 # Encryption
 gem 'aes'
-
-# Deploy with Heroku
-gem 'heroku'
 
 # XML
 gem 'nokogiri'
@@ -22,17 +21,17 @@ gem 'kaminari'
 
 # Gems used only for assets and not required in production environments by default
 group :assets do
-	gem 'sass-rails', "  ~> 3.1.0"
-	gem 'coffee-rails', "~> 3.1.0"
-	gem 'uglifier'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
 # Use mysql2 for local development
 group :development do
-	gem 'mysql2'
+  gem 'mysql2'
 end
 
 group :test do
-	# Pretty printed test output
-	gem 'turn', :require => false
+  # Pretty printed test output
+  gem 'turn', :require => false
 end

@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticated_user
+  before_action :authenticated_user
   layout "admin"
   
   # GET /articles

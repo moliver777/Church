@@ -4,9 +4,9 @@ require "open-uri"
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :setup
-  before_filter :universalis
-  before_filter :shared_content
+  before_action :setup
+  before_action :universalis
+  before_action :shared_content
   layout "application"
   
   def accessibility
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
   
   def shared_content
-    @header = Content.where(content_type: "HEADER").first.html_content.gsub(/@site_title/, @site_title).gsub(/@date/, Date.today.strftime("%^A %B")+" "+Date.today.day.ordinalize).gsub(/@universalis/, (session[:universalis] rescue "")) || @render_error
+    @header = Content.where(content_type: "HEADER").first.html_content.gsub(/@site_title/, @site_title).gsub(/@date/, Date.today.strftime("%^A %B")+" "+Date.today.day.ordinalize).gsub(/@universalis/, (session[:universalis] || "")) || @render_error
     @footer = Content.where(content_type: "FOOTER").first.html_content || @render_error
     menu_pages = Page.where(:publish => true, :menu_link => true).order("menu_position ASC")
     @menu = menu_pages.select{|page| page.menu_position != 0} + menu_pages.select{|page| page.menu_position == 0} # put position 0 items to end
