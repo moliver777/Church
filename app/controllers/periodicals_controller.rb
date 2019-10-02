@@ -44,7 +44,7 @@ class PeriodicalsController < ApplicationController
   # POST /periodicals
   # POST /periodicals.json
   def create
-    @periodical = Periodical.new(params[:periodical])
+    @periodical = Periodical.new(params[:periodical].permit(:date, :period, :text))
 
     respond_to do |format|
       if @periodical.save
@@ -63,7 +63,7 @@ class PeriodicalsController < ApplicationController
     @periodical = Periodical.find(params[:id])
 
     respond_to do |format|
-      if @periodical.update_attributes(params[:periodical])
+      if @periodical.update_attributes(params[:periodical].permit(:date, :period, :text))
         format.html { redirect_to @periodical, notice: 'Periodical was successfully updated.' }
         format.json { head :ok }
       else

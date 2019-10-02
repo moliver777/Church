@@ -47,7 +47,7 @@ class DiariesController < ApplicationController
   # POST /diaries.json
   def create
     images = JSON.parse(params[:diary][:images]) rescue []
-    @diary = Diary.new(params[:diary].except!(:images))
+    @diary = Diary.new(params[:diary].permit(:date, :title, :text))
 
     respond_to do |format|
       if @diary.save
@@ -75,7 +75,7 @@ class DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
 
     respond_to do |format|
-      if @diary.update_attributes(params[:diary].except!(:images))
+      if @diary.update_attributes(params[:diary].permit(:date, :title, :text))
         @diary.image_mappings.destroy_all
         images.each do |image|
           unless image == "0"

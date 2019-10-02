@@ -49,7 +49,7 @@ class PanelsController < ApplicationController
   # POST /panels.json
   def create
     images = JSON.parse(params[:panel][:images]) rescue []
-    @panel = Panel.new(params[:panel].except!(:images))
+    @panel = Panel.new(params[:panel].permit(:page_layout_id, :name, :text, :classes))
 
     respond_to do |format|
       if @panel.save
@@ -77,7 +77,7 @@ class PanelsController < ApplicationController
     @panel = Panel.find(params[:id])
 
     respond_to do |format|
-      if @panel.update_attributes(params[:panel].except!(:images))
+      if @panel.update_attributes(params[:panel].permit(:page_layout_id, :name, :text, :classes))
         @panel.image_mappings.destroy_all
         images.each do |image|
           unless image == "0"

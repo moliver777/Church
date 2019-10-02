@@ -44,7 +44,7 @@ class ContentsController < ApplicationController
   # POST /contents
   # POST /contents.json
   def create
-    @content = Content.new(params[:content])
+    @content = Content.new(params[:content].permit(:content_type, :html_content))
 
     respond_to do |format|
       if @content.save
@@ -63,7 +63,7 @@ class ContentsController < ApplicationController
     @content = Content.find(params[:id])
 
     respond_to do |format|
-      if @content.update_attributes(params[:content])
+      if @content.update_attributes(params[:content].permit(:content_type, :html_content))
         format.html { redirect_to @content, notice: 'Content was successfully updated.' }
         format.json { head :ok }
       else

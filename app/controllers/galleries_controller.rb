@@ -50,7 +50,7 @@ class GalleriesController < ApplicationController
   # POST /galleries
   # POST /galleries.json
   def create
-    @gallery = Gallery.new(params[:gallery])
+    @gallery = Gallery.new(params[:gallery].permit(:name))
 
     respond_to do |format|
       if @gallery.save
@@ -69,7 +69,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
 
     respond_to do |format|
-      if @gallery.update_attributes(params[:gallery])
+      if @gallery.update_attributes(params[:gallery].permit(:name))
         format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
         format.json { head :ok }
       else

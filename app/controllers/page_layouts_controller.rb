@@ -44,7 +44,7 @@ class PageLayoutsController < ApplicationController
   # POST /page_layouts
   # POST /page_layouts.json
   def create
-    @page_layout = PageLayout.new(params[:page_layout])
+    @page_layout = PageLayout.new(params[:page_layout].permit(:content_type, :name, :num_panels, :html_content, :preview_content))
 
     respond_to do |format|
       if @page_layout.save
@@ -63,7 +63,7 @@ class PageLayoutsController < ApplicationController
     @page_layout = PageLayout.find(params[:id])
 
     respond_to do |format|
-      if @page_layout.update_attributes(params[:page_layout])
+      if @page_layout.update_attributes(params[:page_layout].permit(:content_type, :name, :num_panels, :html_content, :preview_content))
         format.html { redirect_to @page_layout, notice: 'Page layout was successfully updated.' }
         format.json { head :ok }
       else

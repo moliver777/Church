@@ -43,7 +43,7 @@ class NewslettersController < ApplicationController
   # POST /newsletters
   # POST /newsletters.json
   def create
-    @newsletter = Newsletter.new(params[:newsletter])
+    @newsletter = Newsletter.new(params[:newsletter].permit(:date, :article_file))
     @newsletter.filename = "newsletter_#{params[:newsletter][:date]}"
 
     respond_to do |format|
@@ -63,7 +63,7 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.find(params[:id])
 
     respond_to do |format|
-      if @newsletter.update_attributes(params[:newsletter])
+      if @newsletter.update_attributes(params[:newsletter].permit(:date, :article_file))
         format.html { redirect_to @newsletter, notice: 'Newsletter was successfully updated.' }
         format.json { head :ok }
       else

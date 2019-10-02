@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(params[:article])
+    @article = Article.new(params[:article].permit(:filename, :article_file))
     @article.category = ""
 
     respond_to do |format|
@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     respond_to do |format|
-      if @article.update_attributes(params[:article])
+      if @article.update_attributes(params[:article].permit(:filename, :article_file))
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { head :ok }
       else

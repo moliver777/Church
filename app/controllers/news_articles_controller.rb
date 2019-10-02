@@ -46,7 +46,7 @@ class NewsArticlesController < ApplicationController
   # POST /news_article.json
   def create
     # images = params[:news_article][:images]
-    @news_article = NewsArticle.new(params[:news_article].except!(:images))
+    @news_article = NewsArticle.new(params[:news_article].permit(:title, :published))
 
     respond_to do |format|
       if @news_article.save
@@ -74,7 +74,7 @@ class NewsArticlesController < ApplicationController
     @news_article = NewsArticle.find(params[:id])
 
     respond_to do |format|
-      if @news_article.update_attributes(params[:news_article].except!(:images))
+      if @news_article.update_attributes(params[:news_article].permit(:title, :published))
         # @news_article.image_mappings.destroy_all
         # images.split(",").each do |image|
         #   unless image == "0"

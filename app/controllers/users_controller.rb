@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def create
     if params[:user][:new_password] === params[:user][:confirm_password]
       params[:user][:password] = User.encrypt(params[:user][:new_password])
-      @user = User.new(params[:user].except(:new_password,:confirm_password))
+      @user = User.new(params[:user].permit(:username, :password, :level))
       @valid = true
     else
       @user = self.new
@@ -77,7 +77,6 @@ class UsersController < ApplicationController
     if params[:user][:old_password] === User.decrypt(@user.password)
       if params[:user][:new_password] === params[:user][:confirm_password]
         params[:user][:password] = User.encrypt(params[:user][:new_password])
-        params[:user].except!(:old_username,:old_password,:new_password,:confirm_password)
         @valid = true
       else
         @user.errors.add(:new_password, "and confirmation must match")
@@ -91,7 +90,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @valid
-        if @user.update_attributes(params[:user])
+        if @user.update_attributes(params[:user].permit(:username, :password, :level))
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
           format.json { head :ok }
         else

@@ -5,7 +5,7 @@ class EmailAddressesController < ApplicationController
 
   def subscribe
     subs = EmailAddress.where(email_address: params[:email_address])
-    subs.first ? subs.update_all(enabled: true) : EmailAddress.create({email_address: params[:email_address]})
+    subs.first ? subs.update_all(enabled: true) : EmailAddress.create({email_address: params.permit(:email_address)})
     render nothing: true
   end
 
@@ -55,7 +55,7 @@ class EmailAddressesController < ApplicationController
   # POST /email_addresses
   # POST /email_addresses.json
   def create
-    @email_address = EmailAddress.new(params[:email_address])
+    @email_address = EmailAddress.new(params.permit(:email_address))
 
     respond_to do |format|
       if @email_address.save
@@ -74,7 +74,7 @@ class EmailAddressesController < ApplicationController
     @email_address = EmailAddress.find(params[:id])
 
     respond_to do |format|
-      if @email_address.update_attributes(params[:email_address])
+      if @email_address.update_attributes(params.permit(:email_address))
         format.html { redirect_to @email_address, notice: 'Email Address was successfully updated.' }
         format.json { head :ok }
       else

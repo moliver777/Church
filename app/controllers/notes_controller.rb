@@ -44,7 +44,7 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(params[:note])
+    @note = Note.new(params[:note].permit(:name, :phone_number, :email_address, :message, :ip_address, :category, :is_read, :actioned))
 
     respond_to do |format|
       if @note.save
@@ -63,7 +63,7 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
 
     respond_to do |format|
-      if @note.update_attributes(params[:note])
+      if @note.update_attributes(params[:note].permit(:name, :phone_number, :email_address, :message, :ip_address, :category, :is_read, :actioned))
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :ok }
       else
