@@ -86,7 +86,7 @@ class AdminController < ApplicationController
 	def create_panel
     images = JSON.parse(params[:panel][:images]) rescue []
 		@page = Page.find(params[:page_id])
-    @panel = Panel.new(params[:panel].except!(:images))
+    @panel = Panel.new(params[:panel].permit(:page_layout_id, :name, :text, :classes))
 		raise StandardError unless params[:panel][:name].length > 0
 		
     if @panel.save
@@ -112,8 +112,7 @@ class AdminController < ApplicationController
     images = JSON.parse(params[:panel][:images]) rescue []
     @panel = Panel.find(params[:id])
 		raise StandardError unless params[:panel][:name].length > 0
-		
-    if @panel.update_attributes(params[:panel].except!(:images))
+    if @panel.update_attributes(params[:panel].permit(:page_layout_id, :name, :text, :classes))
       @panel.image_mappings.destroy_all
       images.each do |image|
         unless image == "0"
