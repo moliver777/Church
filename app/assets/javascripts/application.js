@@ -230,9 +230,10 @@ function checkFilename(el) {
 $(document).ready(function() {
 	$("a.rails-delete").unbind("click").click(function() {
 		if (confirm("Are you sure?")) {
-			$.post($(this).data("link"), function() {
+			$.post($(this).data("link"), function() {});
+			setTimeout(function() {
 				window.location.reload();
-			});
+			},500);
 		}
 	});
 });

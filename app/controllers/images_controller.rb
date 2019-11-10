@@ -50,7 +50,7 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(params[:image])
+    @image = Image.new(params[:image].permit(:name, :image_file, :thumb_file, :gallery_id))
 
     respond_to do |format|
       if @image.save
@@ -69,7 +69,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
 
     respond_to do |format|
-      if @image.update_attributes(params[:image])
+      if @image.update_attributes(params[:image].permit(:name, :image_file, :thumb_file, :gallery_id))
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }
         format.json { head :ok }
       else
