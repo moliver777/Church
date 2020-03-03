@@ -56,7 +56,7 @@ class HomeController < ApplicationController
     if errors.empty?
       params[:note][:category] = "Contact"
       params[:note][:ip_address] = request.remote_ip
-      Note.create(params[:note])
+      Note.create(params[:note].permit(:name, :phone_number, :email_address, :message, :category, :ip_address))
       render json: {success: true}
     else
       render json: {success: false, error: errors[0]}
