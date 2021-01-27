@@ -77,6 +77,7 @@ Church::Application.routes.draw do
   get "/home" => "home#index"
   get "/home/newsletter" => "home#newsletter"
   get "/home/magazine" => "home#magazine"
+  get "/home/live" => "home#live"
   get "/ajax_news" => "home#ajax_news"
   get "/events/diary" => "home#diary"
   get "/ajax_diary" => "home#ajax_diary"

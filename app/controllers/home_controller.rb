@@ -63,6 +63,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def live
+    redirect_to "/" unless Page.where(link: "home/live", publish: true).first
+    @page_link = "home"
+    @sub_link = "live"
+  end
+
   def site_index
     @pages = Page.where(publish: true, menu_link: false).order("title ASC")
   end
