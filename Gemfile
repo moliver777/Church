@@ -1,11 +1,13 @@
 source 'http://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.1'
 
 gem 'rails'
 gem 'jquery-rails'
 
 # PostgreSQL database and activerecord querying
-gem 'pg'
+group :production do
+  gem "pg"
+end
 gem 'activerecord'
 gem 'activerecord-session_store'
 
