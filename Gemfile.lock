@@ -181,7 +181,6 @@ DEPENDENCIES
   pg (= 0.18)
   rails (= 5.2.3)
   sass-rails
-  turn
   uglifier
 
 RUBY VERSION

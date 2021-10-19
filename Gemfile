@@ -31,7 +31,7 @@ group :development do
   gem 'mysql2', '0.5.3'
 end
 
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+# Use postgresql for production heroku
+group :production do
+  gem "pg"
 end
