@@ -30,8 +30,3 @@ end
 group :development do
   gem 'mysql2', '0.5.3'
 end
-
-# Use postgresql for production heroku
-group :production do
-  gem "pg"
-end
