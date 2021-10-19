@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
-ruby '2.3.1'
+ruby '2.6.3'
 
-gem 'rails'
+gem 'rails', '5.2.3'
 gem 'jquery-rails'
 
 # PostgreSQL database and activerecord querying
-gem 'pg'
+gem 'pg', '0.18'
 gem 'activerecord'
 gem 'activerecord-session_store'
 
@@ -28,7 +28,7 @@ end
 
 # Use mysql2 for local development
 group :development do
-  gem 'mysql2'
+  gem 'mysql2', '0.5.3'
 end
 
 group :test do
