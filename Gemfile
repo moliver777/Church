@@ -1,11 +1,8 @@
 source 'http://rubygems.org'
-ruby '2.3.1'
+ruby '2.6.1'
 
 gem 'rails'
 gem 'jquery-rails'
-
-# PostgreSQL database and activerecord querying
-gem 'pg'
 gem 'activerecord'
 gem 'activerecord-session_store'
 
@@ -31,7 +28,7 @@ group :development do
   gem 'mysql2'
 end
 
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+# Use postgresql for production heroku
+group :production do
+  gem "pg"
 end
